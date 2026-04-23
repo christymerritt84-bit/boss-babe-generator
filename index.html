@@ -3,21 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator Elite</title>
+<title>👑 Boss Babe Generator 4.0</title>
 
 <style>
 :root{
 --pink:#ff4f9a;
 --pink2:#ff7ab8;
---soft:#fff4fa;
+--soft:#fff6fb;
 --white:#ffffff;
---card:#ffffff;
 --text:#333;
 --muted:#777;
---purple:#9b59ff;
+--purple:#8f55ff;
 --dark:#222;
---shadow:0 18px 45px rgba(0,0,0,.10);
---radius:18px;
+--card:#ffffff;
+--shadow:0 20px 45px rgba(0,0,0,.10);
 }
 
 *{
@@ -27,10 +26,10 @@ box-sizing:border-box;
 }
 
 body{
-font-family:Arial, sans-serif;
-background:linear-gradient(135deg,#ffbddc,#ffe5f2,#fff7fb);
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ffbfdc,#ffe6f3,#fff9fc);
 background-size:300% 300%;
-animation:bgmove 10s infinite alternate;
+animation:bgmove 12s infinite alternate;
 padding:24px;
 color:var(--text);
 }
@@ -41,7 +40,7 @@ color:var(--text);
 }
 
 .container{
-max-width:1150px;
+max-width:1180px;
 margin:auto;
 background:rgba(255,255,255,.92);
 backdrop-filter:blur(10px);
@@ -53,21 +52,17 @@ box-shadow:var(--shadow);
 .topbar{
 display:flex;
 justify-content:space-between;
-align-items:flex-start;
-gap:18px;
+gap:20px;
 flex-wrap:wrap;
-margin-bottom:20px;
+margin-bottom:22px;
 }
 
-.brand{
-flex:1;
-}
+.brand{flex:1;}
 
 h1{
 font-size:46px;
 color:var(--pink);
 margin-bottom:8px;
-letter-spacing:-1px;
 }
 
 .sub{
@@ -85,26 +80,26 @@ margin-top:16px;
 }
 
 .heroBadges span{
-background:#fff1f8;
+background:#fff0f8;
 color:var(--pink);
 padding:10px 14px;
 border-radius:999px;
 font-size:14px;
 font-weight:bold;
-box-shadow:0 8px 18px rgba(255,79,154,.08);
 }
 
 .tabs{
 display:flex;
-gap:8px;
-flex-wrap:wrap;
+flex-direction:column;
+gap:10px;
+min-width:260px;
 }
 
 .tab{
-padding:10px 14px;
+padding:14px;
 border:none;
 border-radius:999px;
-background:#ffe3f1;
+background:#f4d8e6;
 color:var(--pink);
 font-weight:bold;
 cursor:pointer;
@@ -125,7 +120,7 @@ gap:18px;
 background:var(--card);
 border-radius:24px;
 padding:22px;
-box-shadow:0 10px 25px rgba(0,0,0,.05);
+box-shadow:0 10px 24px rgba(0,0,0,.05);
 }
 
 .row{
@@ -146,17 +141,16 @@ outline:none;
 select,input{
 border:1px solid #eee;
 background:#fff;
-color:#333;
 }
 
 input::placeholder{
-color:#555;
+color:#666;
 opacity:1;
 }
 
 select:focus,input:focus{
 border-color:var(--pink);
-box-shadow:0 0 0 3px rgba(255,79,154,.14);
+box-shadow:0 0 0 3px rgba(255,79,154,.12);
 }
 
 button{
@@ -170,28 +164,18 @@ transition:.2s;
 
 button:hover{
 transform:translateY(-2px);
-opacity:.96;
 }
 
-.alt{
-background:#ffd3e5;
-color:#333;
-}
+.alt{background:#f2d1e1;color:#333;}
+.copy{background:var(--purple);}
+.dark{background:var(--dark);}
 
-.copy{
-background:var(--purple);
-}
-
-.dark{
-background:var(--dark);
-}
-
-#result{
+.resultBox{
 margin-top:14px;
 padding:20px;
-min-height:190px;
+min-height:220px;
 border-radius:22px;
-background:linear-gradient(135deg,#fff1f8,#fffafd);
+background:linear-gradient(135deg,#fff1f8,#fffbfd);
 line-height:1.8;
 font-size:17px;
 }
@@ -202,7 +186,7 @@ text-align:center;
 
 .previewEmoji{
 font-size:100px;
-margin:8px 0 14px;
+margin:10px 0 14px;
 animation:bounce 2s infinite;
 }
 
@@ -222,7 +206,7 @@ color:var(--pink);
 
 .favs{
 margin-top:14px;
-max-height:230px;
+max-height:220px;
 overflow:auto;
 text-align:left;
 }
@@ -233,19 +217,26 @@ padding:10px;
 border-radius:14px;
 margin-bottom:8px;
 font-size:14px;
-line-height:1.5;
+}
+
+.hidden{
+display:none;
 }
 
 .footer{
 margin-top:18px;
 text-align:center;
-color:#888;
 font-size:14px;
+color:#888;
 }
 
-@media(max-width:920px){
+@media(max-width:960px){
 .grid{
 grid-template-columns:1fr;
+}
+.tabs{
+width:100%;
+min-width:auto;
 }
 }
 
@@ -253,21 +244,11 @@ grid-template-columns:1fr;
 .row{
 grid-template-columns:1fr;
 }
-
-.topbar{
-flex-direction:column;
-}
-
 h1{
 font-size:34px;
 }
-
 .previewEmoji{
 font-size:72px;
-}
-
-.sub{
-font-size:16px;
 }
 }
 </style>
@@ -280,11 +261,8 @@ font-size:16px;
 <div class="topbar">
 
 <div class="brand">
-<h1>👑 Boss Babe Generator</h1>
-
-<div class="sub">
-Luxury AI prompt studio for creators, brands & icons.
-</div>
+<h1>👑 Boss Babe Generator 4.0</h1>
+<div class="sub">Luxury AI prompt studio with live tabs and premium generators.</div>
 
 <div class="heroBadges">
 <span>💖 Free Tool</span>
@@ -294,9 +272,9 @@ Luxury AI prompt studio for creators, brands & icons.
 </div>
 
 <div class="tabs">
-<button class="tab active">Prompts</button>
-<button class="tab">Characters</button>
-<button class="tab">Typography</button>
+<button class="tab active" onclick="showTab('prompts',this)">Prompts</button>
+<button class="tab" onclick="showTab('characters',this)">Characters</button>
+<button class="tab" onclick="showTab('typography',this)">Typography</button>
 </div>
 
 </div>
@@ -305,30 +283,34 @@ Luxury AI prompt studio for creators, brands & icons.
 
 <div class="panel">
 
-<div class="row">
-<select id="gender">
-<option>Woman</option>
-<option>Girl</option>
-<option>Man</option>
-<option>Boy</option>
-</select>
+<!-- PROMPTS -->
+<div id="promptsTab">
 
+<div class="row">
 <select id="style">
 <option>Luxury Diva</option>
 <option>Boss Babe</option>
 <option>Soft Princess</option>
 <option>Streetwear Icon</option>
 <option>Glossy Glam</option>
-<option>Dark Edgy</option>
+</select>
+
+<select id="art">
+<option>Chibi Style</option>
+<option>Pixar Style</option>
+<option>Anime Style</option>
+<option>3D Cartoon</option>
+<option>Bratz Style</option>
 </select>
 </div>
 
 <div class="row">
-<select id="skin">
-<option>Rich Tan Skin</option>
-<option>Deep Brown Skin</option>
-<option>Fair Glowing Skin</option>
-<option>Golden Skin Tone</option>
+<select id="finish">
+<option>Glossy Finish</option>
+<option>Studio Lighting</option>
+<option>Hyper Realistic</option>
+<option>Watercolor</option>
+<option>Oil Painting</option>
 </select>
 
 <select id="hair">
@@ -340,51 +322,91 @@ Luxury AI prompt studio for creators, brands & icons.
 </div>
 
 <div class="row">
-<select id="eyes">
-<option>Huge Brown Eyes</option>
-<option>Glossy Hazel Eyes</option>
-<option>Sparkling Blue Eyes</option>
+<button onclick="generatePrompt()">✨ Generate Prompt</button>
+<button class="alt" onclick="randomizePrompt()">🎲 Randomize</button>
+</div>
+
+<div id="promptResult" class="resultBox">Your prompt appears here...</div>
+
+</div>
+
+<!-- CHARACTERS -->
+<div id="charactersTab" class="hidden">
+
+<div class="row">
+<select id="charType">
+<option>Princess</option>
+<option>CEO Girl</option>
+<option>Luxury Model</option>
+<option>Soft Girl</option>
+<option>Street Queen</option>
+<option>Chibi Boy</option>
 </select>
 
-<select id="body">
-<option>Petite</option>
-<option>Curvy</option>
-<option>Slim</option>
-<option>Athletic</option>
+<select id="charStyle">
+<option>Glossy 3D</option>
+<option>Anime Style</option>
+<option>Pixar Inspired</option>
+<option>Kawaii Cartoon</option>
+<option>Luxury Illustration</option>
 </select>
 </div>
 
 <div class="row">
-<input list="makeupList" id="makeup" placeholder="Choose Makeup Style">
+<select id="charOutfit">
+<option>Pink Tracksuit</option>
+<option>Designer Dress</option>
+<option>Streetwear Set</option>
+<option>Luxury Gown</option>
+<option>Vacation Outfit</option>
+</select>
 
-<datalist id="makeupList">
-<option value="Soft Glam">
-<option value="Full Beat">
-<option value="Natural Glow">
-<option value="Barbie Pink Glam">
-</datalist>
-
-<input list="nailsList" id="nails" placeholder="Choose Nail Style">
-
-<datalist id="nailsList">
-<option value="French Tips">
-<option value="Diamond Nails">
-<option value="Chrome Nails">
-<option value="Long Pink Stilettos">
-</datalist>
+<select id="charMood">
+<option>Confident</option>
+<option>Sweet</option>
+<option>Playful</option>
+<option>Boss Energy</option>
+<option>Fierce</option>
+</select>
 </div>
 
 <div class="row">
-<button onclick="generate()">✨ Generate</button>
-<button class="alt" onclick="randomize()">🎲 Randomize</button>
+<button onclick="generateCharacter()">🎀 Generate Character</button>
+<button class="alt" onclick="randomizeCharacter()">🎲 Randomize</button>
+</div>
+
+<div id="characterResult" class="resultBox">Your character appears here...</div>
+
+</div>
+
+<!-- TYPOGRAPHY -->
+<div id="typographyTab" class="hidden">
+
+<div class="row">
+<select id="quoteType">
+<option>Boss Babe Quote</option>
+<option>Luxury Saying</option>
+<option>Soft Girl Caption</option>
+<option>CEO Energy</option>
+<option>Viral Shirt Saying</option>
+</select>
+
+<select id="fontStyle">
+<option>Luxury Serif</option>
+<option>Modern Bold</option>
+<option>Script Font</option>
+<option>Minimal Clean</option>
+</select>
 </div>
 
 <div class="row">
-<button class="copy" onclick="copyPrompt()">📋 Copy</button>
-<button class="dark" onclick="saveFav()">💾 Save Favorite</button>
+<button onclick="generateTypography()">✍️ Generate Text</button>
+<button class="alt" onclick="randomizeTypography()">🎲 Randomize</button>
 </div>
 
-<div id="result">Your boss babe prompt appears here...</div>
+<div id="typeResult" class="resultBox">Your typography phrase appears here...</div>
+
+</div>
 
 </div>
 
@@ -392,73 +414,95 @@ Luxury AI prompt studio for creators, brands & icons.
 
 <div class="previewEmoji" id="emoji">💖</div>
 
-<div class="stat" id="count">Prompts Generated: 0</div>
+<div class="stat" id="count">Generated: 0</div>
 <div class="stat">Theme: Luxury Pink</div>
 
 <div class="favs" id="favorites">
-<div class="favItem">Saved favorites appear here.</div>
+<div class="favItem">Favorites appear here.</div>
 </div>
 
 </div>
 
 </div>
 
-<div class="footer">
-Built for creators who want pretty tools that win.
-</div>
+<div class="footer">Built for creators who want pretty tools that win.</div>
 
 </div>
 
 <script>
-let total = 0;
+let total=0;
+
+function showTab(tab,btn){
+document.getElementById("promptsTab").classList.add("hidden");
+document.getElementById("charactersTab").classList.add("hidden");
+document.getElementById("typographyTab").classList.add("hidden");
+
+document.getElementById(tab+"Tab").classList.remove("hidden");
+
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+btn.classList.add("active");
+}
+
+function updateCount(){
+total++;
+document.getElementById("count").innerText="Generated: "+total;
+}
+
+function generatePrompt(){
+let text=`A ${val("style")} character in ${val("art")}, ${val("finish")}, with ${val("hair")}, luxury styling, trending social media aesthetic.`;
+document.getElementById("promptResult").innerText=text;
+document.getElementById("emoji").innerText="💖";
+updateCount();
+saveAuto(text);
+}
+
+function randomizePrompt(){
+randomizeSection("promptsTab");
+generatePrompt();
+}
+
+function generateCharacter(){
+let text=`A ${val("charType")} in ${val("charStyle")}, wearing ${val("charOutfit")}, ${val("charMood")} expression, ultra detailed premium character design.`;
+document.getElementById("characterResult").innerText=text;
+document.getElementById("emoji").innerText="🎀";
+updateCount();
+saveAuto(text);
+}
+
+function randomizeCharacter(){
+randomizeSection("charactersTab");
+generateCharacter();
+}
+
+function generateTypography(){
+let text=`${val("quoteType")} designed in ${val("fontStyle")} style, trendy feminine aesthetic.`;
+document.getElementById("typeResult").innerText=text;
+document.getElementById("emoji").innerText="✍️";
+updateCount();
+saveAuto(text);
+}
+
+function randomizeTypography(){
+randomizeSection("typographyTab");
+generateTypography();
+}
+
+function randomizeSection(id){
+document.querySelectorAll("#"+id+" select").forEach(s=>{
+s.selectedIndex=Math.floor(Math.random()*s.options.length);
+});
+}
 
 function val(id){
 return document.getElementById(id).value;
 }
 
-function generate(){
-
-let prompt = `A ${val("style").toLowerCase()} exaggerated chibi-style ${val("gender").toLowerCase()} with ${val("skin").toLowerCase()}, ${val("eyes").toLowerCase()}, ${val("hair").toLowerCase()}, wearing ${val("makeup").toLowerCase()} makeup and ${val("nails").toLowerCase()}, with a ${val("body").toLowerCase()} body type, glossy finish, luxury details, ultra aesthetic style, premium lighting.`;
-
-document.getElementById("result").innerText = prompt;
-
-total++;
-document.getElementById("count").innerText = "Prompts Generated: " + total;
-
-setEmoji();
-}
-
-function randomize(){
-document.querySelectorAll("select").forEach(s=>{
-s.selectedIndex = Math.floor(Math.random() * s.options.length);
-});
-generate();
-}
-
-function copyPrompt(){
-navigator.clipboard.writeText(document.getElementById("result").innerText);
-}
-
-function saveFav(){
-let box = document.getElementById("favorites");
-let item = document.createElement("div");
-item.className = "favItem";
-item.innerText = document.getElementById("result").innerText;
+function saveAuto(text){
+let box=document.getElementById("favorites");
+let item=document.createElement("div");
+item.className="favItem";
+item.innerText=text;
 box.prepend(item);
-}
-
-function setEmoji(){
-let s = val("style");
-let e = "💖";
-
-if(s=="Luxury Diva") e="💎";
-if(s=="Boss Babe") e="💼";
-if(s=="Soft Princess") e="👑";
-if(s=="Streetwear Icon") e="🔥";
-if(s=="Glossy Glam") e="💅";
-if(s=="Dark Edgy") e="🖤";
-
-document.getElementById("emoji").innerText = e;
 }
 </script>
 
