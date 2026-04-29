@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 6.0</title>
+<title>👑 Boss Babe Generator 6.5</title>
 
 <style>
 body{
@@ -82,14 +82,14 @@ gap:20px;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 6.0</h1>
+<h1>👑 Boss Babe Generator 6.5</h1>
 <p>Luxury AI prompt studio</p>
 
 <div class="row">
 
-<!-- LEFT -->
 <div>
 
+<!-- STYLE -->
 <div class="section">
 <h3>✨ Style</h3>
 <div class="tags">
@@ -99,36 +99,83 @@ gap:20px;
 </div>
 </div>
 
-<div class="section">
-<h3>💄 Beauty</h3>
-<div class="tags">
-<span class="tag">Glossy Lips</span>
-<span class="tag">Soft Glam Makeup</span>
-<span class="tag">Long Lashes</span>
-</div>
-</div>
-
+<!-- OUTFIT -->
 <div class="section">
 <h3>👗 Outfit</h3>
 <div class="tags">
 <span class="tag">Mini Dress</span>
 <span class="tag">Luxury Outfit</span>
 <span class="tag">Designer Heels</span>
+<span class="tag">Athleisure Fit</span>
 </div>
 </div>
 
+<!-- ACCESSORIES -->
 <div class="section">
-<h3>💎 Extras</h3>
+<h3>💎 Accessories</h3>
 <div class="tags">
 <span class="tag">Diamond Jewelry</span>
-<span class="tag">Luxury Background</span>
-<span class="tag">Glossy Finish</span>
+<span class="tag">Luxury Handbag</span>
+<span class="tag">Oversized Sunglasses</span>
 </div>
 </div>
 
+<!-- POSE -->
 <div class="section">
-<input id="custom" placeholder="Add your own..." style="width:100%;padding:12px;border-radius:12px;border:1px solid #eee;">
+<h3>🧍‍♀️ Pose / Action</h3>
+<div class="tags">
+<span class="tag">Standing Confidently</span>
+<span class="tag">Walking Forward</span>
+<span class="tag">Sitting Pretty</span>
+<span class="tag">Hair Flip Motion</span>
 </div>
+</div>
+
+<!-- LIGHTING -->
+<div class="section">
+<h3>💡 Lighting</h3>
+<div class="tags">
+<span class="tag">Soft Glow Lighting</span>
+<span class="tag">Golden Hour</span>
+<span class="tag">Studio Lighting</span>
+<span class="tag">Neon Glow</span>
+</div>
+</div>
+
+<!-- SCENE -->
+<div class="section">
+<h3>🌆 Scene</h3>
+<div class="tags">
+<span class="tag">Luxury Penthouse</span>
+<span class="tag">City Streets</span>
+<span class="tag">Beach Sunset</span>
+<span class="tag">High-End Boutique</span>
+</div>
+</div>
+
+<!-- EFFECTS -->
+<div class="section">
+<h3>✨ Effects</h3>
+<div class="tags">
+<span class="tag">Glossy Finish</span>
+<span class="tag">Cinematic Blur</span>
+<span class="tag">Depth of Field</span>
+<span class="tag">4K Ultra Detail</span>
+</div>
+</div>
+
+<!-- MOOD -->
+<div class="section">
+<h3>💅 Mood</h3>
+<div class="tags">
+<span class="tag">Confident Energy</span>
+<span class="tag">Soft Feminine</span>
+<span class="tag">Boss Energy</span>
+<span class="tag">Luxury Lifestyle</span>
+</div>
+</div>
+
+<input id="custom" placeholder="Add your own..." style="width:100%;padding:12px;border-radius:12px;border:1px solid #eee; margin-top:15px;">
 
 <button onclick="generate()">✨ Generate Prompt</button>
 
@@ -136,7 +183,6 @@ gap:20px;
 
 </div>
 
-<!-- RIGHT -->
 <div class="side">
 <h3>💖 Stats</h3>
 <div id="count">Generated: 0</div>
@@ -160,7 +206,6 @@ gap:20px;
 let total = 0;
 let selected = [];
 
-// Stripe unlock
 const params = new URLSearchParams(window.location.search);
 if(params.get('paid') === 'true'){
 localStorage.setItem("bb_pro","true");
@@ -168,7 +213,6 @@ localStorage.setItem("bb_pro","true");
 
 let isPro = localStorage.getItem("bb_pro") === "true";
 
-// tag click
 document.querySelectorAll(".tag").forEach(tag=>{
 tag.addEventListener("click",()=>{
 tag.classList.toggle("active");
