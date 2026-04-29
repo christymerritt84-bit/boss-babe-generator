@@ -6,71 +6,55 @@
 <title>👑 Boss Babe Generator 5.0 PRO</title>
 
 <style>
-:root{
---pink:#ff4f9a;
---pink2:#ff7ab8;
---white:#ffffff;
---text:#333;
---shadow:0 20px 45px rgba(0,0,0,.10);
-}
-
 body{
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#ffbfdc,#ffe6f3,#fff9fc);
-padding:24px;
+font-family:Arial;
+background:linear-gradient(135deg,#ffd6ea,#ffeaf5,#fff);
+padding:20px;
 }
 
 .container{
 max-width:1200px;
 margin:auto;
 background:#fff;
-border-radius:24px;
-padding:24px;
-box-shadow:var(--shadow);
+padding:25px;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,.1);
 }
 
-.heroBadges span{
-background:#fff0f8;
-padding:6px 12px;
-border-radius:999px;
-margin-right:6px;
-color:var(--pink);
-font-weight:bold;
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
 }
 
-.ctaBar{
-margin-top:16px;
+select{
 padding:12px;
-background:#fff0f8;
 border-radius:12px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+border:1px solid #eee;
 }
 
 button{
-padding:12px;
+padding:14px;
 border:none;
-border-radius:12px;
-background:linear-gradient(90deg,var(--pink),var(--pink2));
+border-radius:14px;
+background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
 color:#fff;
 cursor:pointer;
-margin:6px 6px 6px 0;
+margin-top:10px;
 }
 
-.resultBox{
-margin-top:16px;
+.result{
+margin-top:20px;
 padding:20px;
-min-height:150px;
 background:#fff0f8;
 border-radius:16px;
+min-height:150px;
 }
 
-.favItem{
-background:#fff5fa;
-padding:8px;
-border-radius:8px;
-margin-top:6px;
+.side{
+background:#fff0f8;
+padding:20px;
+border-radius:16px;
 }
 </style>
 </head>
@@ -82,44 +66,95 @@ margin-top:6px;
 <h1>👑 Boss Babe Generator 5.0 PRO</h1>
 <p>Luxury AI prompt studio</p>
 
-<div class="heroBadges">
-<span>💖 Free Tool</span>
-<span>🔥 Viral Ready</span>
-<span>💎 Pro Version</span>
-</div>
+<div class="row">
 
-<div class="ctaBar">
-💎 Unlock Pro • Unlimited Use
-<button onclick="goToCheckout()">Upgrade</button>
-</div>
+<!-- LEFT -->
+<div>
 
-<br>
+<div class="row">
+<select id="gender">
+<option>Woman</option>
+<option>Girl</option>
+</select>
 
 <select id="style">
 <option>Luxury Diva</option>
-<option>Boss Babe</option>
+<option>Soft Glam</option>
+<option>Street Queen</option>
+</select>
+
+<select id="skin">
+<option>Rich Tan Skin</option>
+<option>Dark Skin</option>
+<option>Light Skin</option>
 </select>
 
 <select id="hair">
 <option>Long Black Waves</option>
-<option>Pink Ponytail</option>
+<option>Blonde Hair</option>
+<option>Pink Hair</option>
 </select>
 
-<br><br>
+<select id="eyes">
+<option>Huge Brown Eyes</option>
+<option>Green Eyes</option>
+</select>
 
-<button onclick="generate()">✨ Generate</button>
-<button onclick="randomize()">🎲 Randomize</button>
-<button onclick="copy()">📋 Copy</button>
-<button onclick="save()">💾 Save</button>
-<button onclick="shareSite()">📱 Share</button>
+<select id="body">
+<option>Petite</option>
+<option>Curvy</option>
+</select>
 
-<div id="result" class="resultBox">
-Your prompt appears here...
+<select id="makeup">
+<option>Soft Glam</option>
+<option>Full Glam</option>
+</select>
+
+<select id="pose">
+<option>Standing Confidently</option>
+<option>Sitting Pretty</option>
+</select>
+
+<select id="nails">
+<option>French Tips</option>
+<option>Long Acrylics</option>
+</select>
+
+<select id="outfit">
+<option>Mini Dress</option>
+<option>Luxury Outfit</option>
+</select>
+
+<select id="jewelry">
+<option>Diamond Jewelry</option>
+<option>Gold Jewelry</option>
+</select>
+
+<select id="background">
+<option>White Background</option>
+<option>Luxury Background</option>
+</select>
+
+<select id="finish">
+<option>Glossy Finish</option>
+<option>Cartoon Style</option>
+<option>Anime Style</option>
+</select>
 </div>
 
-<div id="count">Generated: 0</div>
+<button onclick="generate()">✨ Generate Prompt</button>
 
-<div id="favorites"></div>
+<div id="result" class="result"></div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="side">
+<h3>💖 Stats</h3>
+<div id="count">Generated: 0</div>
+</div>
+
+</div>
 
 </div>
 
@@ -127,119 +162,46 @@ Your prompt appears here...
 
 let total = 0;
 
-// detect Stripe return
+// Stripe return
 const params = new URLSearchParams(window.location.search);
 if(params.get('paid') === 'true'){
   localStorage.setItem("bb_pro","true");
 }
 
-// check pro status
 let isPro = localStorage.getItem("bb_pro") === "true";
-
-if(isPro){
-  console.log("User is PRO 💎");
-}
 
 function generate(){
 
-  if(!isPro && total >= 10){
-    openUpgrade();
-    return;
-  }
+if(!isPro && total >= 10){
+alert("Upgrade to Pro 💎");
+goToCheckout();
+return;
+}
 
-  let text = `A ${val("style")} with ${val("hair")}, ultra aesthetic.`;
+let text = `
+${val("gender")} with ${val("skin")}, ${val("eyes")}, ${val("hair")},
+${val("body")} build, ${val("makeup")} makeup,
+wearing ${val("outfit")} with ${val("jewelry")},
+${val("pose")}, ${val("background")},
+${val("finish")}, ultra detailed, aesthetic, 4k
+`;
 
-  document.getElementById("result").innerText = text;
+document.getElementById("result").innerText = text;
 
-  total++;
-  document.getElementById("count").innerText = "Generated: " + total;
+total++;
+document.getElementById("count").innerText = "Generated: " + total;
 }
 
 function val(id){
-  return document.getElementById(id).value;
-}
-
-function randomize(){
-  document.querySelectorAll("select").forEach(s=>{
-    s.selectedIndex=Math.floor(Math.random()*s.options.length);
-  });
-  generate();
-}
-
-function copy(){
-  navigator.clipboard.writeText(document.getElementById("result").innerText);
-}
-
-function save(){
-  let text=document.getElementById("result").innerText;
-  let saved=JSON.parse(localStorage.getItem("bb_favs") || "[]");
-  saved.unshift(text);
-  localStorage.setItem("bb_favs",JSON.stringify(saved));
-  renderFavs();
-}
-
-function renderFavs(){
-  let box=document.getElementById("favorites");
-  box.innerHTML="";
-  let saved=JSON.parse(localStorage.getItem("bb_favs") || "[]");
-
-  saved.forEach(item=>{
-    let div=document.createElement("div");
-    div.className="favItem";
-    div.innerText=item;
-    box.appendChild(div);
-  });
-}
-
-renderFavs();
-
-function shareSite(){
-  navigator.clipboard.writeText(window.location.href);
-  alert("Link copied 💖");
+return document.getElementById(id).value;
 }
 
 function goToCheckout(){
-  const returnUrl = window.location.href + (window.location.search ? '&' : '?') + 'paid=true';
-  window.location.href = "https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url=" + encodeURIComponent(returnUrl);
-}
-
-function openUpgrade(){
-  document.getElementById("upgradeModal").style.display="flex";
-}
-
-function closeUpgrade(){
-  document.getElementById("upgradeModal").style.display="none";
+const returnUrl = window.location.href + "?paid=true";
+window.location.href = "https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url=" + encodeURIComponent(returnUrl);
 }
 
 </script>
-
-<!-- UPGRADE MODAL -->
-<div id="upgradeModal" style="
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.5);
-display:none;
-justify-content:center;
-align-items:center;
-">
-
-<div style="background:#fff;padding:24px;border-radius:16px;text-align:center;">
-
-<h2 style="color:#ff4f9a;">💎 Boss Babe Pro</h2>
-
-<p>Unlock unlimited prompts + premium features</p>
-
-<button onclick="goToCheckout()">Upgrade Now</button>
-
-<br><br>
-
-<button onclick="closeUpgrade()" style="background:none;color:#999;">Close</button>
-
-</div>
-</div>
 
 </body>
 </html>
