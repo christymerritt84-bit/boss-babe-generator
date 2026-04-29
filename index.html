@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 7.0</title>
+<title>👑 Boss Babe Generator 7.5</title>
 
 <style>
 body{
@@ -37,7 +37,6 @@ border-radius:999px;
 background:#fff0f8;
 cursor:pointer;
 border:1px solid #ffd1e6;
-font-size:14px;
 }
 
 .tag.active{
@@ -45,8 +44,16 @@ background:#ff4f9a;
 color:#fff;
 }
 
+select{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:1px solid #eee;
+margin-top:10px;
+}
+
 button{
-padding:14px 18px;
+padding:14px;
 border:none;
 border-radius:16px;
 background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
@@ -64,12 +71,6 @@ border-radius:16px;
 min-height:120px;
 }
 
-.side{
-background:#fff0f8;
-padding:20px;
-border-radius:16px;
-}
-
 .row{
 display:grid;
 grid-template-columns:2fr 1fr;
@@ -82,160 +83,99 @@ gap:20px;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 7.0</h1>
-<p>Luxury AI prompt studio</p>
+<h1>👑 Boss Babe Generator 7.5</h1>
 
 <div class="row">
 
 <div>
 
-<!-- GENDER -->
-<div class="section">
-<h3>👤 Gender</h3>
-<div class="tags">
-<span class="tag">Woman</span>
-<span class="tag">Man</span>
-</div>
-</div>
-
-<!-- AGE -->
-<div class="section">
-<h3>🎂 Age Group</h3>
-<div class="tags">
-<span class="tag">Teen</span>
-<span class="tag">Young Adult</span>
-<span class="tag">Adult</span>
-</div>
-</div>
-
-<!-- ETHNICITY -->
-<div class="section">
-<h3>🌍 Ethnicity</h3>
-<div class="tags">
-<span class="tag">Black</span>
-<span class="tag">White</span>
-<span class="tag">Latina</span>
-<span class="tag">Asian</span>
-<span class="tag">Mixed</span>
-</div>
-</div>
-
-<!-- STYLE -->
+<!-- TAGS -->
 <div class="section">
 <h3>✨ Style</h3>
 <div class="tags">
-<span class="tag">Luxury Diva</span>
-<span class="tag">Soft Glam</span>
-<span class="tag">Street Queen</span>
+<span class="tag">Luxury diva</span>
+<span class="tag">Soft glam</span>
+<span class="tag">Street queen</span>
 </div>
 </div>
 
-<!-- STYLE TYPE -->
-<div class="section">
-<h3>🎨 Style Type</h3>
-<div class="tags">
-<span class="tag">Realistic</span>
-<span class="tag">Cartoon Style</span>
-<span class="tag">Anime Style</span>
-</div>
-</div>
-
-<!-- ART FINISH -->
-<div class="section">
-<h3>✨ Art Finish</h3>
-<div class="tags">
-<span class="tag">Glossy Finish</span>
-<span class="tag">Matte Finish</span>
-<span class="tag">Cinematic</span>
-<span class="tag">Studio Quality</span>
-</div>
-</div>
-
-<!-- OUTFIT -->
 <div class="section">
 <h3>👗 Outfit</h3>
 <div class="tags">
-<span class="tag">Mini Dress</span>
-<span class="tag">Luxury Outfit</span>
-<span class="tag">Designer Heels</span>
-<span class="tag">Athleisure Fit</span>
+<span class="tag">Mini dress</span>
+<span class="tag">Designer outfit</span>
+<span class="tag">Athleisure fit</span>
 </div>
 </div>
 
-<!-- ACCESSORIES -->
-<div class="section">
-<h3>💎 Accessories</h3>
-<div class="tags">
-<span class="tag">Diamond Jewelry</span>
-<span class="tag">Luxury Handbag</span>
-<span class="tag">Oversized Sunglasses</span>
-</div>
-</div>
-
-<!-- POSE -->
-<div class="section">
-<h3>🧍‍♀️ Pose / Action</h3>
-<div class="tags">
-<span class="tag">Standing Confidently</span>
-<span class="tag">Walking Forward</span>
-<span class="tag">Sitting Pretty</span>
-<span class="tag">Hair Flip Motion</span>
-</div>
-</div>
-
-<!-- LIGHTING -->
 <div class="section">
 <h3>💡 Lighting</h3>
 <div class="tags">
-<span class="tag">Soft Glow Lighting</span>
-<span class="tag">Golden Hour</span>
-<span class="tag">Studio Lighting</span>
-<span class="tag">Neon Glow</span>
+<span class="tag">Golden hour lighting</span>
+<span class="tag">Studio lighting</span>
+<span class="tag">Neon glow</span>
 </div>
 </div>
 
-<!-- SCENE -->
+<!-- DROPDOWNS -->
 <div class="section">
-<h3>🌆 Scene</h3>
-<div class="tags">
-<span class="tag">Luxury Penthouse</span>
-<span class="tag">City Streets</span>
-<span class="tag">Beach Sunset</span>
-<span class="tag">High-End Boutique</span>
-</div>
+<h3>🎂 Age</h3>
+<select id="age">
+<option>Young adult</option>
+<option>Teen</option>
+<option>Adult</option>
+</select>
 </div>
 
-<!-- MOOD -->
 <div class="section">
-<h3>💅 Mood</h3>
-<div class="tags">
-<span class="tag">Confident Energy</span>
-<span class="tag">Soft Feminine</span>
-<span class="tag">Boss Energy</span>
-<span class="tag">Luxury Lifestyle</span>
-</div>
+<h3>👤 Gender</h3>
+<select id="gender">
+<option>Woman</option>
+<option>Man</option>
+</select>
 </div>
 
-<input id="custom" placeholder="Add your own..." style="width:100%;padding:12px;border-radius:12px;border:1px solid #eee;margin-top:15px;">
+<div class="section">
+<h3>🌍 Ethnicity</h3>
+<select id="ethnicity">
+<option>Black</option>
+<option>Latina</option>
+<option>White</option>
+<option>Asian</option>
+</select>
+</div>
+
+<div class="section">
+<h3>💄 Makeup</h3>
+<select id="makeup">
+<option>Soft glam makeup</option>
+<option>Full glam makeup</option>
+<option>Natural makeup</option>
+<option>No makeup look</option>
+</select>
+</div>
+
+<div class="section">
+<h3>🧍 Pose</h3>
+<select id="pose">
+<option>Standing confidently</option>
+<option>Sitting elegantly</option>
+<option>Walking forward</option>
+</select>
+</div>
+
+<input id="custom" placeholder="Add extra details..." style="width:100%;padding:12px;border-radius:12px;border:1px solid #eee;margin-top:15px;">
 
 <button onclick="generate()">✨ Generate Prompt</button>
 
-<div id="result" class="result">Your prompt appears here...</div>
+<div id="result" class="result"></div>
 
 </div>
 
-<div class="side">
-<h3>💖 Stats</h3>
-<div id="count">Generated: 0</div>
-
-<br>
-
-💎 Unlock Pro (Unlimited)
-
-<br><br>
-
+<div>
+<h3>💎 Pro</h3>
 <button onclick="goToCheckout()">Upgrade</button>
-
+<div id="count">Generated: 0</div>
 </div>
 
 </div>
@@ -244,67 +184,65 @@ gap:20px;
 
 <script>
 
-let total = 0;
-let selected = [];
+let total=0;
+let selected=[];
 
-const params = new URLSearchParams(window.location.search);
-if(params.get('paid') === 'true'){
+const params=new URLSearchParams(window.location.search);
+if(params.get('paid')==='true'){
 localStorage.setItem("bb_pro","true");
 }
 
-let isPro = localStorage.getItem("bb_pro") === "true";
+let isPro=localStorage.getItem("bb_pro")==="true";
 
-// SMART TAG SYSTEM
+// tag system
 document.querySelectorAll(".tag").forEach(tag=>{
-tag.addEventListener("click",()=>{
-
-const section = tag.closest(".section").querySelector("h3").innerText;
-
-const singleSelect = ["👤 Gender","🎂 Age Group","🌍 Ethnicity","🎨 Style Type","✨ Art Finish"];
-
-if(singleSelect.includes(section)){
-tag.parentElement.querySelectorAll(".tag").forEach(t=>{
-t.classList.remove("active");
-});
-selected = selected.filter(t=>!tag.parentElement.innerText.includes(t));
-}
-
+tag.onclick=()=>{
 tag.classList.toggle("active");
 
 if(tag.classList.contains("active")){
 selected.push(tag.innerText);
 }else{
-selected = selected.filter(t=>t!==tag.innerText);
+selected=selected.filter(t=>t!==tag.innerText);
 }
-
+};
 });
-});
 
+// SMART PROMPT BUILDER
 function generate(){
 
-if(!isPro && total >= 10){
+if(!isPro && total>=10){
 alert("Upgrade to Pro 💎");
 goToCheckout();
 return;
 }
 
-let custom = document.getElementById("custom").value;
+let gender=val("gender");
+let age=val("age");
+let ethnicity=val("ethnicity");
+let makeup=val("makeup");
+let pose=val("pose");
+let custom=document.getElementById("custom").value;
 
-let prompt = selected.join(", ");
+// Build intelligent sentence
+let prompt = `A highly detailed ${age} ${ethnicity} ${gender}, styled as ${selected.join(", ")}, wearing a ${selected.find(t=>t.includes("dress")||t.includes("outfit")) || "fashionable outfit"}, with ${makeup}, ${pose}, captured with ${selected.join(", ")}, ultra realistic, 4k, highly aesthetic, trending social media style`;
 
 if(custom){
 prompt += ", " + custom;
 }
 
-document.getElementById("result").innerText = prompt || "Select options above...";
+document.getElementById("result").innerText=prompt;
 
 total++;
-document.getElementById("count").innerText = "Generated: " + total;
+document.getElementById("count").innerText="Generated: "+total;
+}
+
+function val(id){
+return document.getElementById(id).value;
 }
 
 function goToCheckout(){
-const returnUrl = window.location.href + "?paid=true";
-window.location.href = "https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url=" + encodeURIComponent(returnUrl);
+const returnUrl=window.location.href+"?paid=true";
+window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url="+encodeURIComponent(returnUrl);
 }
 
 </script>
