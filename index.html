@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 6.5</title>
+<title>👑 Boss Babe Generator 7.0</title>
 
 <style>
 body{
@@ -82,12 +82,43 @@ gap:20px;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 6.5</h1>
+<h1>👑 Boss Babe Generator 7.0</h1>
 <p>Luxury AI prompt studio</p>
 
 <div class="row">
 
 <div>
+
+<!-- GENDER -->
+<div class="section">
+<h3>👤 Gender</h3>
+<div class="tags">
+<span class="tag">Woman</span>
+<span class="tag">Man</span>
+</div>
+</div>
+
+<!-- AGE -->
+<div class="section">
+<h3>🎂 Age Group</h3>
+<div class="tags">
+<span class="tag">Teen</span>
+<span class="tag">Young Adult</span>
+<span class="tag">Adult</span>
+</div>
+</div>
+
+<!-- ETHNICITY -->
+<div class="section">
+<h3>🌍 Ethnicity</h3>
+<div class="tags">
+<span class="tag">Black</span>
+<span class="tag">White</span>
+<span class="tag">Latina</span>
+<span class="tag">Asian</span>
+<span class="tag">Mixed</span>
+</div>
+</div>
 
 <!-- STYLE -->
 <div class="section">
@@ -96,6 +127,27 @@ gap:20px;
 <span class="tag">Luxury Diva</span>
 <span class="tag">Soft Glam</span>
 <span class="tag">Street Queen</span>
+</div>
+</div>
+
+<!-- STYLE TYPE -->
+<div class="section">
+<h3>🎨 Style Type</h3>
+<div class="tags">
+<span class="tag">Realistic</span>
+<span class="tag">Cartoon Style</span>
+<span class="tag">Anime Style</span>
+</div>
+</div>
+
+<!-- ART FINISH -->
+<div class="section">
+<h3>✨ Art Finish</h3>
+<div class="tags">
+<span class="tag">Glossy Finish</span>
+<span class="tag">Matte Finish</span>
+<span class="tag">Cinematic</span>
+<span class="tag">Studio Quality</span>
 </div>
 </div>
 
@@ -153,17 +205,6 @@ gap:20px;
 </div>
 </div>
 
-<!-- EFFECTS -->
-<div class="section">
-<h3>✨ Effects</h3>
-<div class="tags">
-<span class="tag">Glossy Finish</span>
-<span class="tag">Cinematic Blur</span>
-<span class="tag">Depth of Field</span>
-<span class="tag">4K Ultra Detail</span>
-</div>
-</div>
-
 <!-- MOOD -->
 <div class="section">
 <h3>💅 Mood</h3>
@@ -175,7 +216,7 @@ gap:20px;
 </div>
 </div>
 
-<input id="custom" placeholder="Add your own..." style="width:100%;padding:12px;border-radius:12px;border:1px solid #eee; margin-top:15px;">
+<input id="custom" placeholder="Add your own..." style="width:100%;padding:12px;border-radius:12px;border:1px solid #eee;margin-top:15px;">
 
 <button onclick="generate()">✨ Generate Prompt</button>
 
@@ -213,8 +254,21 @@ localStorage.setItem("bb_pro","true");
 
 let isPro = localStorage.getItem("bb_pro") === "true";
 
+// SMART TAG SYSTEM
 document.querySelectorAll(".tag").forEach(tag=>{
 tag.addEventListener("click",()=>{
+
+const section = tag.closest(".section").querySelector("h3").innerText;
+
+const singleSelect = ["👤 Gender","🎂 Age Group","🌍 Ethnicity","🎨 Style Type","✨ Art Finish"];
+
+if(singleSelect.includes(section)){
+tag.parentElement.querySelectorAll(".tag").forEach(t=>{
+t.classList.remove("active");
+});
+selected = selected.filter(t=>!tag.parentElement.innerText.includes(t));
+}
+
 tag.classList.toggle("active");
 
 if(tag.classList.contains("active")){
@@ -222,6 +276,7 @@ selected.push(tag.innerText);
 }else{
 selected = selected.filter(t=>t!==tag.innerText);
 }
+
 });
 });
 
