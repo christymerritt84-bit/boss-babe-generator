@@ -16,45 +16,74 @@ padding:20px;
 max-width:1200px;
 margin:auto;
 background:#fff;
-padding:25px;
-border-radius:20px;
+padding:30px;
+border-radius:24px;
 box-shadow:0 20px 50px rgba(0,0,0,.1);
 }
 
+h1{
+color:#ff4f9a;
+}
+
 .row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:12px;
 }
 
 select{
-padding:12px;
-border-radius:12px;
+padding:14px;
+border-radius:16px;
 border:1px solid #eee;
+background:#fff;
+box-shadow:0 6px 14px rgba(0,0,0,.05);
+font-size:15px;
 }
 
 button{
 padding:14px;
 border:none;
-border-radius:14px;
+border-radius:18px;
 background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
 color:#fff;
+font-weight:bold;
 cursor:pointer;
-margin-top:10px;
+box-shadow:0 8px 18px rgba(255,79,154,.3);
+transition:.2s;
+}
+
+button:hover{
+transform:translateY(-2px);
 }
 
 .result{
 margin-top:20px;
 padding:20px;
 background:#fff0f8;
-border-radius:16px;
+border-radius:18px;
 min-height:150px;
 }
 
 .side{
 background:#fff0f8;
-padding:20px;
-border-radius:16px;
+padding:24px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.heroBadges span{
+background:#fff0f8;
+padding:8px 14px;
+border-radius:999px;
+margin-right:6px;
+color:#ff4f9a;
+font-weight:bold;
 }
 </style>
 </head>
@@ -66,12 +95,21 @@ border-radius:16px;
 <h1>👑 Boss Babe Generator 5.0 PRO</h1>
 <p>Luxury AI prompt studio</p>
 
+<div class="heroBadges">
+<span>💖 Free Tool</span>
+<span>🔥 Viral Ready</span>
+<span>💎 Pro Version</span>
+</div>
+
+<br>
+
 <div class="row">
 
 <!-- LEFT -->
 <div>
 
-<div class="row">
+<div class="grid">
+
 <select id="gender">
 <option>Woman</option>
 <option>Girl</option>
@@ -140,11 +178,12 @@ border-radius:16px;
 <option>Cartoon Style</option>
 <option>Anime Style</option>
 </select>
+
 </div>
 
 <button onclick="generate()">✨ Generate Prompt</button>
 
-<div id="result" class="result"></div>
+<div id="result" class="result">Your prompt appears here...</div>
 
 </div>
 
@@ -152,6 +191,15 @@ border-radius:16px;
 <div class="side">
 <h3>💖 Stats</h3>
 <div id="count">Generated: 0</div>
+
+<br>
+
+💎 Unlock Pro (Unlimited)
+
+<br><br>
+
+<button onclick="goToCheckout()">Upgrade</button>
+
 </div>
 
 </div>
@@ -162,10 +210,10 @@ border-radius:16px;
 
 let total = 0;
 
-// Stripe return
+// Stripe return unlock
 const params = new URLSearchParams(window.location.search);
 if(params.get('paid') === 'true'){
-  localStorage.setItem("bb_pro","true");
+localStorage.setItem("bb_pro","true");
 }
 
 let isPro = localStorage.getItem("bb_pro") === "true";
