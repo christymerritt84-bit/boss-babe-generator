@@ -9,222 +9,68 @@
 :root{
 --pink:#ff4f9a;
 --pink2:#ff7ab8;
---soft:#fff6fb;
 --white:#ffffff;
 --text:#333;
---muted:#777;
---purple:#8f55ff;
---dark:#222;
---card:#ffffff;
 --shadow:0 20px 45px rgba(0,0,0,.10);
 }
-
-*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:Arial,sans-serif;
 background:linear-gradient(135deg,#ffbfdc,#ffe6f3,#fff9fc);
-background-size:300% 300%;
-animation:bgmove 12s infinite alternate;
 padding:24px;
-color:var(--text);
-}
-
-@keyframes bgmove{
-0%{background-position:left;}
-100%{background-position:right;}
 }
 
 .container{
-max-width:1250px;
+max-width:1200px;
 margin:auto;
-background:rgba(255,255,255,.92);
-backdrop-filter:blur(10px);
-border-radius:28px;
-padding:28px;
+background:#fff;
+border-radius:24px;
+padding:24px;
 box-shadow:var(--shadow);
-}
-
-.topbar{
-display:flex;
-justify-content:space-between;
-gap:20px;
-flex-wrap:wrap;
-margin-bottom:22px;
-}
-
-.brand{flex:1;}
-
-h1{
-font-size:48px;
-color:var(--pink);
-margin-bottom:8px;
-}
-
-.sub{
-font-size:18px;
-color:var(--muted);
-line-height:1.5;
-}
-
-.heroBadges{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:16px;
 }
 
 .heroBadges span{
 background:#fff0f8;
-color:var(--pink);
-padding:10px 14px;
+padding:6px 12px;
 border-radius:999px;
-font-size:14px;
+margin-right:6px;
+color:var(--pink);
 font-weight:bold;
 }
 
-.tabs{
+.ctaBar{
+margin-top:16px;
+padding:12px;
+background:#fff0f8;
+border-radius:12px;
 display:flex;
-flex-direction:column;
-gap:10px;
-min-width:280px;
-}
-
-.tab{
-padding:14px;
-border:none;
-border-radius:999px;
-background:#f4d8e6;
-color:var(--pink);
-font-weight:bold;
-cursor:pointer;
-}
-
-.tab.active{
-background:linear-gradient(90deg,var(--pink),var(--pink2));
-color:#fff;
-}
-
-.grid{
-display:grid;
-grid-template-columns:1.45fr .55fr;
-gap:18px;
-}
-
-.panel{
-background:var(--card);
-border-radius:24px;
-padding:22px;
-box-shadow:0 10px 24px rgba(0,0,0,.05);
-}
-
-.row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-bottom:12px;
-}
-
-select,input,button{
-width:100%;
-padding:14px;
-border-radius:16px;
-font-size:16px;
-outline:none;
-}
-
-select,input{
-border:1px solid #eee;
-background:#fff;
-}
-
-select:focus,input:focus{
-border-color:var(--pink);
-box-shadow:0 0 0 3px rgba(255,79,154,.12);
+justify-content:space-between;
+align-items:center;
 }
 
 button{
+padding:12px;
 border:none;
-cursor:pointer;
-font-weight:bold;
-color:#fff;
+border-radius:12px;
 background:linear-gradient(90deg,var(--pink),var(--pink2));
-transition:.2s;
+color:#fff;
+cursor:pointer;
+margin:6px 6px 6px 0;
 }
-
-button:hover{
-transform:translateY(-2px);
-}
-
-.alt{background:#f2d1e1;color:#333;}
-.copy{background:var(--purple);}
-.dark{background:var(--dark);}
 
 .resultBox{
-margin-top:14px;
+margin-top:16px;
 padding:20px;
-min-height:220px;
-border-radius:22px;
-background:linear-gradient(135deg,#fff1f8,#fffbfd);
-line-height:1.8;
-font-size:17px;
-}
-
-.previewBox{text-align:center;}
-
-.previewEmoji{
-font-size:100px;
-margin:10px 0 14px;
-animation:bounce 2s infinite;
-}
-
-@keyframes bounce{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-8px);}
-}
-
-.stat{
-background:#fff5fa;
-padding:12px;
+min-height:150px;
+background:#fff0f8;
 border-radius:16px;
-margin-top:10px;
-font-weight:bold;
-color:var(--pink);
-}
-
-.favs{
-margin-top:14px;
-max-height:260px;
-overflow:auto;
-text-align:left;
 }
 
 .favItem{
 background:#fff5fa;
-padding:10px;
-border-radius:14px;
-margin-bottom:8px;
-font-size:14px;
-}
-
-.hidden{display:none;}
-
-.footer{
-margin-top:18px;
-text-align:center;
-font-size:14px;
-color:#888;
-}
-
-@media(max-width:980px){
-.grid{grid-template-columns:1fr;}
-.tabs{width:100%;min-width:auto;}
-}
-
-@media(max-width:700px){
-.row{grid-template-columns:1fr;}
-h1{font-size:34px;}
-.previewEmoji{font-size:72px;}
+padding:8px;
+border-radius:8px;
+margin-top:6px;
 }
 </style>
 </head>
@@ -233,244 +79,167 @@ h1{font-size:34px;}
 
 <div class="container">
 
-<div class="topbar">
-
-<div class="brand">
 <h1>👑 Boss Babe Generator 5.0 PRO</h1>
-<div class="sub">Luxury AI studio with all options unlocked.</div>
+<p>Luxury AI prompt studio</p>
 
 <div class="heroBadges">
 <span>💖 Free Tool</span>
 <span>🔥 Viral Ready</span>
 <span>💎 Pro Version</span>
 </div>
+
+<div class="ctaBar">
+💎 Unlock Pro • Unlimited Use
+<button onclick="goToCheckout()">Upgrade</button>
 </div>
 
-<div class="tabs">
-<button class="tab active" onclick="showTab('prompts',this)">Prompts</button>
-<button class="tab" onclick="showTab('characters',this)">Characters</button>
-<button class="tab" onclick="showTab('typography',this)">Typography</button>
-</div>
-
-</div>
-
-<div class="grid">
-
-<div class="panel">
-
-<!-- PROMPTS TAB -->
-<div id="promptsTab">
-
-<div class="row">
-<select id="gender">
-<option>Woman</option>
-<option>Girl</option>
-<option>Man</option>
-<option>Boy</option>
-</select>
+<br>
 
 <select id="style">
 <option>Luxury Diva</option>
 <option>Boss Babe</option>
-<option>Soft Princess</option>
-<option>Streetwear Icon</option>
-<option>Glossy Glam</option>
-</select>
-</div>
-
-<div class="row">
-<select id="skin">
-<option>Rich Tan Skin</option>
-<option>Deep Brown Skin</option>
-<option>Fair Glowing Skin</option>
-<option>Golden Skin Tone</option>
 </select>
 
 <select id="hair">
 <option>Long Black Waves</option>
 <option>Pink Ponytail</option>
-<option>Brown Bob</option>
-<option>Blonde Pixie Cut</option>
-</select>
-</div>
-
-<div class="row">
-<select id="eyes">
-<option>Huge Brown Eyes</option>
-<option>Hazel Eyes</option>
-<option>Blue Eyes</option>
-<option>Glossy Eyes</option>
 </select>
 
-<select id="face">
-<option>Full Lips</option>
-<option>Freckles</option>
-<option>Dimples</option>
-<option>Sharp Jawline</option>
-<option>Bold Brows</option>
-</select>
+<br><br>
+
+<button onclick="generate()">✨ Generate</button>
+<button onclick="randomize()">🎲 Randomize</button>
+<button onclick="copy()">📋 Copy</button>
+<button onclick="save()">💾 Save</button>
+<button onclick="shareSite()">📱 Share</button>
+
+<div id="result" class="resultBox">
+Your prompt appears here...
 </div>
 
-<div class="row">
-<select id="body">
-<option>Petite</option>
-<option>Curvy</option>
-<option>Slim</option>
-<option>Athletic</option>
-<option>Hourglass</option>
-</select>
+<div id="count">Generated: 0</div>
 
-<select id="pose">
-<option>Standing Confidently</option>
-<option>Hands On Hips</option>
-<option>Walking Forward</option>
-<option>Looking Back</option>
-<option>Sitting Pretty</option>
-</select>
-</div>
-
-<div class="row">
-<select id="makeup">
-<option>Soft Glam</option>
-<option>Natural Glow</option>
-<option>Full Beat</option>
-<option>Barbie Pink Glam</option>
-</select>
-
-<select id="nails">
-<option>French Tips</option>
-<option>Chrome Nails</option>
-<option>Diamond Nails</option>
-<option>Long Pink Nails</option>
-</select>
-</div>
-
-<div class="row">
-<select id="outfit">
-<option>Mini Dress</option>
-<option>Streetwear Set</option>
-<option>Pink Tracksuit</option>
-<option>Luxury Gown</option>
-<option>Vacation Look</option>
-</select>
-
-<select id="accessory">
-<option>Diamond Jewelry</option>
-<option>Designer Bag</option>
-<option>Gold Bangles</option>
-<option>Big Sunglasses</option>
-</select>
-</div>
-
-<div class="row">
-<select id="background">
-<option>White Background</option>
-<option>Luxury Pink Room</option>
-<option>City Night Lights</option>
-<option>Runway Spotlight</option>
-<option>Beach Sunset</option>
-</select>
-
-<select id="finish">
-<option>Glossy Finish</option>
-<option>Studio Lighting</option>
-<option>Anime Style</option>
-<option>Pixar Style</option>
-<option>3D Render</option>
-</select>
-</div>
-
-<div class="row">
-<button onclick="generatePrompt()">✨ Generate Prompt</button>
-<button class="alt" onclick="randomizePrompt()">🎲 Randomize</button>
-</div>
-
-<div class="row">
-<button class="copy" onclick="copyText('promptResult')">📋 Copy</button>
-<button class="dark" onclick="saveFavorite('promptResult')">💾 Save</button>
-</div>
-
-<div id="promptResult" class="resultBox">Your boss babe prompt appears here...</div>
-
-</div>
-
-<!-- CHARACTERS -->
-<div id="charactersTab" class="hidden">
-<div class="resultBox">Character tab ready.</div>
-</div>
-
-<!-- TYPOGRAPHY -->
-<div id="typographyTab" class="hidden">
-<div class="resultBox">Typography tab ready.</div>
-</div>
-
-</div>
-
-<div class="panel previewBox">
-
-<div class="previewEmoji" id="emoji">💖</div>
-
-<div class="stat" id="count">Generated: 0</div>
-<div class="stat">Theme: Luxury Pink</div>
-
-<div class="favs" id="favorites">
-<div class="favItem">Favorites appear here.</div>
-</div>
-
-</div>
-
-</div>
-
-<div class="footer">Built for creators who want pretty tools that win.</div>
+<div id="favorites"></div>
 
 </div>
 
 <script>
-let total=0;
 
-function showTab(tab,btn){
-document.getElementById("promptsTab").classList.add("hidden");
-document.getElementById("charactersTab").classList.add("hidden");
-document.getElementById("typographyTab").classList.add("hidden");
-document.getElementById(tab+"Tab").classList.remove("hidden");
+let total = 0;
 
-document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-btn.classList.add("active");
+// detect Stripe return
+const params = new URLSearchParams(window.location.search);
+if(params.get('paid') === 'true'){
+  localStorage.setItem("bb_pro","true");
+}
+
+// check pro status
+let isPro = localStorage.getItem("bb_pro") === "true";
+
+if(isPro){
+  console.log("User is PRO 💎");
+}
+
+function generate(){
+
+  if(!isPro && total >= 10){
+    openUpgrade();
+    return;
+  }
+
+  let text = `A ${val("style")} with ${val("hair")}, ultra aesthetic.`;
+
+  document.getElementById("result").innerText = text;
+
+  total++;
+  document.getElementById("count").innerText = "Generated: " + total;
 }
 
 function val(id){
-return document.getElementById(id).value;
+  return document.getElementById(id).value;
 }
 
-function generatePrompt(){
-let text=`A ${val("style").toLowerCase()} ${val("gender").toLowerCase()} with ${val("skin").toLowerCase()}, ${val("eyes").toLowerCase()}, ${val("hair").toLowerCase()}, ${val("face").toLowerCase()}, ${val("body").toLowerCase()} body type, ${val("makeup").toLowerCase()} makeup, ${val("nails").toLowerCase()}, wearing ${val("outfit").toLowerCase()}, accessorized with ${val("accessory").toLowerCase()}, ${val("pose").toLowerCase()}, background of ${val("background").toLowerCase()}, ${val("finish").toLowerCase()}, ultra detailed premium aesthetic.`;
-
-document.getElementById("promptResult").innerText=text;
-document.getElementById("emoji").innerText="👑";
-
-total++;
-document.getElementById("count").innerText="Generated: "+total;
+function randomize(){
+  document.querySelectorAll("select").forEach(s=>{
+    s.selectedIndex=Math.floor(Math.random()*s.options.length);
+  });
+  generate();
 }
 
-function randomizePrompt(){
-document.querySelectorAll("#promptsTab select").forEach(s=>{
-s.selectedIndex=Math.floor(Math.random()*s.options.length);
-});
-generatePrompt();
+function copy(){
+  navigator.clipboard.writeText(document.getElementById("result").innerText);
 }
 
-function copyText(id){
-navigator.clipboard.writeText(document.getElementById(id).innerText);
+function save(){
+  let text=document.getElementById("result").innerText;
+  let saved=JSON.parse(localStorage.getItem("bb_favs") || "[]");
+  saved.unshift(text);
+  localStorage.setItem("bb_favs",JSON.stringify(saved));
+  renderFavs();
 }
 
-function saveFavorite(id){
-let box=document.getElementById("favorites");
-let item=document.createElement("div");
-item.className="favItem";
-item.innerText=document.getElementById(id).innerText;
-box.prepend(item);
+function renderFavs(){
+  let box=document.getElementById("favorites");
+  box.innerHTML="";
+  let saved=JSON.parse(localStorage.getItem("bb_favs") || "[]");
+
+  saved.forEach(item=>{
+    let div=document.createElement("div");
+    div.className="favItem";
+    div.innerText=item;
+    box.appendChild(div);
+  });
 }
+
+renderFavs();
+
+function shareSite(){
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied 💖");
+}
+
+function goToCheckout(){
+  const returnUrl = window.location.href + (window.location.search ? '&' : '?') + 'paid=true';
+  window.location.href = "https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url=" + encodeURIComponent(returnUrl);
+}
+
+function openUpgrade(){
+  document.getElementById("upgradeModal").style.display="flex";
+}
+
+function closeUpgrade(){
+  document.getElementById("upgradeModal").style.display="none";
+}
+
 </script>
+
+<!-- UPGRADE MODAL -->
+<div id="upgradeModal" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.5);
+display:none;
+justify-content:center;
+align-items:center;
+">
+
+<div style="background:#fff;padding:24px;border-radius:16px;text-align:center;">
+
+<h2 style="color:#ff4f9a;">💎 Boss Babe Pro</h2>
+
+<p>Unlock unlimited prompts + premium features</p>
+
+<button onclick="goToCheckout()">Upgrade Now</button>
+
+<br><br>
+
+<button onclick="closeUpgrade()" style="background:none;color:#999;">Close</button>
+
+</div>
+</div>
 
 </body>
 </html>
