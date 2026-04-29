@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 7.5</title>
+<title>👑 Boss Babe Generator 8.0 ELITE</title>
 
 <style>
 body{
@@ -69,6 +69,7 @@ padding:20px;
 background:#fff0f8;
 border-radius:16px;
 min-height:120px;
+white-space:pre-line;
 }
 
 .row{
@@ -83,37 +84,64 @@ gap:20px;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 7.5</h1>
+<h1>👑 Boss Babe Generator 8.0 ELITE</h1>
 
 <div class="row">
 
 <div>
 
-<!-- TAGS -->
+<!-- STYLE -->
 <div class="section">
 <h3>✨ Style</h3>
 <div class="tags">
 <span class="tag">Luxury diva</span>
 <span class="tag">Soft glam</span>
-<span class="tag">Street queen</span>
+<span class="tag">Streetwear</span>
+<span class="tag">High fashion</span>
 </div>
 </div>
 
+<!-- OUTFIT -->
 <div class="section">
 <h3>👗 Outfit</h3>
 <div class="tags">
 <span class="tag">Mini dress</span>
 <span class="tag">Designer outfit</span>
 <span class="tag">Athleisure fit</span>
+<span class="tag">Streetwear fit</span>
 </div>
 </div>
 
+<!-- FOOTWEAR -->
+<div class="section">
+<h3>👟 Footwear</h3>
+<div class="tags">
+<span class="tag">Heels</span>
+<span class="tag">Designer sneakers</span>
+<span class="tag">Nike sneakers</span>
+<span class="tag">Chunky sneakers</span>
+</div>
+</div>
+
+<!-- LIGHTING -->
 <div class="section">
 <h3>💡 Lighting</h3>
 <div class="tags">
 <span class="tag">Golden hour lighting</span>
 <span class="tag">Studio lighting</span>
 <span class="tag">Neon glow</span>
+<span class="tag">Soft lighting</span>
+</div>
+</div>
+
+<!-- VIBE -->
+<div class="section">
+<h3>💅 Vibe</h3>
+<div class="tags">
+<span class="tag">Boss energy</span>
+<span class="tag">Confident energy</span>
+<span class="tag">Luxury lifestyle</span>
+<span class="tag">Soft feminine vibe</span>
 </div>
 </div>
 
@@ -159,8 +187,9 @@ gap:20px;
 <h3>🧍 Pose</h3>
 <select id="pose">
 <option>Standing confidently</option>
-<option>Sitting elegantly</option>
 <option>Walking forward</option>
+<option>Sitting elegantly</option>
+<option>Looking over shoulder</option>
 </select>
 </div>
 
@@ -194,7 +223,6 @@ localStorage.setItem("bb_pro","true");
 
 let isPro=localStorage.getItem("bb_pro")==="true";
 
-// tag system
 document.querySelectorAll(".tag").forEach(tag=>{
 tag.onclick=()=>{
 tag.classList.toggle("active");
@@ -207,7 +235,7 @@ selected=selected.filter(t=>t!==tag.innerText);
 };
 });
 
-// SMART PROMPT BUILDER
+// ELITE PROMPT BUILDER
 function generate(){
 
 if(!isPro && total>=10){
@@ -216,15 +244,22 @@ goToCheckout();
 return;
 }
 
-let gender=val("gender");
 let age=val("age");
+let gender=val("gender");
 let ethnicity=val("ethnicity");
 let makeup=val("makeup");
 let pose=val("pose");
 let custom=document.getElementById("custom").value;
 
-// Build intelligent sentence
-let prompt = `A highly detailed ${age} ${ethnicity} ${gender}, styled as ${selected.join(", ")}, wearing a ${selected.find(t=>t.includes("dress")||t.includes("outfit")) || "fashionable outfit"}, with ${makeup}, ${pose}, captured with ${selected.join(", ")}, ultra realistic, 4k, highly aesthetic, trending social media style`;
+// smart grouping
+let style = selected.find(t=>t.includes("diva")||t.includes("fashion")||t.includes("streetwear")) || "stylish";
+let outfit = selected.find(t=>t.includes("dress")||t.includes("outfit")) || "fashion outfit";
+let footwear = selected.find(t=>t.includes("sneakers")||t.includes("heels")) || "";
+let lighting = selected.find(t=>t.includes("lighting")||t.includes("glow")) || "";
+let vibe = selected.find(t=>t.includes("energy")||t.includes("vibe")||t.includes("lifestyle")) || "";
+
+// build layered prompt
+let prompt = `A highly detailed ${age} ${ethnicity} ${gender}, with ${vibe}, styled in ${style}, wearing a ${outfit} ${footwear ? "paired with "+footwear : ""}, featuring ${makeup}, ${pose}, captured in ${lighting}, ultra realistic, cinematic, 4k, highly aesthetic, trending on social media`;
 
 if(custom){
 prompt += ", " + custom;
