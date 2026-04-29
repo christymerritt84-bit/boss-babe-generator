@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 5.0 PRO</title>
+<title>👑 Boss Babe Generator 6.0</title>
 
 <style>
 body{
 font-family:Arial;
-background:linear-gradient(135deg,#ffd6ea,#ffeaf5,#fff);
+background:linear-gradient(135deg,#ffd6ea,#fff0f8,#fff);
 padding:20px;
 }
 
 .container{
-max-width:1200px;
+max-width:1100px;
 margin:auto;
 background:#fff;
 padding:30px;
@@ -21,69 +21,59 @@ border-radius:24px;
 box-shadow:0 20px 50px rgba(0,0,0,.1);
 }
 
-h1{
-color:#ff4f9a;
+h1{color:#ff4f9a;}
+
+.section{margin-top:20px;}
+
+.tags{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
 }
 
-.row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
+.tag{
+padding:10px 14px;
+border-radius:999px;
+background:#fff0f8;
+cursor:pointer;
+border:1px solid #ffd1e6;
+font-size:14px;
 }
 
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-}
-
-select{
-padding:14px;
-border-radius:16px;
-border:1px solid #eee;
-background:#fff;
-box-shadow:0 6px 14px rgba(0,0,0,.05);
-font-size:15px;
+.tag.active{
+background:#ff4f9a;
+color:#fff;
 }
 
 button{
-padding:14px;
+padding:14px 18px;
 border:none;
-border-radius:18px;
+border-radius:16px;
 background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
 color:#fff;
 font-weight:bold;
 cursor:pointer;
-box-shadow:0 8px 18px rgba(255,79,154,.3);
-transition:.2s;
-}
-
-button:hover{
-transform:translateY(-2px);
+margin-top:15px;
 }
 
 .result{
 margin-top:20px;
 padding:20px;
 background:#fff0f8;
-border-radius:18px;
-min-height:150px;
+border-radius:16px;
+min-height:120px;
 }
 
 .side{
 background:#fff0f8;
-padding:24px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
+padding:20px;
+border-radius:16px;
 }
 
-.heroBadges span{
-background:#fff0f8;
-padding:8px 14px;
-border-radius:999px;
-margin-right:6px;
-color:#ff4f9a;
-font-weight:bold;
+.row{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
 }
 </style>
 </head>
@@ -92,93 +82,52 @@ font-weight:bold;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 5.0 PRO</h1>
+<h1>👑 Boss Babe Generator 6.0</h1>
 <p>Luxury AI prompt studio</p>
-
-<div class="heroBadges">
-<span>💖 Free Tool</span>
-<span>🔥 Viral Ready</span>
-<span>💎 Pro Version</span>
-</div>
-
-<br>
 
 <div class="row">
 
 <!-- LEFT -->
 <div>
 
-<div class="grid">
+<div class="section">
+<h3>✨ Style</h3>
+<div class="tags">
+<span class="tag">Luxury Diva</span>
+<span class="tag">Soft Glam</span>
+<span class="tag">Street Queen</span>
+</div>
+</div>
 
-<select id="gender">
-<option>Woman</option>
-<option>Girl</option>
-</select>
+<div class="section">
+<h3>💄 Beauty</h3>
+<div class="tags">
+<span class="tag">Glossy Lips</span>
+<span class="tag">Soft Glam Makeup</span>
+<span class="tag">Long Lashes</span>
+</div>
+</div>
 
-<select id="style">
-<option>Luxury Diva</option>
-<option>Soft Glam</option>
-<option>Street Queen</option>
-</select>
+<div class="section">
+<h3>👗 Outfit</h3>
+<div class="tags">
+<span class="tag">Mini Dress</span>
+<span class="tag">Luxury Outfit</span>
+<span class="tag">Designer Heels</span>
+</div>
+</div>
 
-<select id="skin">
-<option>Rich Tan Skin</option>
-<option>Dark Skin</option>
-<option>Light Skin</option>
-</select>
+<div class="section">
+<h3>💎 Extras</h3>
+<div class="tags">
+<span class="tag">Diamond Jewelry</span>
+<span class="tag">Luxury Background</span>
+<span class="tag">Glossy Finish</span>
+</div>
+</div>
 
-<select id="hair">
-<option>Long Black Waves</option>
-<option>Blonde Hair</option>
-<option>Pink Hair</option>
-</select>
-
-<select id="eyes">
-<option>Huge Brown Eyes</option>
-<option>Green Eyes</option>
-</select>
-
-<select id="body">
-<option>Petite</option>
-<option>Curvy</option>
-</select>
-
-<select id="makeup">
-<option>Soft Glam</option>
-<option>Full Glam</option>
-</select>
-
-<select id="pose">
-<option>Standing Confidently</option>
-<option>Sitting Pretty</option>
-</select>
-
-<select id="nails">
-<option>French Tips</option>
-<option>Long Acrylics</option>
-</select>
-
-<select id="outfit">
-<option>Mini Dress</option>
-<option>Luxury Outfit</option>
-</select>
-
-<select id="jewelry">
-<option>Diamond Jewelry</option>
-<option>Gold Jewelry</option>
-</select>
-
-<select id="background">
-<option>White Background</option>
-<option>Luxury Background</option>
-</select>
-
-<select id="finish">
-<option>Glossy Finish</option>
-<option>Cartoon Style</option>
-<option>Anime Style</option>
-</select>
-
+<div class="section">
+<input id="custom" placeholder="Add your own..." style="width:100%;padding:12px;border-radius:12px;border:1px solid #eee;">
 </div>
 
 <button onclick="generate()">✨ Generate Prompt</button>
@@ -209,14 +158,28 @@ font-weight:bold;
 <script>
 
 let total = 0;
+let selected = [];
 
-// Stripe return unlock
+// Stripe unlock
 const params = new URLSearchParams(window.location.search);
 if(params.get('paid') === 'true'){
 localStorage.setItem("bb_pro","true");
 }
 
 let isPro = localStorage.getItem("bb_pro") === "true";
+
+// tag click
+document.querySelectorAll(".tag").forEach(tag=>{
+tag.addEventListener("click",()=>{
+tag.classList.toggle("active");
+
+if(tag.classList.contains("active")){
+selected.push(tag.innerText);
+}else{
+selected = selected.filter(t=>t!==tag.innerText);
+}
+});
+});
 
 function generate(){
 
@@ -226,22 +189,18 @@ goToCheckout();
 return;
 }
 
-let text = `
-${val("gender")} with ${val("skin")}, ${val("eyes")}, ${val("hair")},
-${val("body")} build, ${val("makeup")} makeup,
-wearing ${val("outfit")} with ${val("jewelry")},
-${val("pose")}, ${val("background")},
-${val("finish")}, ultra detailed, aesthetic, 4k
-`;
+let custom = document.getElementById("custom").value;
 
-document.getElementById("result").innerText = text;
+let prompt = selected.join(", ");
+
+if(custom){
+prompt += ", " + custom;
+}
+
+document.getElementById("result").innerText = prompt || "Select options above...";
 
 total++;
 document.getElementById("count").innerText = "Generated: " + total;
-}
-
-function val(id){
-return document.getElementById(id).value;
 }
 
 function goToCheckout(){
