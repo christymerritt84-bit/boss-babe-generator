@@ -62,6 +62,7 @@ padding:15px;
 background:#fff0f8;
 border-radius:12px;
 min-height:120px;
+white-space:pre-line;
 }
 
 .previewCard{
@@ -92,7 +93,86 @@ color:#999;
 
 <div class="row">
 
+<!-- LEFT SIDE -->
 <div>
+
+<div class="section">
+<label>👤 Gender</label>
+<select id="gender">
+<option>Woman</option>
+<option>Man</option>
+</select>
+</div>
+
+<div class="section">
+<label>🎂 Age</label>
+<select id="age">
+<option>Young adult</option>
+<option>Teen</option>
+<option>Adult</option>
+</select>
+</div>
+
+<div class="section">
+<label>🌍 Ethnicity</label>
+<select id="ethnicity">
+<option>Black</option>
+<option>Latina</option>
+<option>White</option>
+<option>Asian</option>
+</select>
+</div>
+
+<div class="section">
+<label>💪 Body Type</label>
+<select id="body">
+<option>Curvy</option>
+<option>Slim</option>
+<option>Petite</option>
+<option>Athletic</option>
+</select>
+</div>
+
+<div class="section">
+<label>💇 Hair</label>
+<select id="hair">
+<option>Long straight hair</option>
+<option>Curly hair</option>
+<option>Messy bun</option>
+<option>Space buns</option>
+<option>Ponytail</option>
+</select>
+</div>
+
+<div class="section">
+<label>👀 Eyes</label>
+<select id="eyes">
+<option>Brown eyes</option>
+<option>Blue eyes</option>
+<option>Hazel eyes</option>
+<option>Green eyes</option>
+</select>
+</div>
+
+<div class="section">
+<label>😊 Features</label>
+<select id="face">
+<option>Clear skin</option>
+<option>Freckles</option>
+<option>Dimples</option>
+<option>Freckles and dimples</option>
+</select>
+</div>
+
+<div class="section">
+<label>💄 Makeup</label>
+<select id="makeup">
+<option>Soft glam makeup</option>
+<option>Full glam makeup</option>
+<option>Natural makeup</option>
+<option>Glossy lips</option>
+</select>
+</div>
 
 <div class="section">
 <label>🎨 Style</label>
@@ -135,6 +215,7 @@ color:#999;
 
 </div>
 
+<!-- RIGHT SIDE -->
 <div>
 
 <div class="previewCard">
@@ -153,7 +234,7 @@ Built for creators who want pretty tools that win.
 
 <script>
 
-// 🔥 update preview on change
+// 🔥 FIXED IMAGE UPDATE
 document.querySelectorAll("select").forEach(el=>{
 el.addEventListener("change", updateImage);
 });
@@ -162,17 +243,15 @@ function val(id){
 return document.getElementById(id).value;
 }
 
-// 🔥 WORKING IMAGE SWITCH
 function updateImage(){
 
 let style = val("style");
 let outfit = val("outfit");
-
 let img = document.getElementById("previewImg");
 
 let url = "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e";
 
-// STYLE SWITCH
+// STYLE
 if(style.includes("Chibi")){
 url = "https://placehold.co/600x800/png?text=Chibi";
 }
@@ -184,7 +263,6 @@ url = "https://placehold.co/600x800/png?text=Bratz";
 }
 else{
 
-// OUTFIT SWITCH
 if(outfit.includes("hoodie") || outfit.includes("Streetwear")){
 url = "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c";
 }
@@ -197,19 +275,23 @@ url = "https://images.unsplash.com/photo-1520975922284-9e0f3a5e54c1";
 // refresh image
 img.src = url + "?t=" + new Date().getTime();
 
-// fallback
 img.onerror = function(){
 img.src = "https://placehold.co/600x800/png?text=Preview";
 };
 
 }
 
-// 🔥 generate prompt
 function generate(){
 
-let prompt = `A stylish boss babe wearing a ${val("outfit")} with ${val("footwear")}, styled in ${val("style")}, ultra aesthetic, cinematic lighting, 4k`;
+let style=val("style");
 
-document.getElementById("result").innerText = prompt;
+let quality = style.includes("Chibi") || style.includes("Anime") || style.includes("Bratz")
+? "stylized illustration, vibrant colors"
+: "ultra realistic, cinematic lighting";
+
+let prompt = `A highly detailed ${val("body")} ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}, ${val("eyes")}, ${val("face")}, styled in ${style}, wearing a stylish ${val("outfit")} paired with ${val("footwear")}, featuring ${val("makeup")}, ${quality}`;
+
+document.getElementById("result").innerText=prompt;
 
 }
 
