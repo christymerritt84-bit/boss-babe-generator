@@ -13,7 +13,7 @@ padding:20px;
 }
 
 .container{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 background:#fff;
 padding:30px;
@@ -23,6 +23,12 @@ box-shadow:0 20px 50px rgba(0,0,0,.1);
 
 h1{color:#ff4f9a;}
 
+.row{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
 .section{margin-top:12px;}
 
 label{
@@ -30,7 +36,6 @@ display:block;
 font-weight:600;
 margin-bottom:4px;
 color:#ff4f9a;
-font-size:14px;
 }
 
 select{
@@ -59,17 +64,10 @@ border-radius:12px;
 min-height:120px;
 }
 
-.row{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:20px;
-}
-
 .previewCard{
 background:#fff0f8;
 padding:12px;
 border-radius:16px;
-margin-bottom:20px;
 }
 
 .previewCard img{
@@ -78,11 +76,10 @@ border-radius:12px;
 transition:0.3s;
 }
 
-.footerText{
+.footer{
 text-align:center;
 margin-top:30px;
 color:#999;
-font-size:13px;
 }
 </style>
 </head>
@@ -95,7 +92,7 @@ font-size:13px;
 
 <div class="row">
 
-<!-- LEFT -->
+<!-- LEFT SIDE -->
 <div>
 
 <div class="section">
@@ -132,13 +129,32 @@ font-size:13px;
 </select>
 </div>
 
+<div class="section">
+<label>💄 Makeup</label>
+<select id="makeup">
+<option>Soft glam</option>
+<option>Full glam</option>
+<option>Natural</option>
+</select>
+</div>
+
+<div class="section">
+<label>💇 Hair</label>
+<select id="hair">
+<option>Long straight</option>
+<option>Curly</option>
+<option>Messy bun</option>
+<option>Ponytail</option>
+</select>
+</div>
+
 <button onclick="generate()">✨ Generate Prompt</button>
 
 <div id="result" class="result"></div>
 
 </div>
 
-<!-- RIGHT -->
+<!-- RIGHT SIDE -->
 <div>
 
 <div class="previewCard">
@@ -149,7 +165,7 @@ font-size:13px;
 
 </div>
 
-<div class="footerText">
+<div class="footer">
 Built for creators who want pretty tools that win.
 </div>
 
@@ -157,12 +173,11 @@ Built for creators who want pretty tools that win.
 
 <script>
 
-// 🔥 FORCE IMAGE UPDATE EVERY TIME USER CHANGES ANYTHING
-document.querySelectorAll("select").forEach(select=>{
-select.addEventListener("change", updateImage);
+// 🔥 FIX: LISTEN TO ALL DROPDOWNS
+document.querySelectorAll("select").forEach(el=>{
+el.addEventListener("change", updateImage);
 });
 
-// 🔥 FULLY WORKING PREVIEW
 function updateImage(){
 
 let style = document.getElementById("style").value;
@@ -170,10 +185,9 @@ let outfit = document.getElementById("outfit").value;
 
 let img = document.getElementById("previewImg");
 
-// DEFAULT
 let url = "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e";
 
-// STYLE BASED
+// STYLE
 if(style.includes("Chibi")){
 url = "https://cdn.pixabay.com/photo/2023/01/04/19/32/anime-7696451_1280.png";
 }
@@ -185,7 +199,7 @@ url = "https://cdn.pixabay.com/photo/2023/03/08/14/35/doll-7838586_1280.png";
 }
 else{
 
-// REALISTIC + OUTFIT SWITCH
+// OUTFIT
 if(outfit.includes("hoodie") || outfit.includes("Streetwear")){
 url = "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c";
 }
@@ -195,16 +209,19 @@ url = "https://images.unsplash.com/photo-1520975922284-9e0f3a5e54c1";
 
 }
 
-// FORCE REFRESH
+// refresh
 img.src = url + "?t=" + new Date().getTime();
 }
 
-// PROMPT
 function generate(){
 
-let prompt = `A stylish boss babe wearing a ${document.getElementById("outfit").value} with ${document.getElementById("footwear").value}, styled in ${document.getElementById("style").value}`;
+let prompt = `A stylish boss babe wearing a ${val("outfit")} with ${val("footwear")}, ${val("makeup")} makeup, ${val("hair")} hairstyle, styled in ${val("style")}`;
 
 document.getElementById("result").innerText = prompt;
+}
+
+function val(id){
+return document.getElementById(id).value;
 }
 
 </script>
