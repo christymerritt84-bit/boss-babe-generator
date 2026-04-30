@@ -21,41 +21,7 @@ border-radius:24px;
 box-shadow:0 20px 50px rgba(0,0,0,.1);
 }
 
-h1{
-color:#ff4f9a;
-}
-
-.footerText{
-text-align:center;
-margin-top:30px;
-color:#999;
-font-size:13px;
-}
-
-.tabs{
-display:flex;
-gap:10px;
-margin:20px 0;
-}
-
-.tab{
-flex:1;
-padding:14px;
-border:none;
-border-radius:20px;
-background:#f3d6e6;
-color:#ff4f9a;
-font-weight:bold;
-cursor:pointer;
-}
-
-.tab.active{
-background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
-color:#fff;
-}
-
-.tabContent{display:none;}
-.tabContent.active{display:block;}
+h1{color:#ff4f9a;}
 
 .section{margin-top:12px;}
 
@@ -91,7 +57,6 @@ padding:15px;
 background:#fff0f8;
 border-radius:12px;
 min-height:120px;
-white-space:pre-line;
 }
 
 .row{
@@ -105,14 +70,19 @@ background:#fff0f8;
 padding:12px;
 border-radius:16px;
 margin-bottom:20px;
-text-align:center;
 }
 
 .previewCard img{
 width:100%;
 border-radius:12px;
-object-fit:cover;
 transition:0.3s;
+}
+
+.footerText{
+text-align:center;
+margin-top:30px;
+color:#999;
+font-size:13px;
 }
 </style>
 </head>
@@ -123,88 +93,14 @@ transition:0.3s;
 
 <h1>👑 Boss Babe Generator</h1>
 
-<div class="tabs">
-<button class="tab active" onclick="showTab('prompts', this)">Prompts</button>
-<button class="tab" onclick="showTab('characters', this)">Characters</button>
-<button class="tab" onclick="showTab('typography', this)">Typography</button>
-</div>
-
 <div class="row">
 
+<!-- LEFT -->
 <div>
-
-<!-- PROMPTS -->
-<div id="prompts" class="tabContent active">
-
-<div class="section">
-<label>👤 Gender</label>
-<select id="gender"><option>Woman</option><option>Man</option></select>
-</div>
-
-<div class="section">
-<label>🎂 Age</label>
-<select id="age"><option>Young adult</option><option>Teen</option><option>Adult</option></select>
-</div>
-
-<div class="section">
-<label>🌍 Ethnicity</label>
-<select id="ethnicity"><option>Black</option><option>Latina</option><option>White</option><option>Asian</option></select>
-</div>
-
-<div class="section">
-<label>💪 Body Type</label>
-<select id="body">
-<option>Curvy</option>
-<option>Slim</option>
-<option>Petite</option>
-<option>Athletic</option>
-</select>
-</div>
-
-<div class="section">
-<label>💇 Hair Style</label>
-<select id="hair">
-<option>Long straight hair</option>
-<option>Curly hair</option>
-<option>Messy bun</option>
-<option>Space buns</option>
-<option>Ponytail</option>
-</select>
-</div>
-
-<div class="section">
-<label>👀 Eye Color</label>
-<select id="eyes">
-<option>Brown eyes</option>
-<option>Blue eyes</option>
-<option>Hazel eyes</option>
-<option>Green eyes</option>
-</select>
-</div>
-
-<div class="section">
-<label>😊 Facial Features</label>
-<select id="face">
-<option>Clear skin</option>
-<option>Freckles</option>
-<option>Dimples</option>
-<option>Freckles and dimples</option>
-</select>
-</div>
-
-<div class="section">
-<label>💄 Makeup</label>
-<select id="makeup">
-<option>Soft glam makeup</option>
-<option>Full glam makeup</option>
-<option>Natural makeup</option>
-<option>Glossy lips</option>
-</select>
-</div>
 
 <div class="section">
 <label>🎨 Style</label>
-<select id="style" onchange="updateImage()">
+<select id="style">
 <option>Luxury diva</option>
 <option>Streetwear</option>
 <option>Chibi style</option>
@@ -215,58 +111,39 @@ transition:0.3s;
 
 <div class="section">
 <label>👗 Outfit</label>
-<select id="outfit"><option>Mini dress</option><option>Streetwear fit</option></select>
+<select id="outfit">
+<option>Mini dress</option>
+<option>Bodycon dress</option>
+<option>Luxury gown</option>
+<option>Streetwear fit</option>
+<option>Oversized hoodie</option>
+<option>Matching set</option>
+</select>
 </div>
 
 <div class="section">
 <label>👟 Footwear</label>
-<select id="footwear"><option>Heels</option><option>Nike sneakers</option></select>
-</div>
-
-<div class="section">
-<label>💡 Lighting</label>
-<select id="lighting">
-<option>Golden hour lighting</option>
-<option>Studio lighting</option>
-<option>Neon glow</option>
-</select>
-</div>
-
-<div class="section">
-<label>✨ Finish</label>
-<select id="finish">
-<option>Glossy finish</option>
-<option>Matte finish</option>
-<option>Soft glow finish</option>
+<select id="footwear">
+<option>Heels</option>
+<option>Stiletto heels</option>
+<option>Designer sneakers</option>
+<option>Chunky sneakers</option>
+<option>Boots</option>
 </select>
 </div>
 
 <button onclick="generate()">✨ Generate Prompt</button>
+
 <div id="result" class="result"></div>
 
 </div>
 
-<!-- CHARACTERS -->
-<div id="characters" class="tabContent">
-<h3>Character tab coming next 💖</h3>
-</div>
-
-<div id="typography" class="tabContent">
-<h3>Typography coming next 💖</h3>
-</div>
-
-</div>
-
-<!-- RIGHT SIDE -->
+<!-- RIGHT -->
 <div>
 
 <div class="previewCard">
 <img id="previewImg" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
 </div>
-
-<h3>💎 Pro</h3>
-<button onclick="goToCheckout()">Upgrade</button>
-<div id="count">Generated: 0</div>
 
 </div>
 
@@ -280,57 +157,54 @@ Built for creators who want pretty tools that win.
 
 <script>
 
-let total=0;
+// 🔥 FORCE IMAGE UPDATE EVERY TIME USER CHANGES ANYTHING
+document.querySelectorAll("select").forEach(select=>{
+select.addEventListener("change", updateImage);
+});
 
-function val(id){ return document.getElementById(id).value; }
-
-function showTab(tabId, btn){
-document.querySelectorAll(".tabContent").forEach(t=>t.classList.remove("active"));
-document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-document.getElementById(tabId).classList.add("active");
-btn.classList.add("active");
-}
-
-// 🔥 IMAGE SWITCHER
+// 🔥 FULLY WORKING PREVIEW
 function updateImage(){
 
-let style = val("style");
+let style = document.getElementById("style").value;
+let outfit = document.getElementById("outfit").value;
+
 let img = document.getElementById("previewImg");
 
+// DEFAULT
+let url = "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e";
+
+// STYLE BASED
 if(style.includes("Chibi")){
-img.src="https://cdn.pixabay.com/photo/2023/01/04/19/32/anime-7696451_1280.png";
+url = "https://cdn.pixabay.com/photo/2023/01/04/19/32/anime-7696451_1280.png";
 }
 else if(style.includes("Anime")){
-img.src="https://cdn.pixabay.com/photo/2022/03/06/05/30/anime-7050200_1280.png";
+url = "https://cdn.pixabay.com/photo/2022/03/06/05/30/anime-7050200_1280.png";
 }
 else if(style.includes("Bratz")){
-img.src="https://cdn.pixabay.com/photo/2023/03/08/14/35/doll-7838586_1280.png";
+url = "https://cdn.pixabay.com/photo/2023/03/08/14/35/doll-7838586_1280.png";
 }
 else{
-img.src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e";
+
+// REALISTIC + OUTFIT SWITCH
+if(outfit.includes("hoodie") || outfit.includes("Streetwear")){
+url = "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c";
+}
+else if(outfit.includes("gown")){
+url = "https://images.unsplash.com/photo-1520975922284-9e0f3a5e54c1";
 }
 
 }
 
-// PROMPT GENERATOR
+// FORCE REFRESH
+img.src = url + "?t=" + new Date().getTime();
+}
+
+// PROMPT
 function generate(){
 
-let style=val("style");
+let prompt = `A stylish boss babe wearing a ${document.getElementById("outfit").value} with ${document.getElementById("footwear").value}, styled in ${document.getElementById("style").value}`;
 
-let quality = style.includes("Chibi") || style.includes("Anime") || style.includes("Bratz")
-? "stylized illustration, vibrant colors, digital art"
-: "ultra realistic, cinematic lighting, 4k";
-
-let prompt = `A highly detailed ${val("body")} ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}, ${val("eyes")}, ${val("face")}, styled in ${style}, wearing ${val("outfit")} with ${val("footwear")}, featuring ${val("makeup")}, captured in ${val("lighting")}, ${val("finish")}, ${quality}`;
-
-document.getElementById("result").innerText=prompt;
-
-total++;
-document.getElementById("count").innerText="Generated: "+total;
-}
-
-function goToCheckout(){
-window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00";
+document.getElementById("result").innerText = prompt;
 }
 
 </script>
