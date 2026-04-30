@@ -23,7 +23,6 @@ box-shadow:0 20px 50px rgba(0,0,0,.1);
 
 h1{
 color:#ff4f9a;
-margin-bottom:10px;
 }
 
 .footerText{
@@ -58,9 +57,7 @@ color:#fff;
 .tabContent{display:none;}
 .tabContent.active{display:block;}
 
-.section{
-margin-top:12px;
-}
+.section{margin-top:12px;}
 
 label{
 display:block;
@@ -115,6 +112,7 @@ text-align:center;
 width:100%;
 border-radius:12px;
 object-fit:cover;
+transition:0.3s;
 }
 </style>
 </head>
@@ -206,7 +204,7 @@ object-fit:cover;
 
 <div class="section">
 <label>🎨 Style</label>
-<select id="style">
+<select id="style" onchange="updateImage()">
 <option>Luxury diva</option>
 <option>Streetwear</option>
 <option>Chibi style</option>
@@ -250,60 +248,9 @@ object-fit:cover;
 
 <!-- CHARACTERS -->
 <div id="characters" class="tabContent">
-
-<div class="section">
-<label>🎨 Character Style</label>
-<select id="charStyle">
-<option>Realistic</option>
-<option>Chibi</option>
-<option>Anime</option>
-<option>Bratz doll</option>
-</select>
+<h3>Character tab coming next 💖</h3>
 </div>
 
-<div class="section">
-<label>👑 Character Type</label>
-<select id="charType">
-<option>Boss Babe</option>
-<option>Influencer</option>
-<option>Model</option>
-</select>
-</div>
-
-<div class="section">
-<label>💪 Body Type</label>
-<select id="body2">
-<option>Curvy</option>
-<option>Slim</option>
-<option>Petite</option>
-</select>
-</div>
-
-<div class="section">
-<label>😊 Expression</label>
-<select id="expression">
-<option>Confident smirk</option>
-<option>Soft smile</option>
-<option>Serious face</option>
-</select>
-</div>
-
-<div class="section">
-<label>⚡ Energy</label>
-<select id="energy">
-<option>Boss energy</option>
-<option>Luxury lifestyle</option>
-<option>Soft feminine</option>
-</select>
-</div>
-
-<button onclick="generateCharacter()">✨ Generate Character</button>
-
-<div id="charResult" class="result"></div>
-
-</div>
-
-<!-- TYPOGRAPHY -->
 <div id="typography" class="tabContent">
 <h3>Typography coming next 💖</h3>
 </div>
@@ -314,7 +261,7 @@ object-fit:cover;
 <div>
 
 <div class="previewCard">
-<img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Boss Babe">
+<img id="previewImg" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
 </div>
 
 <h3>💎 Pro</h3>
@@ -335,9 +282,7 @@ Built for creators who want pretty tools that win.
 
 let total=0;
 
-function val(id){
-return document.getElementById(id).value;
-}
+function val(id){ return document.getElementById(id).value; }
 
 function showTab(tabId, btn){
 document.querySelectorAll(".tabContent").forEach(t=>t.classList.remove("active"));
@@ -346,6 +291,28 @@ document.getElementById(tabId).classList.add("active");
 btn.classList.add("active");
 }
 
+// 🔥 IMAGE SWITCHER
+function updateImage(){
+
+let style = val("style");
+let img = document.getElementById("previewImg");
+
+if(style.includes("Chibi")){
+img.src="https://cdn.pixabay.com/photo/2023/01/04/19/32/anime-7696451_1280.png";
+}
+else if(style.includes("Anime")){
+img.src="https://cdn.pixabay.com/photo/2022/03/06/05/30/anime-7050200_1280.png";
+}
+else if(style.includes("Bratz")){
+img.src="https://cdn.pixabay.com/photo/2023/03/08/14/35/doll-7838586_1280.png";
+}
+else{
+img.src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e";
+}
+
+}
+
+// PROMPT GENERATOR
 function generate(){
 
 let style=val("style");
@@ -360,29 +327,6 @@ document.getElementById("result").innerText=prompt;
 
 total++;
 document.getElementById("count").innerText="Generated: "+total;
-}
-
-function generateCharacter(){
-
-let style=val("charStyle");
-let base=`A ${val("body2")} ${val("charType")} with ${val("expression")}, ${val("energy")}`;
-
-let output="";
-
-if(style==="Chibi"){
-output=`Cute chibi character, big head small body, ${base}, vibrant kawaii style`;
-}
-else if(style==="Anime"){
-output=`Anime style character, expressive eyes, detailed shading, ${base}`;
-}
-else if(style==="Bratz doll"){
-output=`Bratz doll style character, glossy lips, dramatic makeup, ${base}`;
-}
-else{
-output=`Ultra realistic character portrait, ${base}, cinematic lighting, 4k`;
-}
-
-document.getElementById("charResult").innerText=output;
 }
 
 function goToCheckout(){
