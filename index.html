@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 12.0</title>
+<title>👑 Boss Babe Generator</title>
 
 <style>
 body{
@@ -21,13 +21,16 @@ border-radius:24px;
 box-shadow:0 20px 50px rgba(0,0,0,.1);
 }
 
-h1{color:#ff4f9a;}
-
-.subtitle{
-text-align:center;
-color:#777;
+h1{
+color:#ff4f9a;
 margin-bottom:10px;
-font-size:14px;
+}
+
+.footerText{
+text-align:center;
+margin-top:30px;
+color:#999;
+font-size:13px;
 }
 
 .tabs{
@@ -55,14 +58,23 @@ color:#fff;
 .tabContent{display:none;}
 .tabContent.active{display:block;}
 
-.section{margin-top:12px;}
+.section{
+margin-top:12px;
+}
+
+label{
+display:block;
+font-weight:600;
+margin-bottom:4px;
+color:#ff4f9a;
+font-size:14px;
+}
 
 select{
 width:100%;
 padding:10px;
 border-radius:10px;
 border:1px solid #eee;
-margin-top:4px;
 }
 
 button{
@@ -97,8 +109,7 @@ gap:20px;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 12.0</h1>
-<p class="subtitle">Built for creators who want pretty tools that win.</p>
+<h1>👑 Boss Babe Generator</h1>
 
 <div class="tabs">
 <button class="tab active" onclick="showTab('prompts', this)">Prompts</button>
@@ -110,20 +121,36 @@ gap:20px;
 
 <div>
 
-<!-- PROMPTS TAB -->
+<!-- PROMPTS -->
 <div id="prompts" class="tabContent active">
 
+<div class="section">
+<label>👤 Gender</label>
 <select id="gender"><option>Woman</option><option>Man</option></select>
-<select id="age"><option>Young adult</option><option>Teen</option><option>Adult</option></select>
-<select id="ethnicity"><option>Black</option><option>Latina</option><option>White</option><option>Asian</option></select>
+</div>
 
+<div class="section">
+<label>🎂 Age</label>
+<select id="age"><option>Young adult</option><option>Teen</option><option>Adult</option></select>
+</div>
+
+<div class="section">
+<label>🌍 Ethnicity</label>
+<select id="ethnicity"><option>Black</option><option>Latina</option><option>White</option><option>Asian</option></select>
+</div>
+
+<div class="section">
+<label>💪 Body Type</label>
 <select id="body">
 <option>Curvy</option>
 <option>Slim</option>
 <option>Petite</option>
 <option>Athletic</option>
 </select>
+</div>
 
+<div class="section">
+<label>💇 Hair Style</label>
 <select id="hair">
 <option>Long straight hair</option>
 <option>Curly hair</option>
@@ -131,28 +158,40 @@ gap:20px;
 <option>Space buns</option>
 <option>Ponytail</option>
 </select>
+</div>
 
+<div class="section">
+<label>👀 Eye Color</label>
 <select id="eyes">
 <option>Brown eyes</option>
 <option>Blue eyes</option>
 <option>Hazel eyes</option>
 <option>Green eyes</option>
 </select>
+</div>
 
+<div class="section">
+<label>😊 Facial Features</label>
 <select id="face">
 <option>Clear skin</option>
 <option>Freckles</option>
 <option>Dimples</option>
 <option>Freckles and dimples</option>
 </select>
+</div>
 
+<div class="section">
+<label>💄 Makeup</label>
 <select id="makeup">
 <option>Soft glam makeup</option>
 <option>Full glam makeup</option>
 <option>Natural makeup</option>
 <option>Glossy lips</option>
 </select>
+</div>
 
+<div class="section">
+<label>🎨 Style</label>
 <select id="style">
 <option>Luxury diva</option>
 <option>Streetwear</option>
@@ -160,59 +199,89 @@ gap:20px;
 <option>Anime style</option>
 <option>Bratz doll style</option>
 </select>
+</div>
 
+<div class="section">
+<label>👗 Outfit</label>
 <select id="outfit"><option>Mini dress</option><option>Streetwear fit</option></select>
-<select id="footwear"><option>Heels</option><option>Nike sneakers</option></select>
+</div>
 
+<div class="section">
+<label>👟 Footwear</label>
+<select id="footwear"><option>Heels</option><option>Nike sneakers</option></select>
+</div>
+
+<div class="section">
+<label>💡 Lighting</label>
 <select id="lighting">
 <option>Golden hour lighting</option>
 <option>Studio lighting</option>
 <option>Neon glow</option>
 </select>
+</div>
 
+<div class="section">
+<label>✨ Finish</label>
 <select id="finish">
 <option>Glossy finish</option>
 <option>Matte finish</option>
 <option>Soft glow finish</option>
 </select>
+</div>
 
 <button onclick="generate()">✨ Generate Prompt</button>
 <div id="result" class="result"></div>
 
 </div>
 
-<!-- CHARACTERS TAB -->
+<!-- CHARACTERS -->
 <div id="characters" class="tabContent">
 
+<div class="section">
+<label>🎨 Character Style</label>
 <select id="charStyle">
 <option>Realistic</option>
 <option>Chibi</option>
 <option>Anime</option>
 <option>Bratz doll</option>
 </select>
+</div>
 
+<div class="section">
+<label>👑 Character Type</label>
 <select id="charType">
 <option>Boss Babe</option>
 <option>Influencer</option>
 <option>Model</option>
 </select>
+</div>
 
+<div class="section">
+<label>💪 Body Type</label>
 <select id="body2">
 <option>Curvy</option>
 <option>Slim</option>
 <option>Petite</option>
 </select>
+</div>
 
+<div class="section">
+<label>😊 Expression</label>
 <select id="expression">
 <option>Confident smirk</option>
 <option>Soft smile</option>
 <option>Serious face</option>
 </select>
+</div>
 
+<div class="section">
+<label>⚡ Energy</label>
 <select id="energy">
 <option>Boss energy</option>
 <option>Luxury lifestyle</option>
+<option>Soft feminine</option>
 </select>
+</div>
 
 <button onclick="generateCharacter()">✨ Generate Character</button>
 
@@ -220,6 +289,7 @@ gap:20px;
 
 </div>
 
+<!-- TYPOGRAPHY -->
 <div id="typography" class="tabContent">
 <h3>Typography coming next 💖</h3>
 </div>
@@ -234,13 +304,19 @@ gap:20px;
 
 </div>
 
+<div class="footerText">
+Built for creators who want pretty tools that win.
+</div>
+
 </div>
 
 <script>
 
 let total=0;
 
-function val(id){ return document.getElementById(id).value; }
+function val(id){
+return document.getElementById(id).value;
+}
 
 function showTab(tabId, btn){
 document.querySelectorAll(".tabContent").forEach(t=>t.classList.remove("active"));
@@ -251,9 +327,9 @@ btn.classList.add("active");
 
 function generate(){
 
-let style = val("style");
+let style=val("style");
 
-let quality = style.includes("Chibi")||style.includes("Anime")||style.includes("Bratz")
+let quality = style.includes("Chibi") || style.includes("Anime") || style.includes("Bratz")
 ? "stylized illustration, vibrant colors, digital art"
 : "ultra realistic, cinematic lighting, 4k";
 
@@ -268,17 +344,21 @@ document.getElementById("count").innerText="Generated: "+total;
 function generateCharacter(){
 
 let style=val("charStyle");
+let base=`A ${val("body2")} ${val("charType")} with ${val("expression")}, ${val("energy")}`;
 
 let output="";
 
 if(style==="Chibi"){
-output="Cute chibi character, big head small body, vibrant kawaii style";
-}else if(style==="Anime"){
-output="Anime style character, expressive eyes, detailed shading";
-}else if(style==="Bratz doll"){
-output="Bratz doll style, glossy lips, dramatic makeup";
-}else{
-output="Ultra realistic character, cinematic portrait, high detail";
+output=`Cute chibi character, big head small body, ${base}, vibrant kawaii style, digital illustration`;
+}
+else if(style==="Anime"){
+output=`Anime style character, expressive eyes, detailed shading, ${base}, vibrant anime aesthetic`;
+}
+else if(style==="Bratz doll"){
+output=`Bratz doll style character, glossy lips, dramatic makeup, ${base}, fashion doll aesthetic`;
+}
+else{
+output=`Ultra realistic character portrait, ${base}, cinematic lighting, 4k, high detail`;
 }
 
 document.getElementById("charResult").innerText=output;
