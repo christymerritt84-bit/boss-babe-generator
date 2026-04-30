@@ -23,6 +23,31 @@ box-shadow:0 20px 50px rgba(0,0,0,.1);
 
 h1{color:#ff4f9a;}
 
+.tabs{
+display:flex;
+gap:10px;
+margin:20px 0;
+}
+
+.tab{
+flex:1;
+padding:14px;
+border:none;
+border-radius:20px;
+background:#f3d6e6;
+color:#ff4f9a;
+font-weight:bold;
+cursor:pointer;
+}
+
+.tab.active{
+background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
+color:#fff;
+}
+
+.tabContent{display:none;}
+.tabContent.active{display:block;}
+
 .row{
 display:grid;
 grid-template-columns:2fr 1fr;
@@ -90,10 +115,90 @@ color:#999;
 
 <h1>👑 Boss Babe Generator</h1>
 
+<div class="tabs">
+<button class="tab active" onclick="showTab('prompts',this)">Prompts</button>
+<button class="tab" onclick="showTab('characters',this)">Characters</button>
+<button class="tab" onclick="showTab('typography',this)">Typography</button>
+</div>
+
 <div class="row">
 
-<!-- LEFT SIDE -->
+<!-- LEFT -->
 <div>
+
+<!-- PROMPTS -->
+<div id="prompts" class="tabContent active">
+
+<div class="section">
+<label>👤 Gender</label>
+<select id="gender"><option>Woman</option><option>Man</option></select>
+</div>
+
+<div class="section">
+<label>🎂 Age</label>
+<select id="age"><option>Young adult</option><option>Teen</option><option>Adult</option></select>
+</div>
+
+<div class="section">
+<label>🌍 Ethnicity</label>
+<select id="ethnicity">
+<option>Black</option>
+<option>Latina</option>
+<option>White</option>
+<option>Asian</option>
+</select>
+</div>
+
+<div class="section">
+<label>💪 Body Type</label>
+<select id="body">
+<option>Curvy</option>
+<option>Slim</option>
+<option>Petite</option>
+<option>Athletic</option>
+</select>
+</div>
+
+<div class="section">
+<label>💇 Hair</label>
+<select id="hair">
+<option>Long straight hair</option>
+<option>Curly hair</option>
+<option>Messy bun</option>
+<option>Space buns</option>
+<option>Ponytail</option>
+</select>
+</div>
+
+<div class="section">
+<label>👀 Eyes</label>
+<select id="eyes">
+<option>Brown eyes</option>
+<option>Blue eyes</option>
+<option>Hazel eyes</option>
+<option>Green eyes</option>
+</select>
+</div>
+
+<div class="section">
+<label>😊 Features</label>
+<select id="face">
+<option>Clear skin</option>
+<option>Freckles</option>
+<option>Dimples</option>
+<option>Freckles and dimples</option>
+</select>
+</div>
+
+<div class="section">
+<label>💄 Makeup</label>
+<select id="makeup">
+<option>Soft glam makeup</option>
+<option>Full glam makeup</option>
+<option>Natural makeup</option>
+<option>Glossy lips</option>
+</select>
+</div>
 
 <div class="section">
 <label>🎨 Style</label>
@@ -126,25 +231,25 @@ color:#999;
 <option>Designer sneakers</option>
 <option>Chunky sneakers</option>
 <option>Boots</option>
+<option>Thigh high boots</option>
 </select>
 </div>
 
 <div class="section">
-<label>💄 Makeup</label>
-<select id="makeup">
-<option>Soft glam</option>
-<option>Full glam</option>
-<option>Natural</option>
+<label>💡 Lighting</label>
+<select id="lighting">
+<option>Golden hour lighting</option>
+<option>Studio lighting</option>
+<option>Neon glow</option>
 </select>
 </div>
 
 <div class="section">
-<label>💇 Hair</label>
-<select id="hair">
-<option>Long straight</option>
-<option>Curly</option>
-<option>Messy bun</option>
-<option>Ponytail</option>
+<label>✨ Finish</label>
+<select id="finish">
+<option>Glossy finish</option>
+<option>Matte finish</option>
+<option>Soft glow finish</option>
 </select>
 </div>
 
@@ -154,12 +259,28 @@ color:#999;
 
 </div>
 
-<!-- RIGHT SIDE -->
+<!-- CHARACTERS -->
+<div id="characters" class="tabContent">
+<h3>Character Builder coming next 💖</h3>
+</div>
+
+<!-- TYPOGRAPHY -->
+<div id="typography" class="tabContent">
+<h3>Typography builder coming next 💖</h3>
+</div>
+
+</div>
+
+<!-- RIGHT -->
 <div>
 
 <div class="previewCard">
 <img id="previewImg" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
 </div>
+
+<h3>💎 Pro</h3>
+<button onclick="goToCheckout()">Upgrade</button>
+<div id="count">Generated: 0</div>
 
 </div>
 
@@ -173,21 +294,34 @@ Built for creators who want pretty tools that win.
 
 <script>
 
-// 🔥 FIX: LISTEN TO ALL DROPDOWNS
+// 🔥 AUTO UPDATE IMAGE
 document.querySelectorAll("select").forEach(el=>{
 el.addEventListener("change", updateImage);
 });
 
+let total=0;
+
+function val(id){
+return document.getElementById(id).value;
+}
+
+function showTab(tabId,btn){
+document.querySelectorAll(".tabContent").forEach(t=>t.classList.remove("active"));
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+document.getElementById(tabId).classList.add("active");
+btn.classList.add("active");
+}
+
+// 🔥 DYNAMIC PREVIEW
 function updateImage(){
 
-let style = document.getElementById("style").value;
-let outfit = document.getElementById("outfit").value;
+let style = val("style");
+let outfit = val("outfit");
 
 let img = document.getElementById("previewImg");
 
 let url = "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e";
 
-// STYLE
 if(style.includes("Chibi")){
 url = "https://cdn.pixabay.com/photo/2023/01/04/19/32/anime-7696451_1280.png";
 }
@@ -199,7 +333,6 @@ url = "https://cdn.pixabay.com/photo/2023/03/08/14/35/doll-7838586_1280.png";
 }
 else{
 
-// OUTFIT
 if(outfit.includes("hoodie") || outfit.includes("Streetwear")){
 url = "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c";
 }
@@ -209,19 +342,28 @@ url = "https://images.unsplash.com/photo-1520975922284-9e0f3a5e54c1";
 
 }
 
-// refresh
 img.src = url + "?t=" + new Date().getTime();
 }
 
+// GENERATE PROMPT
 function generate(){
 
-let prompt = `A stylish boss babe wearing a ${val("outfit")} with ${val("footwear")}, ${val("makeup")} makeup, ${val("hair")} hairstyle, styled in ${val("style")}`;
+let style=val("style");
 
-document.getElementById("result").innerText = prompt;
+let quality = style.includes("Chibi") || style.includes("Anime") || style.includes("Bratz")
+? "stylized illustration, vibrant colors, digital art"
+: "ultra realistic, cinematic lighting, 4k";
+
+let prompt = `A highly detailed ${val("body")} ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}, ${val("eyes")}, ${val("face")}, styled in ${style}, wearing a stylish ${val("outfit")} paired with ${val("footwear")}, featuring ${val("makeup")}, captured in ${val("lighting")}, ${val("finish")}, ${quality}`;
+
+document.getElementById("result").innerText=prompt;
+
+total++;
+document.getElementById("count").innerText="Generated: "+total;
 }
 
-function val(id){
-return document.getElementById(id).value;
+function goToCheckout(){
+window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00";
 }
 
 </script>
