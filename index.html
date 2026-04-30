@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 10.0</title>
+<title>👑 Boss Babe Generator 11.0</title>
 
 <style>
 body{
@@ -45,13 +45,8 @@ background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
 color:#fff;
 }
 
-.tabContent{
-display:none;
-}
-
-.tabContent.active{
-display:block;
-}
+.tabContent{display:none;}
+.tabContent.active{display:block;}
 
 .section{margin-top:15px;}
 
@@ -95,9 +90,8 @@ gap:20px;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 10.0</h1>
+<h1>👑 Boss Babe Generator 11.0</h1>
 
-<!-- TABS -->
 <div class="tabs">
 <button class="tab active" onclick="showTab('prompts', this)">Prompts</button>
 <button class="tab" onclick="showTab('characters', this)">Characters</button>
@@ -111,166 +105,74 @@ gap:20px;
 <!-- PROMPTS TAB -->
 <div id="prompts" class="tabContent active">
 
-<div class="section">
-<h3>👤 Gender</h3>
-<select id="gender">
-<option>Woman</option>
-<option>Man</option>
-</select>
-</div>
+<select id="gender"><option>Woman</option><option>Man</option></select>
+<select id="age"><option>Young adult</option><option>Teen</option><option>Adult</option></select>
+<select id="ethnicity"><option>Black</option><option>Latina</option><option>White</option><option>Asian</option></select>
+<select id="hair"><option>Long straight hair</option><option>Curly hair</option></select>
+<select id="makeup"><option>Soft glam makeup</option><option>Full glam makeup</option></select>
 
-<div class="section">
-<h3>🎂 Age</h3>
-<select id="age">
-<option>Teen</option>
-<option>Young adult</option>
-<option>Adult</option>
-</select>
-</div>
-
-<div class="section">
-<h3>🌍 Ethnicity</h3>
-<select id="ethnicity">
-<option>Black</option>
-<option>Latina</option>
-<option>White</option>
-<option>Asian</option>
-<option>Mixed</option>
-</select>
-</div>
-
-<div class="section">
-<h3>💇 Hair</h3>
-<select id="hair">
-<option>Long straight hair</option>
-<option>Curly hair</option>
-<option>Sleek ponytail</option>
-<option>Messy bun</option>
-<option>Blonde hair</option>
-<option>Black hair</option>
-<option>Colored hair</option>
-</select>
-</div>
-
-<div class="section">
-<h3>💄 Makeup</h3>
-<select id="makeup">
-<option>Soft glam makeup</option>
-<option>Full glam makeup</option>
-<option>Natural makeup</option>
-<option>No makeup look</option>
-<option>Glossy lips</option>
-<option>Matte makeup</option>
-<option>Bold eye makeup</option>
-<option>Bronzed glow</option>
-</select>
-</div>
-
-<div class="section">
-<h3>✨ Style</h3>
 <select id="style">
 <option>Luxury diva</option>
-<option>Soft glam</option>
 <option>Streetwear</option>
-<option>High fashion</option>
 <option>Chibi style</option>
-<option>Bratz doll style</option>
-<option>Barbiecore aesthetic</option>
-<option>Cartoon illustration</option>
 <option>Anime style</option>
+<option>Bratz doll style</option>
 </select>
-</div>
 
-<div class="section">
-<h3>👗 Outfit</h3>
-<select id="outfit">
-<option>Mini dress</option>
-<option>Designer outfit</option>
-<option>Streetwear fit</option>
-<option>Athleisure outfit</option>
-</select>
-</div>
-
-<div class="section">
-<h3>👟 Footwear</h3>
-<select id="footwear">
-<option>Heels</option>
-<option>Designer sneakers</option>
-<option>Nike sneakers</option>
-<option>Chunky sneakers</option>
-</select>
-</div>
-
-<div class="section">
-<h3>👜 Accessories</h3>
-<select id="accessories">
-<option>Luxury handbag</option>
-<option>Designer sunglasses</option>
-<option>Gold jewelry</option>
-<option>Diamond jewelry</option>
-<option>None</option>
-</select>
-</div>
-
-<div class="section">
-<h3>🧍 Pose</h3>
-<select id="pose">
-<option>Standing confidently</option>
-<option>Walking forward</option>
-<option>Sitting elegantly</option>
-<option>Looking over shoulder</option>
-</select>
-</div>
-
-<div class="section">
-<h3>💡 Lighting</h3>
-<select id="lighting">
-<option>Golden hour lighting</option>
-<option>Studio lighting</option>
-<option>Neon glow</option>
-<option>Soft lighting</option>
-</select>
-</div>
-
-<div class="section">
-<h3>🌆 Scene</h3>
-<select id="scene">
-<option>Luxury penthouse</option>
-<option>City streets</option>
-<option>Beach sunset</option>
-<option>Luxury boutique</option>
-<option>Studio background</option>
-</select>
-</div>
-
-<div class="section">
-<h3>💅 Vibe</h3>
-<select id="vibe">
-<option>Boss energy</option>
-<option>Confident energy</option>
-<option>Luxury lifestyle</option>
-<option>Soft feminine vibe</option>
-</select>
-</div>
-
-<input id="custom" placeholder="Add extra details..." style="width:100%;padding:12px;border-radius:12px;border:1px solid #eee;margin-top:15px;">
+<select id="outfit"><option>Mini dress</option><option>Streetwear fit</option></select>
+<select id="footwear"><option>Heels</option><option>Nike sneakers</option></select>
+<select id="lighting"><option>Golden hour</option><option>Studio lighting</option></select>
 
 <button onclick="generate()">✨ Generate Prompt</button>
-
 <div id="result" class="result"></div>
 
 </div>
 
 <!-- CHARACTERS TAB -->
 <div id="characters" class="tabContent">
-<h3>👤 Character Generator (Coming Soon)</h3>
-<p>This will include detailed character builds and presets.</p>
+
+<h3>👤 Character Generator</h3>
+
+<select id="charStyle">
+<option>Realistic</option>
+<option>Chibi</option>
+<option>Anime</option>
+<option>Bratz doll</option>
+</select>
+
+<select id="charType">
+<option>Boss Babe</option>
+<option>Influencer</option>
+<option>Model</option>
+</select>
+
+<select id="body">
+<option>Slim</option>
+<option>Curvy</option>
+<option>Petite</option>
+</select>
+
+<select id="expression">
+<option>Confident smirk</option>
+<option>Soft smile</option>
+<option>Serious face</option>
+</select>
+
+<select id="energy">
+<option>Boss energy</option>
+<option>Soft feminine</option>
+<option>Luxury lifestyle</option>
+</select>
+
+<button onclick="generateCharacter()">✨ Generate Character</button>
+
+<div id="charResult" class="result"></div>
+
 </div>
 
-<!-- TYPOGRAPHY TAB -->
+<!-- TYPOGRAPHY -->
 <div id="typography" class="tabContent">
-<h3>🔤 Typography Generator (Coming Soon)</h3>
-<p>Create quote-based designs and shirt text prompts.</p>
+<h3>🔤 Typography (Coming Next)</h3>
 </div>
 
 </div>
@@ -296,11 +198,8 @@ localStorage.setItem("bb_pro","true");
 
 let isPro=localStorage.getItem("bb_pro")==="true";
 
-function val(id){
-return document.getElementById(id).value;
-}
+function val(id){ return document.getElementById(id).value; }
 
-// TAB SWITCHING
 function showTab(tabId, btn){
 document.querySelectorAll(".tabContent").forEach(t=>t.classList.remove("active"));
 document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
@@ -308,7 +207,7 @@ document.getElementById(tabId).classList.add("active");
 btn.classList.add("active");
 }
 
-// ELITE PROMPT BUILDER
+// PROMPT GENERATOR
 function generate(){
 
 if(!isPro && total>=10){
@@ -317,29 +216,48 @@ goToCheckout();
 return;
 }
 
-let style = val("style");
+let style=val("style");
 
-let base = `A highly detailed ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}`;
-let look = `styled in ${style}, wearing a ${val("outfit")} paired with ${val("footwear")}, accessorized with ${val("accessories")}`;
-let scene = `${val("pose")}, set in ${val("scene")}, captured with ${val("lighting")}, ${val("vibe")}`;
+let quality="ultra realistic, cinematic, 4k";
 
-let quality = "ultra realistic, cinematic lighting, 4k, high detail, trending aesthetic, professional photography style";
-
-if(style.includes("Chibi") || style.includes("Bratz") || style.includes("Anime") || style.includes("Cartoon")){
-quality = "stylized illustration, vibrant colors, high detail, trending digital art style";
+if(style.includes("Chibi")||style.includes("Anime")||style.includes("Bratz")){
+quality="stylized illustration, vibrant colors, digital art";
 }
 
-let prompt = `${base}, ${look}, featuring ${val("makeup")}, ${scene}, ${quality}`;
-
-let custom=document.getElementById("custom").value;
-if(custom){
-prompt += ", " + custom;
-}
+let prompt=`A ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}, styled in ${style}, wearing ${val("outfit")}, ${val("lighting")}, ${quality}`;
 
 document.getElementById("result").innerText=prompt;
 
 total++;
 document.getElementById("count").innerText="Generated: "+total;
+}
+
+// CHARACTER GENERATOR (REAL STYLE SWITCH)
+function generateCharacter(){
+
+let style=val("charStyle");
+let base=`A ${val("body")} ${val("charType")} with ${val("expression")}, ${val("energy")}`;
+
+let output="";
+
+// DIFFERENT STYLE OUTPUTS
+if(style==="Realistic"){
+output=`${base}, ultra realistic portrait, cinematic lighting, high detail, 4k photography`;
+}
+
+if(style==="Chibi"){
+output=`Cute chibi character, big head small body proportions, ${base}, vibrant colors, kawaii aesthetic, digital illustration`;
+}
+
+if(style==="Anime"){
+output=`Anime style character, expressive eyes, detailed shading, ${base}, vibrant anime aesthetic, high detail illustration`;
+}
+
+if(style==="Bratz doll"){
+output=`Bratz doll style character, large eyes, glossy lips, dramatic makeup, ${base}, fashion doll aesthetic, high detail`;
+}
+
+document.getElementById("charResult").innerText=output;
 }
 
 function goToCheckout(){
