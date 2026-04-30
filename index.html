@@ -102,6 +102,20 @@ display:grid;
 grid-template-columns:2fr 1fr;
 gap:20px;
 }
+
+.previewCard{
+background:#fff0f8;
+padding:12px;
+border-radius:16px;
+margin-bottom:20px;
+text-align:center;
+}
+
+.previewCard img{
+width:100%;
+border-radius:12px;
+object-fit:cover;
+}
 </style>
 </head>
 
@@ -296,10 +310,17 @@ gap:20px;
 
 </div>
 
+<!-- RIGHT SIDE -->
 <div>
+
+<div class="previewCard">
+<img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Boss Babe">
+</div>
+
 <h3>💎 Pro</h3>
 <button onclick="goToCheckout()">Upgrade</button>
 <div id="count">Generated: 0</div>
+
 </div>
 
 </div>
@@ -349,16 +370,16 @@ let base=`A ${val("body2")} ${val("charType")} with ${val("expression")}, ${val(
 let output="";
 
 if(style==="Chibi"){
-output=`Cute chibi character, big head small body, ${base}, vibrant kawaii style, digital illustration`;
+output=`Cute chibi character, big head small body, ${base}, vibrant kawaii style`;
 }
 else if(style==="Anime"){
-output=`Anime style character, expressive eyes, detailed shading, ${base}, vibrant anime aesthetic`;
+output=`Anime style character, expressive eyes, detailed shading, ${base}`;
 }
 else if(style==="Bratz doll"){
-output=`Bratz doll style character, glossy lips, dramatic makeup, ${base}, fashion doll aesthetic`;
+output=`Bratz doll style character, glossy lips, dramatic makeup, ${base}`;
 }
 else{
-output=`Ultra realistic character portrait, ${base}, cinematic lighting, 4k, high detail`;
+output=`Ultra realistic character portrait, ${base}, cinematic lighting, 4k`;
 }
 
 document.getElementById("charResult").innerText=output;
