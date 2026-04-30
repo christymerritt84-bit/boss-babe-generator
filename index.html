@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 11.0</title>
+<title>👑 Boss Babe Generator 12.0</title>
 
 <style>
 body{
@@ -22,6 +22,13 @@ box-shadow:0 20px 50px rgba(0,0,0,.1);
 }
 
 h1{color:#ff4f9a;}
+
+.subtitle{
+text-align:center;
+color:#777;
+margin-bottom:10px;
+font-size:14px;
+}
 
 .tabs{
 display:flex;
@@ -48,14 +55,14 @@ color:#fff;
 .tabContent{display:none;}
 .tabContent.active{display:block;}
 
-.section{margin-top:15px;}
+.section{margin-top:12px;}
 
 select{
 width:100%;
-padding:12px;
-border-radius:12px;
+padding:10px;
+border-radius:10px;
 border:1px solid #eee;
-margin-top:6px;
+margin-top:4px;
 }
 
 button{
@@ -66,15 +73,15 @@ background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
 color:#fff;
 font-weight:bold;
 cursor:pointer;
-margin-top:20px;
+margin-top:15px;
 }
 
 .result{
-margin-top:20px;
-padding:20px;
+margin-top:15px;
+padding:15px;
 background:#fff0f8;
-border-radius:16px;
-min-height:140px;
+border-radius:12px;
+min-height:120px;
 white-space:pre-line;
 }
 
@@ -90,7 +97,8 @@ gap:20px;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 11.0</h1>
+<h1>👑 Boss Babe Generator 12.0</h1>
+<p class="subtitle">Built for creators who want pretty tools that win.</p>
 
 <div class="tabs">
 <button class="tab active" onclick="showTab('prompts', this)">Prompts</button>
@@ -108,8 +116,42 @@ gap:20px;
 <select id="gender"><option>Woman</option><option>Man</option></select>
 <select id="age"><option>Young adult</option><option>Teen</option><option>Adult</option></select>
 <select id="ethnicity"><option>Black</option><option>Latina</option><option>White</option><option>Asian</option></select>
-<select id="hair"><option>Long straight hair</option><option>Curly hair</option></select>
-<select id="makeup"><option>Soft glam makeup</option><option>Full glam makeup</option></select>
+
+<select id="body">
+<option>Curvy</option>
+<option>Slim</option>
+<option>Petite</option>
+<option>Athletic</option>
+</select>
+
+<select id="hair">
+<option>Long straight hair</option>
+<option>Curly hair</option>
+<option>Messy bun</option>
+<option>Space buns</option>
+<option>Ponytail</option>
+</select>
+
+<select id="eyes">
+<option>Brown eyes</option>
+<option>Blue eyes</option>
+<option>Hazel eyes</option>
+<option>Green eyes</option>
+</select>
+
+<select id="face">
+<option>Clear skin</option>
+<option>Freckles</option>
+<option>Dimples</option>
+<option>Freckles and dimples</option>
+</select>
+
+<select id="makeup">
+<option>Soft glam makeup</option>
+<option>Full glam makeup</option>
+<option>Natural makeup</option>
+<option>Glossy lips</option>
+</select>
 
 <select id="style">
 <option>Luxury diva</option>
@@ -121,7 +163,18 @@ gap:20px;
 
 <select id="outfit"><option>Mini dress</option><option>Streetwear fit</option></select>
 <select id="footwear"><option>Heels</option><option>Nike sneakers</option></select>
-<select id="lighting"><option>Golden hour</option><option>Studio lighting</option></select>
+
+<select id="lighting">
+<option>Golden hour lighting</option>
+<option>Studio lighting</option>
+<option>Neon glow</option>
+</select>
+
+<select id="finish">
+<option>Glossy finish</option>
+<option>Matte finish</option>
+<option>Soft glow finish</option>
+</select>
 
 <button onclick="generate()">✨ Generate Prompt</button>
 <div id="result" class="result"></div>
@@ -130,8 +183,6 @@ gap:20px;
 
 <!-- CHARACTERS TAB -->
 <div id="characters" class="tabContent">
-
-<h3>👤 Character Generator</h3>
 
 <select id="charStyle">
 <option>Realistic</option>
@@ -146,9 +197,9 @@ gap:20px;
 <option>Model</option>
 </select>
 
-<select id="body">
-<option>Slim</option>
+<select id="body2">
 <option>Curvy</option>
+<option>Slim</option>
 <option>Petite</option>
 </select>
 
@@ -160,7 +211,6 @@ gap:20px;
 
 <select id="energy">
 <option>Boss energy</option>
-<option>Soft feminine</option>
 <option>Luxury lifestyle</option>
 </select>
 
@@ -170,9 +220,8 @@ gap:20px;
 
 </div>
 
-<!-- TYPOGRAPHY -->
 <div id="typography" class="tabContent">
-<h3>🔤 Typography (Coming Next)</h3>
+<h3>Typography coming next 💖</h3>
 </div>
 
 </div>
@@ -191,13 +240,6 @@ gap:20px;
 
 let total=0;
 
-const params=new URLSearchParams(window.location.search);
-if(params.get('paid')==='true'){
-localStorage.setItem("bb_pro","true");
-}
-
-let isPro=localStorage.getItem("bb_pro")==="true";
-
 function val(id){ return document.getElementById(id).value; }
 
 function showTab(tabId, btn){
@@ -207,24 +249,15 @@ document.getElementById(tabId).classList.add("active");
 btn.classList.add("active");
 }
 
-// PROMPT GENERATOR
 function generate(){
 
-if(!isPro && total>=10){
-alert("Upgrade to Pro 💎");
-goToCheckout();
-return;
-}
+let style = val("style");
 
-let style=val("style");
+let quality = style.includes("Chibi")||style.includes("Anime")||style.includes("Bratz")
+? "stylized illustration, vibrant colors, digital art"
+: "ultra realistic, cinematic lighting, 4k";
 
-let quality="ultra realistic, cinematic, 4k";
-
-if(style.includes("Chibi")||style.includes("Anime")||style.includes("Bratz")){
-quality="stylized illustration, vibrant colors, digital art";
-}
-
-let prompt=`A ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}, styled in ${style}, wearing ${val("outfit")}, ${val("lighting")}, ${quality}`;
+let prompt = `A highly detailed ${val("body")} ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}, ${val("eyes")}, ${val("face")}, styled in ${style}, wearing ${val("outfit")} with ${val("footwear")}, featuring ${val("makeup")}, captured in ${val("lighting")}, ${val("finish")}, ${quality}`;
 
 document.getElementById("result").innerText=prompt;
 
@@ -232,37 +265,27 @@ total++;
 document.getElementById("count").innerText="Generated: "+total;
 }
 
-// CHARACTER GENERATOR (REAL STYLE SWITCH)
 function generateCharacter(){
 
 let style=val("charStyle");
-let base=`A ${val("body")} ${val("charType")} with ${val("expression")}, ${val("energy")}`;
 
 let output="";
 
-// DIFFERENT STYLE OUTPUTS
-if(style==="Realistic"){
-output=`${base}, ultra realistic portrait, cinematic lighting, high detail, 4k photography`;
-}
-
 if(style==="Chibi"){
-output=`Cute chibi character, big head small body proportions, ${base}, vibrant colors, kawaii aesthetic, digital illustration`;
-}
-
-if(style==="Anime"){
-output=`Anime style character, expressive eyes, detailed shading, ${base}, vibrant anime aesthetic, high detail illustration`;
-}
-
-if(style==="Bratz doll"){
-output=`Bratz doll style character, large eyes, glossy lips, dramatic makeup, ${base}, fashion doll aesthetic, high detail`;
+output="Cute chibi character, big head small body, vibrant kawaii style";
+}else if(style==="Anime"){
+output="Anime style character, expressive eyes, detailed shading";
+}else if(style==="Bratz doll"){
+output="Bratz doll style, glossy lips, dramatic makeup";
+}else{
+output="Ultra realistic character, cinematic portrait, high detail";
 }
 
 document.getElementById("charResult").innerText=output;
 }
 
 function goToCheckout(){
-const returnUrl=window.location.href+"?paid=true";
-window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url="+encodeURIComponent(returnUrl);
+window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00";
 }
 
 </script>
