@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 8.0 ELITE</title>
+<title>👑 Boss Babe Generator 9.0</title>
 
 <style>
 body{
@@ -23,33 +23,15 @@ box-shadow:0 20px 50px rgba(0,0,0,.1);
 
 h1{color:#ff4f9a;}
 
-.section{margin-top:20px;}
-
-.tags{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-}
-
-.tag{
-padding:10px 14px;
-border-radius:999px;
-background:#fff0f8;
-cursor:pointer;
-border:1px solid #ffd1e6;
-}
-
-.tag.active{
-background:#ff4f9a;
-color:#fff;
-}
+.section{margin-top:15px;}
 
 select{
 width:100%;
 padding:12px;
 border-radius:12px;
 border:1px solid #eee;
-margin-top:10px;
+margin-top:6px;
+font-size:14px;
 }
 
 button{
@@ -60,7 +42,7 @@ background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
 color:#fff;
 font-weight:bold;
 cursor:pointer;
-margin-top:15px;
+margin-top:20px;
 }
 
 .result{
@@ -68,7 +50,7 @@ margin-top:20px;
 padding:20px;
 background:#fff0f8;
 border-radius:16px;
-min-height:120px;
+min-height:140px;
 white-space:pre-line;
 }
 
@@ -84,76 +66,12 @@ gap:20px;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 8.0 ELITE</h1>
+<h1>👑 Boss Babe Generator 9.0</h1>
+<p>Luxury AI prompt studio</p>
 
 <div class="row">
 
 <div>
-
-<!-- STYLE -->
-<div class="section">
-<h3>✨ Style</h3>
-<div class="tags">
-<span class="tag">Luxury diva</span>
-<span class="tag">Soft glam</span>
-<span class="tag">Streetwear</span>
-<span class="tag">High fashion</span>
-</div>
-</div>
-
-<!-- OUTFIT -->
-<div class="section">
-<h3>👗 Outfit</h3>
-<div class="tags">
-<span class="tag">Mini dress</span>
-<span class="tag">Designer outfit</span>
-<span class="tag">Athleisure fit</span>
-<span class="tag">Streetwear fit</span>
-</div>
-</div>
-
-<!-- FOOTWEAR -->
-<div class="section">
-<h3>👟 Footwear</h3>
-<div class="tags">
-<span class="tag">Heels</span>
-<span class="tag">Designer sneakers</span>
-<span class="tag">Nike sneakers</span>
-<span class="tag">Chunky sneakers</span>
-</div>
-</div>
-
-<!-- LIGHTING -->
-<div class="section">
-<h3>💡 Lighting</h3>
-<div class="tags">
-<span class="tag">Golden hour lighting</span>
-<span class="tag">Studio lighting</span>
-<span class="tag">Neon glow</span>
-<span class="tag">Soft lighting</span>
-</div>
-</div>
-
-<!-- VIBE -->
-<div class="section">
-<h3>💅 Vibe</h3>
-<div class="tags">
-<span class="tag">Boss energy</span>
-<span class="tag">Confident energy</span>
-<span class="tag">Luxury lifestyle</span>
-<span class="tag">Soft feminine vibe</span>
-</div>
-</div>
-
-<!-- DROPDOWNS -->
-<div class="section">
-<h3>🎂 Age</h3>
-<select id="age">
-<option>Young adult</option>
-<option>Teen</option>
-<option>Adult</option>
-</select>
-</div>
 
 <div class="section">
 <h3>👤 Gender</h3>
@@ -164,12 +82,35 @@ gap:20px;
 </div>
 
 <div class="section">
+<h3>🎂 Age</h3>
+<select id="age">
+<option>Teen</option>
+<option>Young adult</option>
+<option>Adult</option>
+</select>
+</div>
+
+<div class="section">
 <h3>🌍 Ethnicity</h3>
 <select id="ethnicity">
 <option>Black</option>
 <option>Latina</option>
 <option>White</option>
 <option>Asian</option>
+<option>Mixed</option>
+</select>
+</div>
+
+<div class="section">
+<h3>💇 Hair</h3>
+<select id="hair">
+<option>Long straight hair</option>
+<option>Curly hair</option>
+<option>Sleek ponytail</option>
+<option>Messy bun</option>
+<option>Blonde hair</option>
+<option>Black hair</option>
+<option>Colored hair</option>
 </select>
 </div>
 
@@ -180,6 +121,51 @@ gap:20px;
 <option>Full glam makeup</option>
 <option>Natural makeup</option>
 <option>No makeup look</option>
+<option>Glossy lips</option>
+<option>Matte makeup</option>
+<option>Bold eye makeup</option>
+<option>Bronzed glow</option>
+</select>
+</div>
+
+<div class="section">
+<h3>✨ Style</h3>
+<select id="style">
+<option>Luxury diva</option>
+<option>Soft glam</option>
+<option>Streetwear</option>
+<option>High fashion</option>
+</select>
+</div>
+
+<div class="section">
+<h3>👗 Outfit</h3>
+<select id="outfit">
+<option>Mini dress</option>
+<option>Designer outfit</option>
+<option>Streetwear fit</option>
+<option>Athleisure outfit</option>
+</select>
+</div>
+
+<div class="section">
+<h3>👟 Footwear</h3>
+<select id="footwear">
+<option>Heels</option>
+<option>Designer sneakers</option>
+<option>Nike sneakers</option>
+<option>Chunky sneakers</option>
+</select>
+</div>
+
+<div class="section">
+<h3>👜 Accessories</h3>
+<select id="accessories">
+<option>Luxury handbag</option>
+<option>Designer sunglasses</option>
+<option>Gold jewelry</option>
+<option>Diamond jewelry</option>
+<option>None</option>
 </select>
 </div>
 
@@ -190,6 +176,37 @@ gap:20px;
 <option>Walking forward</option>
 <option>Sitting elegantly</option>
 <option>Looking over shoulder</option>
+</select>
+</div>
+
+<div class="section">
+<h3>💡 Lighting</h3>
+<select id="lighting">
+<option>Golden hour lighting</option>
+<option>Studio lighting</option>
+<option>Neon glow</option>
+<option>Soft lighting</option>
+</select>
+</div>
+
+<div class="section">
+<h3>🌆 Scene</h3>
+<select id="scene">
+<option>Luxury penthouse</option>
+<option>City streets</option>
+<option>Beach sunset</option>
+<option>Luxury boutique</option>
+<option>Studio background</option>
+</select>
+</div>
+
+<div class="section">
+<h3>💅 Vibe</h3>
+<select id="vibe">
+<option>Boss energy</option>
+<option>Confident energy</option>
+<option>Luxury lifestyle</option>
+<option>Soft feminine vibe</option>
 </select>
 </div>
 
@@ -214,7 +231,6 @@ gap:20px;
 <script>
 
 let total=0;
-let selected=[];
 
 const params=new URLSearchParams(window.location.search);
 if(params.get('paid')==='true'){
@@ -223,19 +239,10 @@ localStorage.setItem("bb_pro","true");
 
 let isPro=localStorage.getItem("bb_pro")==="true";
 
-document.querySelectorAll(".tag").forEach(tag=>{
-tag.onclick=()=>{
-tag.classList.toggle("active");
-
-if(tag.classList.contains("active")){
-selected.push(tag.innerText);
-}else{
-selected=selected.filter(t=>t!==tag.innerText);
+function val(id){
+return document.getElementById(id).value;
 }
-};
-});
 
-// ELITE PROMPT BUILDER
 function generate(){
 
 if(!isPro && total>=10){
@@ -244,22 +251,9 @@ goToCheckout();
 return;
 }
 
-let age=val("age");
-let gender=val("gender");
-let ethnicity=val("ethnicity");
-let makeup=val("makeup");
-let pose=val("pose");
+let prompt = `A highly detailed ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}, styled in ${val("style")}, wearing a ${val("outfit")} paired with ${val("footwear")}, accessorized with ${val("accessories")}, featuring ${val("makeup")}, ${val("pose")}, set in ${val("scene")}, captured with ${val("lighting")}, ${val("vibe")}, ultra realistic, cinematic lighting, 4k, high detail, trending aesthetic, professional photography style`;
+
 let custom=document.getElementById("custom").value;
-
-// smart grouping
-let style = selected.find(t=>t.includes("diva")||t.includes("fashion")||t.includes("streetwear")) || "stylish";
-let outfit = selected.find(t=>t.includes("dress")||t.includes("outfit")) || "fashion outfit";
-let footwear = selected.find(t=>t.includes("sneakers")||t.includes("heels")) || "";
-let lighting = selected.find(t=>t.includes("lighting")||t.includes("glow")) || "";
-let vibe = selected.find(t=>t.includes("energy")||t.includes("vibe")||t.includes("lifestyle")) || "";
-
-// build layered prompt
-let prompt = `A highly detailed ${age} ${ethnicity} ${gender}, with ${vibe}, styled in ${style}, wearing a ${outfit} ${footwear ? "paired with "+footwear : ""}, featuring ${makeup}, ${pose}, captured in ${lighting}, ultra realistic, cinematic, 4k, highly aesthetic, trending on social media`;
 
 if(custom){
 prompt += ", " + custom;
@@ -269,10 +263,6 @@ document.getElementById("result").innerText=prompt;
 
 total++;
 document.getElementById("count").innerText="Generated: "+total;
-}
-
-function val(id){
-return document.getElementById(id).value;
 }
 
 function goToCheckout(){
