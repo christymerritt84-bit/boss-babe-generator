@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 Boss Babe Generator 9.0</title>
+<title>👑 Boss Babe Generator 9.1</title>
 
 <style>
 body{
@@ -66,7 +66,7 @@ gap:20px;
 
 <div class="container">
 
-<h1>👑 Boss Babe Generator 9.0</h1>
+<h1>👑 Boss Babe Generator 9.1</h1>
 <p>Luxury AI prompt studio</p>
 
 <div class="row">
@@ -135,6 +135,12 @@ gap:20px;
 <option>Soft glam</option>
 <option>Streetwear</option>
 <option>High fashion</option>
+
+<option>Chibi style</option>
+<option>Bratz doll style</option>
+<option>Barbiecore aesthetic</option>
+<option>Cartoon illustration</option>
+<option>Anime style</option>
 </select>
 </div>
 
@@ -251,10 +257,28 @@ goToCheckout();
 return;
 }
 
-let prompt = `A highly detailed ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}, styled in ${val("style")}, wearing a ${val("outfit")} paired with ${val("footwear")}, accessorized with ${val("accessories")}, featuring ${val("makeup")}, ${val("pose")}, set in ${val("scene")}, captured with ${val("lighting")}, ${val("vibe")}, ultra realistic, cinematic lighting, 4k, high detail, trending aesthetic, professional photography style`;
+let style = val("style");
+
+// BASE STRUCTURE
+let base = `A highly detailed ${val("age")} ${val("ethnicity")} ${val("gender")} with ${val("hair")}`;
+let look = `styled in ${style}, wearing a ${val("outfit")} paired with ${val("footwear")}, accessorized with ${val("accessories")}`;
+let scene = `${val("pose")}, set in ${val("scene")}, captured with ${val("lighting")}, ${val("vibe")}`;
+
+// STYLE-SMART QUALITY
+let quality = "ultra realistic, cinematic lighting, 4k, high detail, trending aesthetic, professional photography style";
+
+if(
+style.includes("Chibi") ||
+style.includes("Bratz") ||
+style.includes("Anime") ||
+style.includes("Cartoon")
+){
+quality = "stylized illustration, vibrant colors, high detail, trending digital art style";
+}
+
+let prompt = `${base}, ${look}, featuring ${val("makeup")}, ${scene}, ${quality}`;
 
 let custom=document.getElementById("custom").value;
-
 if(custom){
 prompt += ", " + custom;
 }
