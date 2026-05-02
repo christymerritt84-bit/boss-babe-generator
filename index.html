@@ -6,47 +6,61 @@
 
 <style>
 body{
-font-family:Arial;
-background:#fafafa;
+font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+background:linear-gradient(135deg,#ffe4ef,#fff);
+margin:0;
 padding:20px;
 }
 
 .container{
-max-width:900px;
+max-width:1000px;
 margin:auto;
+}
+
+.card{
 background:#fff;
-padding:30px;
+padding:20px;
 border-radius:20px;
 box-shadow:0 10px 40px rgba(0,0,0,.08);
+margin-bottom:20px;
 }
 
 h1{
 text-align:center;
 color:#ff4f9a;
+margin-bottom:10px;
 }
 
-.section{
-margin-top:25px;
+.stats{
+text-align:center;
+color:#777;
+margin-bottom:20px;
 }
 
-.section h3{
-margin-bottom:8px;
+.section-title{
 font-size:14px;
-color:#555;
+font-weight:bold;
+margin-bottom:10px;
+color:#333;
 }
 
 .tags{
 display:flex;
 flex-wrap:wrap;
-gap:8px;
+gap:10px;
 }
 
 .tag{
 padding:8px 14px;
-border-radius:20px;
-background:#eee;
+border-radius:999px;
+background:#f2f2f2;
 cursor:pointer;
 font-size:13px;
+transition:.2s;
+}
+
+.tag:hover{
+background:#ffe4ef;
 }
 
 .tag.active{
@@ -55,23 +69,23 @@ color:#fff;
 }
 
 input{
-margin-top:8px;
-padding:10px;
 width:100%;
-border-radius:10px;
-border:1px solid #ddd;
+padding:10px;
+border-radius:12px;
+border:1px solid #eee;
+margin-top:10px;
 }
 
 button{
-margin-top:12px;
 width:100%;
 padding:14px;
+border:none;
+border-radius:14px;
 background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
 color:#fff;
-border:none;
-border-radius:12px;
 font-weight:bold;
 cursor:pointer;
+margin-top:12px;
 }
 
 .row{
@@ -79,22 +93,32 @@ display:flex;
 gap:10px;
 }
 
+.row button{flex:1;}
+
 .result{
-margin-top:20px;
+margin-top:15px;
 padding:15px;
+border-radius:14px;
 background:#fff0f8;
-border-radius:12px;
 min-height:120px;
 white-space:pre-line;
 }
 
 .lock{
 background:#fff0f0;
+padding:12px;
+border-radius:12px;
+text-align:center;
+margin-bottom:15px;
+display:none;
+}
+
+.fav{
+background:#fff5fa;
 padding:10px;
 border-radius:10px;
-text-align:center;
-display:none;
 margin-top:10px;
+font-size:13px;
 }
 </style>
 </head>
@@ -103,75 +127,60 @@ margin-top:10px;
 
 <div class="container">
 
+<div class="card">
 <h1>👑 Boss Babe Generator</h1>
-<div style="text-align:center;">Generated: <span id="count">0</span></div>
+<div class="stats">Generated: <span id="count">0</span></div>
 
 <div id="lockBox" class="lock">
-💎 Upgrade for unlimited use
-<button onclick="checkout()">Unlock PRO</button>
+💎 Unlock PRO for unlimited generations
+<button onclick="checkout()">Upgrade</button>
+</div>
 </div>
 
-<!-- STYLE -->
-<div class="section">
-<h3>STYLE</h3>
+<!-- BUILDER -->
+<div class="card">
+
+<div class="section-title">STYLE</div>
 <div class="tags" data-group="style">
-<div class="tag">chibi</div>
+<div class="tag">signature exaggerated chibi</div>
 <div class="tag">anime</div>
 <div class="tag">pixar 3d</div>
 <div class="tag">digital art</div>
 <div class="tag">watercolor</div>
 </div>
 <input placeholder="Custom style..." data-custom="style">
-</div>
 
-<!-- ETHNICITY -->
-<div class="section">
-<h3>ETHNICITY</h3>
+<div class="section-title">ETHNICITY</div>
 <div class="tags" data-group="ethnicity">
 <div class="tag">black woman</div>
-<div class="tag">white woman</div>
 <div class="tag">latina woman</div>
+<div class="tag">white woman</div>
 <div class="tag">asian woman</div>
 </div>
-<input placeholder="Custom..." data-custom="ethnicity">
-</div>
+<input data-custom="ethnicity">
 
-<!-- BODY -->
-<div class="section">
-<h3>BODY</h3>
+<div class="section-title">BODY</div>
 <div class="tags" data-group="body">
 <div class="tag">curvy</div>
 <div class="tag">slim</div>
 <div class="tag">petite</div>
 </div>
-<input placeholder="Custom..." data-custom="body">
-</div>
 
-<!-- HAIR -->
-<div class="section">
-<h3>HAIR</h3>
+<div class="section-title">HAIR</div>
 <div class="tags" data-group="hair">
-<div class="tag">long hair</div>
+<div class="tag">long waves</div>
 <div class="tag">messy bun</div>
 <div class="tag">ponytail</div>
 </div>
-<input placeholder="Custom..." data-custom="hair">
-</div>
 
-<!-- MAKEUP -->
-<div class="section">
-<h3>MAKEUP</h3>
+<div class="section-title">MAKEUP</div>
 <div class="tags" data-group="makeup">
 <div class="tag">soft glam</div>
 <div class="tag">full glam</div>
 <div class="tag">natural makeup</div>
 </div>
-<input placeholder="Custom..." data-custom="makeup">
-</div>
 
-<!-- OUTFIT -->
-<div class="section">
-<h3>OUTFIT</h3>
+<div class="section-title">OUTFIT</div>
 <div class="tags" data-group="outfit">
 <div class="tag">glam streetwear</div>
 <div class="tag">hoodie and sweatpants</div>
@@ -180,62 +189,46 @@ margin-top:10px;
 <div class="tag">chanel outfit</div>
 <div class="tag">louis vuitton outfit</div>
 </div>
-<input placeholder="Custom..." data-custom="outfit">
-</div>
 
-<!-- SHOES -->
-<div class="section">
-<h3>SHOES</h3>
+<div class="section-title">SHOES</div>
 <div class="tags" data-group="shoes">
 <div class="tag">vans sneakers</div>
 <div class="tag">nike sneakers</div>
 <div class="tag">heels</div>
 </div>
-<input placeholder="Custom..." data-custom="shoes">
-</div>
 
-<!-- POSE -->
-<div class="section">
-<h3>POSE</h3>
+<div class="section-title">POSE</div>
 <div class="tags" data-group="pose">
 <div class="tag">standing</div>
 <div class="tag">walking</div>
-<div class="tag">sitting</div>
 <div class="tag">hand on hip</div>
 </div>
-<input placeholder="Custom..." data-custom="pose">
-</div>
 
-<!-- SCENE -->
-<div class="section">
-<h3>SCENE</h3>
+<div class="section-title">SCENE</div>
 <div class="tags" data-group="scene">
 <div class="tag">luxury penthouse</div>
 <div class="tag">floating in clouds</div>
 <div class="tag">sparkles</div>
 </div>
-<input placeholder="Custom..." data-custom="scene">
-</div>
 
-<!-- CAMERA -->
-<div class="section">
-<h3>CAMERA</h3>
+<div class="section-title">CAMERA</div>
 <div class="tags" data-group="camera">
 <div class="tag">full body</div>
 <div class="tag">close up</div>
 <div class="tag">low angle</div>
-</div>
-<input placeholder="Custom..." data-custom="camera">
 </div>
 
 <button onclick="generate()">✨ Generate Prompt</button>
 
 <div class="row">
 <button onclick="copyPrompt()">Copy</button>
-<button onclick="download()">Download</button>
+<button onclick="downloadPrompt()">Download</button>
 </div>
 
 <div id="result" class="result"></div>
+<div id="favorites"></div>
+
+</div>
 
 </div>
 
@@ -244,7 +237,7 @@ margin-top:10px;
 let total = 0;
 let isPro = localStorage.getItem("bb_pro");
 
-// stripe return
+// Stripe return
 const params = new URLSearchParams(window.location.search);
 if(params.get("paid")==="true"){
 localStorage.setItem("bb_pro","true");
@@ -258,12 +251,7 @@ tag.onclick=()=>tag.classList.toggle("active");
 
 function get(name){
 let tags=document.querySelectorAll(`[data-group="${name}"] .active`);
-let vals=[...tags].map(t=>t.innerText);
-
-let custom=document.querySelector(`[data-custom="${name}"]`);
-if(custom.value.trim()) vals.push(custom.value);
-
-return vals.join(", ");
+return [...tags].map(t=>t.innerText).join(", ");
 }
 
 // 🔥 STRONG PROMPT
@@ -287,13 +275,14 @@ SCENE: ${get("scene")}.
 
 CAMERA: ${get("camera")}.
 
-ultra realistic, cinematic lighting, 4k.
+ultra realistic, cinematic lighting, 4k, high detail.
 `;
 
 document.getElementById("result").innerText = prompt;
 
 total++;
 document.getElementById("count").innerText = total;
+
 }
 
 // copy
@@ -302,7 +291,7 @@ navigator.clipboard.writeText(document.getElementById("result").innerText);
 }
 
 // download
-function download(){
+function downloadPrompt(){
 let blob=new Blob([document.getElementById("result").innerText]);
 let a=document.createElement("a");
 a.href=URL.createObjectURL(blob);
