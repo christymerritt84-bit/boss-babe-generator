@@ -9,9 +9,13 @@ body{
 font-family:-apple-system, sans-serif;
 background:linear-gradient(135deg,#ffe4ef,#fff);
 padding:20px;
+margin:0;
 }
 
-.container{max-width:1100px;margin:auto;}
+.container{
+max-width:1100px;
+margin:auto;
+}
 
 .card{
 background:#fff;
@@ -21,7 +25,17 @@ box-shadow:0 10px 40px rgba(0,0,0,.08);
 margin-bottom:20px;
 }
 
-h1{text-align:center;color:#ff4f9a;}
+h1{
+text-align:center;
+color:#ff4f9a;
+margin-bottom:5px;
+}
+
+.sub{
+text-align:center;
+color:#777;
+margin-bottom:10px;
+}
 
 .tags{
 display:flex;
@@ -63,12 +77,40 @@ white-space:pre-line;
 }
 
 .lock{
-background:#fff0f0;
-padding:15px;
-border-radius:12px;
+background:#fff0f8;
+padding:20px;
+border-radius:16px;
 text-align:center;
 display:none;
+margin-top:20px;
+border:2px solid #ff4f9a;
+}
+
+.sales{
+background:#fff;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,.08);
+margin-bottom:20px;
+}
+
+.sales h2{
+text-align:center;
+color:#ff4f9a;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:10px;
 margin-top:15px;
+}
+
+.demo{
+background:#fff0f8;
+padding:12px;
+border-radius:12px;
+font-size:12px;
 }
 </style>
 </head>
@@ -77,17 +119,43 @@ margin-top:15px;
 
 <div class="container">
 
+<!-- HEADER -->
 <div class="card">
 <h1>👑 Boss Babe Generator</h1>
-<p style="text-align:center;">Free: 5 generations • Upgrade for unlimited 💎</p>
+<div class="sub">Free: 5 generations • PRO = unlimited + premium results 💎</div>
+
+<div style="text-align:center;">
+<button onclick="checkout()" style="max-width:250px;">
+💎 Upgrade to PRO
+</button>
+</div>
 
 <div id="lockBox" class="lock">
-<h3>💎 Unlock PRO</h3>
-<p>Unlimited prompts + premium presets</p>
-<button onclick="checkout()">Upgrade Now</button>
+<h2>💎 Upgrade Required</h2>
+<p>You’ve reached your free limit.</p>
+<button onclick="checkout()">Unlock Unlimited</button>
 </div>
 </div>
 
+<!-- SALES SECTION -->
+<div class="sales">
+<h2>🔥 What You Can Create</h2>
+
+<div class="grid">
+<div class="demo">Luxury influencer photos</div>
+<div class="demo">Anime & chibi characters</div>
+<div class="demo">TikTok baddie visuals</div>
+<div class="demo">Aesthetic social content</div>
+<div class="demo">Branding images</div>
+<div class="demo">Etsy product visuals</div>
+</div>
+
+<p style="text-align:center;margin-top:15px;color:#777;">
+Generate high-quality prompts instantly — no guessing needed.
+</p>
+</div>
+
+<!-- GENERATOR -->
 <div class="card">
 
 <h3>HAIR</h3>
@@ -98,7 +166,6 @@ margin-top:15px;
 <div class="tag">ponytail</div>
 <div class="tag">space buns</div>
 <div class="tag">braids</div>
-<div class="tag">blowout hair</div>
 <div class="tag">sleek straight hair</div>
 </div>
 
@@ -110,7 +177,6 @@ margin-top:15px;
 <div class="tag">glossy lips</div>
 <div class="tag">dramatic lashes</div>
 <div class="tag">smokey eye</div>
-<div class="tag">no makeup look</div>
 </div>
 
 <h3>OUTFIT</h3>
@@ -143,8 +209,8 @@ margin-top:15px;
 </div>
 
 <button onclick="generate()">✨ Generate Prompt</button>
-
 <button onclick="copyPrompt()">Copy</button>
+<button onclick="downloadPrompt()">Download</button>
 
 <div id="result" class="result"></div>
 
@@ -157,21 +223,24 @@ margin-top:15px;
 let total = 0;
 let isPro = localStorage.getItem("bb_pro");
 
+// STRIPE RETURN
 const params = new URLSearchParams(window.location.search);
 if(params.get("paid")==="true"){
 localStorage.setItem("bb_pro","true");
 isPro=true;
 }
 
+// TAG TOGGLE
 document.querySelectorAll(".tag").forEach(tag=>{
 tag.onclick=()=>tag.classList.toggle("active");
 });
 
 function get(group){
 return [...document.querySelectorAll(`[data-group="${group}"] .active`)]
-.map(t=>t.innerText);
+.map(t=>t.innerText.toLowerCase());
 }
 
+// SMART PROMPT
 function generate(){
 
 if(!isPro && total >= 5){
@@ -179,17 +248,17 @@ document.getElementById("lockBox").style.display="block";
 return;
 }
 
-let prompt="A highly detailed character";
-
 let hair=get("hair");
 let makeup=get("makeup");
 let outfit=get("outfit");
 let shoes=get("shoes");
 let vibe=get("vibe");
 
-if(hair.length) prompt+=`, ${hair.join(", ")}`;
-if(makeup.length) prompt+=`, ${makeup.join(", ")}`;
-if(outfit.length) prompt+=`, wearing ${outfit.join(", ")}`;
+let prompt="A highly detailed character";
+
+if(hair.length) prompt+=`, featuring ${hair.join(", ")}`;
+if(makeup.length) prompt+=`, wearing ${makeup.join(", ")}`;
+if(outfit.length) prompt+=`, styled in ${outfit.join(", ")}`;
 if(shoes.length) prompt+=` with ${shoes.join(", ")}`;
 if(vibe.length) prompt+=`, ${vibe.join(", ")}`;
 
@@ -200,10 +269,21 @@ document.getElementById("result").innerText=prompt;
 total++;
 }
 
+// COPY
 function copyPrompt(){
 navigator.clipboard.writeText(document.getElementById("result").innerText);
 }
 
+// DOWNLOAD
+function downloadPrompt(){
+let blob=new Blob([document.getElementById("result").innerText]);
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="prompt.txt";
+a.click();
+}
+
+// STRIPE
 function checkout(){
 window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url="+encodeURIComponent(window.location.href+"?paid=true");
 }
