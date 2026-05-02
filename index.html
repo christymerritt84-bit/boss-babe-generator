@@ -176,91 +176,140 @@ display:none;
 
 <script>
 
-let total=0;
-let isPro=localStorage.getItem("bb_pro");
+// ===== KEEP YOUR EXISTING STATE =====
+let total = 0;
+let isPro = localStorage.getItem("bb_pro");
 
-const params=new URLSearchParams(window.location.search);
+// Stripe return (unchanged)
+const params = new URLSearchParams(window.location.search);
 if(params.get("paid")==="true"){
-localStorage.setItem("bb_pro","true");
-isPro=true;
+  localStorage.setItem("bb_pro","true");
+  isPro=true;
 }
 
+// tag toggle (same behavior)
 document.querySelectorAll(".tag").forEach(tag=>{
-tag.onclick=()=>tag.classList.toggle("active");
+  tag.onclick=()=>tag.classList.toggle("active");
 });
 
+// ===== SAFE VALUE GETTER (keeps EVERYTHING you already have) =====
 function get(group){
-let tags=document.querySelectorAll(`[data-group="${group}"] .active`);
-return [...tags].map(t=>t.innerText);
+  let tags=document.querySelectorAll(`[data-group="${group}"] .active`);
+  return [...tags].map(t=>t.innerText.toLowerCase());
 }
 
-/* 🔥 INTELLIGENT BLENDING */
+// ===== 💎 SMART BLENDING ENGINE (THIS IS THE UPGRADE) =====
 function buildPrompt(){
 
-let style=get("style");
-let hair=get("hair");
-let makeup=get("makeup");
-let outfit=get("outfit");
-let shoes=get("shoes");
-let pose=get("pose");
-let scene=get("scene");
-let camera=get("camera");
+  let style = get("style");
+  let body = get("body");
+  let ethnicity = get("ethnicity");
+  let skin = get("skin");
+  let hair = get("hair");
+  let makeup = get("makeup");
+  let outfit = get("outfit");
+  let shoes = get("shoes");
+  let pose = get("pose");
+  let scene = get("scene");
+  let camera = get("camera");
 
-let prompt = "A highly detailed character";
+  let prompt = "A highly detailed character";
 
-if(style.includes("chibi")) prompt += " in exaggerated chibi style with large glossy eyes";
-if(style.includes("anime")) prompt += ", anime-inspired with vibrant colors";
-if(style.includes("realistic")) prompt += ", ultra realistic photography style";
+  // 🔥 STYLE (THIS FIXES YOUR CHIBI ISSUE)
+  if(style.includes("signature exaggerated chibi")){
+    prompt += ", signature exaggerated chibi style with oversized glossy eyes, smooth shading, high detail finish";
+  }
+  else if(style.includes("chibi")){
+    prompt += ", chibi style with large expressive eyes";
+  }
+  else if(style.includes("anime")){
+    prompt += ", anime style with vibrant colors and sharp linework";
+  }
+  else if(style.includes("pixar 3d")){
+    prompt += ", pixar-style 3D render, soft lighting and cinematic depth";
+  }
+  else{
+    prompt += ", ultra realistic photography style";
+  }
 
-if(hair.length) prompt += `, featuring ${hair.join(", ")}`;
-if(makeup.length) prompt += `, wearing ${makeup.join(", ")}`;
+  // 🔥 CHARACTER DETAILS
+  if(body.length || ethnicity.length || skin.length){
+    prompt += `, featuring ${[...body, ...ethnicity, ...skin].join(", ")}`;
+  }
 
-if(outfit.length) prompt += `, dressed in ${outfit.join(", ")}`;
-if(shoes.length) prompt += ` with ${shoes.join(", ")}`;
+  if(hair.length){
+    prompt += `, hairstyle: ${hair.join(", ")}`;
+  }
 
-if(pose.length) prompt += `. The subject is ${pose.join(", ")}, facing forward, centered in frame`;
+  if(makeup.length){
+    prompt += `, makeup: ${makeup.join(", ")}`;
+  }
 
-if(scene.length) prompt += `, set in ${scene.join(", ")}`;
+  // 🔥 OUTFIT + SHOES
+  if(outfit.length){
+    prompt += `, wearing ${outfit.join(", ")}`;
+  }
 
-if(camera.length) prompt += `, captured in ${camera.join(", ")} view`;
+  if(shoes.length){
+    prompt += ` with ${shoes.join(", ")}`;
+  }
 
-prompt += ", cinematic lighting, ultra detailed, 4k, trending, highly aesthetic.";
+  // 🔥 POSE (THIS FIXES YOUR MAIN ISSUE)
+  if(pose.length){
+    prompt += `. The subject is ${pose.join(", ")}, facing forward, centered, full body visible, not looking over shoulder`;
+  }
 
-return prompt;
+  // 🔥 SCENE
+  if(scene.length){
+    prompt += `, environment: ${scene.join(", ")}`;
+  }
+
+  // 🔥 CAMERA
+  if(camera.length){
+    prompt += `, shot in ${camera.join(", ")}`;
+  }
+
+  // 🔥 AUTO ENHANCEMENT
+  prompt += ", cinematic lighting, ultra high detail, 4k, professional photography, trending aesthetic, sharp focus";
+
+  return prompt;
 }
 
+// ===== GENERATE =====
 function generate(){
 
-if(!isPro && total>=5){
-document.getElementById("lockBox").style.display="block";
-return;
+  if(!isPro && total >= 5){
+    document.getElementById("lockBox").style.display="block";
+    return;
+  }
+
+  let prompt = buildPrompt();
+
+  document.getElementById("result").innerText = prompt;
+
+  total++;
+  document.getElementById("count").innerText = total;
 }
 
-let prompt = buildPrompt();
-
-document.getElementById("result").innerText=prompt;
-
-total++;
-document.getElementById("count").innerText=total;
-}
-
+// ===== COPY =====
 function copyPrompt(){
-navigator.clipboard.writeText(document.getElementById("result").innerText);
+  navigator.clipboard.writeText(document.getElementById("result").innerText);
 }
 
+// ===== DOWNLOAD =====
 function downloadPrompt(){
-let blob=new Blob([document.getElementById("result").innerText]);
-let a=document.createElement("a");
-a.href=URL.createObjectURL(blob);
-a.download="prompt.txt";
-a.click();
+  let blob=new Blob([document.getElementById("result").innerText]);
+  let a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="prompt.txt";
+  a.click();
 }
 
+// ===== STRIPE =====
 function checkout(){
-window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url="+encodeURIComponent(window.location.href+"?paid=true");
+  window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url="+encodeURIComponent(window.location.href+"?paid=true");
 }
 
 </script>
-
 </body>
 </html>
