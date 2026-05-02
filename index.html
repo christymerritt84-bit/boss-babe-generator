@@ -27,6 +27,12 @@ color:#ff4f9a;
 
 .section{margin-top:20px;}
 
+.section h3{
+font-size:13px;
+color:#888;
+margin-bottom:8px;
+}
+
 .tags{
 display:flex;
 flex-wrap:wrap;
@@ -38,11 +44,20 @@ padding:8px 14px;
 border-radius:20px;
 background:#f3f3f3;
 cursor:pointer;
+font-size:13px;
 }
 
 .tag.active{
 background:#ff4f9a;
 color:#fff;
+}
+
+input{
+margin-top:8px;
+padding:10px;
+width:100%;
+border-radius:12px;
+border:1px solid #eee;
 }
 
 button{
@@ -53,24 +68,41 @@ background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
 color:#fff;
 border:none;
 border-radius:14px;
+font-weight:bold;
 cursor:pointer;
 }
+
+.row-buttons{
+display:flex;
+gap:10px;
+}
+
+.row-buttons button{flex:1;}
 
 .result{
 margin-top:15px;
 padding:15px;
 background:#fff0f8;
 border-radius:12px;
-min-height:100px;
+min-height:120px;
 white-space:pre-line;
 }
 
 .lock{
 background:#fff0f0;
-padding:10px;
+padding:12px;
 border-radius:10px;
 text-align:center;
 margin-top:10px;
+display:none;
+}
+
+.favItem{
+background:#fff5fa;
+padding:10px;
+border-radius:10px;
+margin-top:8px;
+font-size:13px;
 }
 </style>
 </head>
@@ -82,7 +114,7 @@ margin-top:10px;
 <h1>👑 Boss Babe Generator</h1>
 <div style="text-align:center;">Generated: <span id="count">0</span></div>
 
-<div class="lock" id="lockBox" style="display:none;">
+<div id="lockBox" class="lock">
 💎 Upgrade to PRO for unlimited generations
 <button onclick="goToCheckout()">Unlock PRO</button>
 </div>
@@ -91,25 +123,88 @@ margin-top:10px;
 <div class="section">
 <h3>STYLE</h3>
 <div class="tags" data-group="style">
-<div class="tag">chibi</div>
-<div class="tag">anime</div>
+<div class="tag">signature exaggerated chibi</div>
 <div class="tag">pixar 3d</div>
+<div class="tag">anime style</div>
+<div class="tag">comic book</div>
 <div class="tag">digital art</div>
-<div class="tag">watercolor</div>
+<div class="tag">watercolor painting</div>
 </div>
+<input placeholder="Custom..." data-custom="style">
+</div>
+
+<!-- ETHNICITY -->
+<div class="section">
+<h3>ETHNICITY</h3>
+<div class="tags" data-group="ethnicity">
+<div class="tag">black woman</div>
+<div class="tag">latina woman</div>
+<div class="tag">white woman</div>
+<div class="tag">asian woman</div>
+<div class="tag">mixed race woman</div>
+</div>
+<input placeholder="Custom..." data-custom="ethnicity">
+</div>
+
+<!-- SKIN -->
+<div class="section">
+<h3>SKIN</h3>
+<div class="tags" data-group="skin">
+<div class="tag">deep dark skin</div>
+<div class="tag">golden tan skin</div>
+<div class="tag">fair skin</div>
+</div>
+<input placeholder="Custom..." data-custom="skin">
+</div>
+
+<!-- BODY -->
+<div class="section">
+<h3>BODY</h3>
+<div class="tags" data-group="body">
+<div class="tag">curvy</div>
+<div class="tag">slim</div>
+<div class="tag">petite</div>
+<div class="tag">thick</div>
+</div>
+<input placeholder="Custom..." data-custom="body">
+</div>
+
+<!-- HAIR -->
+<div class="section">
+<h3>HAIR</h3>
+<div class="tags" data-group="hair">
+<div class="tag">long straight hair</div>
+<div class="tag">curly hair</div>
+<div class="tag">messy bun</div>
+<div class="tag">ponytail</div>
+</div>
+<input placeholder="Custom..." data-custom="hair">
+</div>
+
+<!-- MAKEUP -->
+<div class="section">
+<h3>MAKEUP</h3>
+<div class="tags" data-group="makeup">
+<div class="tag">soft glam</div>
+<div class="tag">full glam</div>
+<div class="tag">natural makeup</div>
+<div class="tag">glossy lips</div>
+</div>
+<input placeholder="Custom..." data-custom="makeup">
 </div>
 
 <!-- OUTFIT -->
 <div class="section">
 <h3>OUTFIT</h3>
 <div class="tags" data-group="outfit">
-<div class="tag">oversized t-shirt</div>
+<div class="tag">glam streetwear</div>
 <div class="tag">hoodie and sweatpants</div>
-<div class="tag">tracksuit</div>
+<div class="tag">designer top</div>
 <div class="tag">leather jacket with ripped jeans</div>
 <div class="tag">chanel outfit</div>
 <div class="tag">louis vuitton outfit</div>
 </div>
+<input placeholder="Custom..." data-custom="outfit">
 </div>
 
 <!-- SHOES -->
@@ -120,27 +215,66 @@ margin-top:10px;
 <div class="tag">nike sneakers</div>
 <div class="tag">heels</div>
 </div>
+<input placeholder="Custom..." data-custom="shoes">
+</div>
+
+<!-- POSE -->
+<div class="section">
+<h3>POSE</h3>
+<div class="tags" data-group="pose">
+<div class="tag">standing</div>
+<div class="tag">walking</div>
+<div class="tag">sitting</div>
+<div class="tag">hand on hip</div>
+<div class="tag">looking forward</div>
+</div>
+<input placeholder="Custom..." data-custom="pose">
+</div>
+
+<!-- SCENE -->
+<div class="section">
+<h3>SCENE</h3>
+<div class="tags" data-group="scene">
+<div class="tag">floating in clouds</div>
+<div class="tag">sparkles splash</div>
+<div class="tag">luxury penthouse</div>
+</div>
+<input placeholder="Custom..." data-custom="scene">
+</div>
+
+<!-- CAMERA -->
+<div class="section">
+<h3>CAMERA</h3>
+<div class="tags" data-group="camera">
+<div class="tag">full body shot</div>
+<div class="tag">close up</div>
+<div class="tag">low angle</div>
+</div>
+<input placeholder="Custom..." data-custom="camera">
 </div>
 
 <button onclick="generate()">✨ Generate Prompt</button>
 
+<div class="row-buttons">
 <button onclick="copyPrompt()">📋 Copy</button>
 <button onclick="downloadPrompt()">⬇️ Download</button>
+</div>
 
 <div id="result" class="result"></div>
+<div id="favs"></div>
 
 </div>
 
 <script>
 
 let total = 0;
-let isPro = localStorage.getItem("bb_pro") === "true";
+let isPro = localStorage.getItem("bb_pro_secure");
 
-// check stripe return
+// Stripe return
 const params = new URLSearchParams(window.location.search);
-if(params.get("paid") === "true"){
-localStorage.setItem("bb_pro","true");
-isPro = true;
+if(params.get("paid")==="true"){
+localStorage.setItem("bb_pro_secure","true");
+isPro=true;
 }
 
 // toggle tags
@@ -148,22 +282,39 @@ document.querySelectorAll(".tag").forEach(tag=>{
 tag.onclick=()=>tag.classList.toggle("active");
 });
 
+// get values
 function getGroup(name){
 let tags=document.querySelectorAll(`[data-group="${name}"] .active`);
-return [...tags].map(t=>t.innerText).join(", ");
+let values=[...tags].map(t=>t.innerText);
+
+let custom=document.querySelector(`[data-custom="${name}"]`);
+if(custom && custom.value.trim()) values.push(custom.value);
+
+return values.join(", ");
 }
 
+// 🔥 FIXED PROMPT (POSE CONTROL)
 function generate(){
 
-if(!isPro && total >= 5){
+if(!isPro && total>=5){
 document.getElementById("lockBox").style.display="block";
 return;
 }
 
 let prompt = `
 ${getGroup("style")},
-wearing ${getGroup("outfit")} with ${getGroup("shoes")},
-ultra aesthetic, cinematic lighting, 4k.
+
+A highly detailed ${getGroup("body")} ${getGroup("ethnicity")} with ${getGroup("skin")}, ${getGroup("hair")}, ${getGroup("makeup")}.
+
+POSE: ${getGroup("pose")}. The subject is clearly ${getGroup("pose")}, facing forward, not looking over shoulder.
+
+OUTFIT: wearing ${getGroup("outfit")} with ${getGroup("shoes")}.
+
+SCENE: ${getGroup("scene")}.
+
+CAMERA: ${getGroup("camera")}.
+
+ultra realistic, cinematic lighting, 4k, high detail.
 `;
 
 document.getElementById("result").innerText = prompt;
@@ -173,24 +324,24 @@ document.getElementById("count").innerText = total;
 
 }
 
+// copy
 function copyPrompt(){
 navigator.clipboard.writeText(document.getElementById("result").innerText);
 }
 
-// DOWNLOAD FEATURE
+// download
 function downloadPrompt(){
-let text = document.getElementById("result").innerText;
-let blob = new Blob([text], {type: "text/plain"});
-let a = document.createElement("a");
-a.href = URL.createObjectURL(blob);
-a.download = "prompt.txt";
+let text=document.getElementById("result").innerText;
+let blob=new Blob([text],{type:"text/plain"});
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="prompt.txt";
 a.click();
 }
 
-// STRIPE CHECKOUT
+// stripe
 function goToCheckout(){
-let returnUrl = window.location.href + "?paid=true";
-window.location.href = "https://buy.stripe.com/YOUR_LINK_HERE?success_url=" + encodeURIComponent(returnUrl);
+window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url="+encodeURIComponent(window.location.href+"?paid=true");
 }
 
 </script>
