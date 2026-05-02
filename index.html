@@ -12,7 +12,7 @@ padding:20px;
 }
 
 .container{
-max-width:1200px;
+max-width:1300px;
 margin:auto;
 background:#fff;
 padding:30px;
@@ -20,14 +20,11 @@ border-radius:20px;
 box-shadow:0 20px 60px rgba(0,0,0,.1);
 }
 
-h1{
-color:#ff4f9a;
-margin-bottom:10px;
-}
+h1{color:#ff4f9a;}
 
 .grid{
 display:grid;
-grid-template-columns:1fr 1fr;
+grid-template-columns:repeat(3,1fr);
 gap:20px;
 }
 
@@ -39,26 +36,22 @@ box-shadow:0 8px 25px rgba(0,0,0,.06);
 }
 
 .card h3{
-margin-bottom:10px;
-font-size:14px;
+font-size:13px;
 letter-spacing:1px;
-color:#555;
+color:#666;
 }
 
-select, input{
+select,input{
 width:100%;
 padding:10px;
+margin-top:6px;
 border-radius:10px;
 border:1px solid #eee;
-margin-top:6px;
 }
 
 .toggle{
-display:flex;
-align-items:center;
-margin-top:10px;
-gap:6px;
-font-size:13px;
+margin-top:8px;
+font-size:12px;
 }
 
 button{
@@ -88,133 +81,144 @@ white-space:pre-line;
 <div class="container">
 
 <h1>👑 Boss Babe Generator</h1>
-<p style="color:#777;">Luxury AI prompt builder</p>
 
 <div class="grid">
 
-<!-- FACIAL FEATURES -->
+<!-- BODY -->
 <div class="card">
-<h3>FACIAL FEATURES</h3>
-<select id="features">
-<option>freckles</option>
-<option>dimples</option>
-<option>clear skin</option>
-<option>freckles + dimples</option>
+<h3>BODY TYPE</h3>
+<select id="body">
+<option>curvy</option>
+<option>slim</option>
+<option>petite</option>
+<option>thick</option>
+<option>athletic</option>
 </select>
-<input id="featuresCustom" placeholder="Add custom value...">
-<div class="toggle">
-<input type="checkbox" id="featuresToggle" checked>
-<label>Include in prompt</label>
-</div>
+<input id="bodyCustom" placeholder="Add custom...">
+<input type="checkbox" id="bodyToggle" checked> include
 </div>
 
-<!-- EYES -->
+<!-- HAIR -->
 <div class="card">
-<h3>EYES</h3>
-<select id="eyes">
-<option>big brown eyes</option>
-<option>huge exaggerated eyes</option>
-<option>blue eyes</option>
-<option>hazel eyes</option>
+<h3>HAIR STYLE</h3>
+<select id="hair">
+<option>long straight hair</option>
+<option>curly hair</option>
+<option>messy bun</option>
+<option>space buns</option>
+<option>ponytail</option>
+<option>slick back bun</option>
+<option>braids</option>
 </select>
-<input id="eyesCustom" placeholder="Add custom value...">
-<div class="toggle">
-<input type="checkbox" id="eyesToggle" checked>
-<label>Include in prompt</label>
-</div>
-</div>
-
-<!-- LASH -->
-<div class="card">
-<h3>LASH INTENSITY</h3>
-<select id="lashes">
-<option>natural lashes</option>
-<option>long lashes</option>
-<option>ultra dramatic doll lashes</option>
-</select>
-<input id="lashesCustom" placeholder="Add custom value...">
-<div class="toggle">
-<input type="checkbox" id="lashesToggle" checked>
-<label>Include in prompt</label>
-</div>
-</div>
-
-<!-- LIPS -->
-<div class="card">
-<h3>LIP STYLE</h3>
-<select id="lips">
-<option>soft gloss</option>
-<option>matte lips</option>
-<option>plump lips</option>
-</select>
-<input id="lipsCustom" placeholder="Add custom value...">
-<div class="toggle">
-<input type="checkbox" id="lipsToggle" checked>
-<label>Include in prompt</label>
-</div>
-</div>
-
-<!-- EXTRA -->
-<div class="card">
-<h3>EXTRA GLAM</h3>
-<select id="extra">
-<option>face gems</option>
-<option>highlight glow</option>
-<option>glass skin</option>
-</select>
-<input id="extraCustom" placeholder="Add custom value...">
-<div class="toggle">
-<input type="checkbox" id="extraToggle" checked>
-<label>Include in prompt</label>
-</div>
+<input id="hairCustom" placeholder="Add custom...">
+<input type="checkbox" id="hairToggle" checked> include
 </div>
 
 <!-- OUTFIT -->
 <div class="card">
 <h3>OUTFIT</h3>
 <select id="outfit">
-<option>glam streetwear</option>
 <option>mini dress</option>
-<option>luxury outfit</option>
+<option>bodycon dress</option>
+<option>streetwear outfit</option>
 <option>oversized hoodie</option>
+<option>designer outfit</option>
+<option>crop top and cargos</option>
+<option>matching set</option>
 </select>
-<input id="outfitCustom" placeholder="Add custom value...">
-<div class="toggle">
-<input type="checkbox" id="outfitToggle" checked>
-<label>Include in prompt</label>
-</div>
+<input id="outfitCustom" placeholder="Add custom...">
+<input type="checkbox" id="outfitToggle" checked> include
 </div>
 
 <!-- SHOES -->
 <div class="card">
-<h3>SHOES</h3>
+<h3>FOOTWEAR</h3>
 <select id="shoes">
-<option>nike sneakers</option>
 <option>heels</option>
+<option>nike sneakers</option>
 <option>designer heels</option>
 <option>chunky sneakers</option>
+<option>boots</option>
+<option>thigh high boots</option>
 </select>
-<input id="shoesCustom" placeholder="Add custom value...">
-<div class="toggle">
-<input type="checkbox" id="shoesToggle" checked>
-<label>Include in prompt</label>
-</div>
+<input id="shoesCustom" placeholder="Add custom...">
+<input type="checkbox" id="shoesToggle" checked> include
 </div>
 
 <!-- POSE -->
 <div class="card">
-<h3>POSE</h3>
+<h3>POSE / ACTION</h3>
 <select id="pose">
-<option>standing</option>
+<option>standing confidently</option>
 <option>walking</option>
-<option>posing confidently</option>
+<option>sitting</option>
 <option>hand on hip</option>
+<option>looking over shoulder</option>
+<option>posing</option>
+<option>dancing</option>
+<option>leaning</option>
 </select>
-<input id="poseCustom" placeholder="Add custom value...">
-<div class="toggle">
-<input type="checkbox" id="poseToggle" checked>
-<label>Include in prompt</label>
+<input id="poseCustom" placeholder="Add custom...">
+<input type="checkbox" id="poseToggle" checked> include
 </div>
+
+<!-- ACCESSORIES -->
+<div class="card">
+<h3>ACCESSORIES</h3>
+<select id="accessories">
+<option>gold hoops</option>
+<option>diamond jewelry</option>
+<option>designer bag</option>
+<option>stacked necklaces</option>
+<option>sunglasses</option>
+<option>bracelets</option>
+<option>rings</option>
+</select>
+<input id="accessoriesCustom" placeholder="Add custom...">
+<input type="checkbox" id="accessoriesToggle" checked> include
+</div>
+
+<!-- SCENE -->
+<div class="card">
+<h3>SCENE</h3>
+<select id="scene">
+<option>luxury room</option>
+<option>city streets</option>
+<option>studio background</option>
+<option>pink aesthetic room</option>
+<option>bedroom vibe</option>
+<option>luxury bathroom</option>
+</select>
+<input id="sceneCustom" placeholder="Add custom...">
+<input type="checkbox" id="sceneToggle" checked> include
+</div>
+
+<!-- LIGHTING -->
+<div class="card">
+<h3>LIGHTING</h3>
+<select id="lighting">
+<option>soft lighting</option>
+<option>studio lighting</option>
+<option>golden hour</option>
+<option>neon lighting</option>
+<option>dramatic shadows</option>
+</select>
+<input id="lightingCustom" placeholder="Add custom...">
+<input type="checkbox" id="lightingToggle" checked> include
+</div>
+
+<!-- VIBE -->
+<div class="card">
+<h3>VIBE</h3>
+<select id="vibe">
+<option>boss energy</option>
+<option>soft aesthetic</option>
+<option>luxury vibe</option>
+<option>confident energy</option>
+<option>viral aesthetic</option>
+</select>
+<input id="vibeCustom" placeholder="Add custom...">
+<input type="checkbox" id="vibeToggle" checked> include
 </div>
 
 </div>
@@ -228,26 +232,25 @@ white-space:pre-line;
 <script>
 
 function getValue(id){
-let base = document.getElementById(id).value;
-let custom = document.getElementById(id+"Custom").value;
-let toggle = document.getElementById(id+"Toggle").checked;
+let base=document.getElementById(id).value;
+let custom=document.getElementById(id+"Custom").value;
+let toggle=document.getElementById(id+"Toggle").checked;
 
 if(!toggle) return "";
-
-return custom ? custom : base;
+return custom || base;
 }
 
 function generate(){
 
 let prompt = `
-A highly detailed boss babe with ${getValue("features")},
-${getValue("eyes")},
-${getValue("lashes")},
-${getValue("lips")},
-${getValue("extra")},
+A highly detailed ${getValue("body")} woman with ${getValue("hair")},
 wearing ${getValue("outfit")} with ${getValue("shoes")},
 ${getValue("pose")},
-ultra realistic, cinematic lighting, 4k, high detail.
+accessorized with ${getValue("accessories")},
+set in ${getValue("scene")},
+${getValue("lighting")},
+${getValue("vibe")},
+ultra realistic, cinematic lighting, 4k.
 `;
 
 document.getElementById("result").innerText = prompt;
