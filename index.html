@@ -201,7 +201,7 @@ function get(group){
 // ===== 💎 SMART BLENDING ENGINE (THIS IS THE UPGRADE) =====
 function buildPrompt(){
 
-  let style = get("style");
+  let style = get("style").join(" ");
   let body = get("body");
   let ethnicity = get("ethnicity");
   let skin = get("skin");
@@ -215,24 +215,24 @@ function buildPrompt(){
 
   let prompt = "A highly detailed character";
 
-  // 🔥 STYLE (THIS FIXES YOUR CHIBI ISSUE)
-  if(style.includes("signature exaggerated chibi")){
-    prompt += ", signature exaggerated chibi style with oversized glossy eyes, smooth shading, high detail finish";
-  }
-  else if(style.includes("chibi")){
-    prompt += ", chibi style with large expressive eyes";
+  // 💎 SMART STYLE DETECTION (KEYWORD BASED)
+  if(style.includes("chibi")){
+    prompt += ", signature exaggerated chibi style, oversized glossy eyes, smooth shading, ultra detailed";
   }
   else if(style.includes("anime")){
-    prompt += ", anime style with vibrant colors and sharp linework";
+    prompt += ", anime style, vibrant colors, sharp linework";
   }
-  else if(style.includes("pixar 3d")){
-    prompt += ", pixar-style 3D render, soft lighting and cinematic depth";
+  else if(style.includes("pixar")){
+    prompt += ", pixar-style 3D render, cinematic lighting, soft depth";
+  }
+  else if(style.includes("comic")){
+    prompt += ", comic book style, bold outlines, graphic shading";
   }
   else{
     prompt += ", ultra realistic photography style";
   }
 
-  // 🔥 CHARACTER DETAILS
+  // CHARACTER
   if(body.length || ethnicity.length || skin.length){
     prompt += `, featuring ${[...body, ...ethnicity, ...skin].join(", ")}`;
   }
@@ -245,7 +245,7 @@ function buildPrompt(){
     prompt += `, makeup: ${makeup.join(", ")}`;
   }
 
-  // 🔥 OUTFIT + SHOES
+  // OUTFIT
   if(outfit.length){
     prompt += `, wearing ${outfit.join(", ")}`;
   }
@@ -254,27 +254,26 @@ function buildPrompt(){
     prompt += ` with ${shoes.join(", ")}`;
   }
 
-  // 🔥 POSE (THIS FIXES YOUR MAIN ISSUE)
+  // 🔥 POSE FIX
   if(pose.length){
     prompt += `. The subject is ${pose.join(", ")}, facing forward, centered, full body visible, not looking over shoulder`;
   }
 
-  // 🔥 SCENE
+  // SCENE
   if(scene.length){
     prompt += `, environment: ${scene.join(", ")}`;
   }
 
-  // 🔥 CAMERA
+  // CAMERA
   if(camera.length){
     prompt += `, shot in ${camera.join(", ")}`;
   }
 
-  // 🔥 AUTO ENHANCEMENT
-  prompt += ", cinematic lighting, ultra high detail, 4k, professional photography, trending aesthetic, sharp focus";
+  // FINAL ENHANCEMENT
+  prompt += ", cinematic lighting, ultra high detail, 4k, professional photography, trending aesthetic";
 
   return prompt;
 }
-
 // ===== GENERATE =====
 function generate(){
 
