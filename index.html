@@ -1,263 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>👑 Boss Babe Generator</title>
+function updateImage(){
 
-<style>
-body{
-font-family:Arial;
-background:linear-gradient(135deg,#ffd6ea,#fff0f8);
-padding:20px;
+let style = val("style");
+let outfit = val("outfit");
+let img = document.getElementById("previewImg");
+
+// DEFAULT (REALISTIC)
+let url = "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e";
+
+// STYLE SWITCH (using more reliable sources)
+if(style.includes("Chibi")){
+url = "https://placehold.co/600x800/png?text=Chibi+Style";
 }
-
-.container{
-max-width:1300px;
-margin:auto;
-background:#fff;
-padding:30px;
-border-radius:20px;
-box-shadow:0 20px 60px rgba(0,0,0,.1);
+else if(style.includes("Anime")){
+url = "https://placehold.co/600x800/png?text=Anime+Style";
 }
-
-h1{color:#ff4f9a;}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
+else if(style.includes("Bratz")){
+url = "https://placehold.co/600x800/png?text=Bratz+Style";
 }
+else{
 
-.card{
-background:#fff;
-border-radius:16px;
-padding:16px;
-box-shadow:0 8px 25px rgba(0,0,0,.06);
+// REALISTIC + OUTFIT SWITCH
+if(outfit.includes("hoodie") || outfit.includes("Streetwear")){
+url = "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c";
 }
-
-.card h3{
-font-size:13px;
-letter-spacing:1px;
-color:#666;
+else if(outfit.includes("gown")){
+url = "https://images.unsplash.com/photo-1520975922284-9e0f3a5e54c1";
 }
-
-select,input{
-width:100%;
-padding:10px;
-margin-top:6px;
-border-radius:10px;
-border:1px solid #eee;
-}
-
-.toggle{
-margin-top:8px;
-font-size:12px;
-}
-
-button{
-margin-top:25px;
-padding:16px;
-background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
-color:#fff;
-border:none;
-border-radius:16px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.result{
-margin-top:20px;
-padding:20px;
-background:#fff0f8;
-border-radius:12px;
-min-height:120px;
-white-space:pre-line;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<h1>👑 Boss Babe Generator</h1>
-
-<div class="grid">
-
-<!-- BODY -->
-<div class="card">
-<h3>BODY TYPE</h3>
-<select id="body">
-<option>curvy</option>
-<option>slim</option>
-<option>petite</option>
-<option>thick</option>
-<option>athletic</option>
-</select>
-<input id="bodyCustom" placeholder="Add custom...">
-<input type="checkbox" id="bodyToggle" checked> include
-</div>
-
-<!-- HAIR -->
-<div class="card">
-<h3>HAIR STYLE</h3>
-<select id="hair">
-<option>long straight hair</option>
-<option>curly hair</option>
-<option>messy bun</option>
-<option>space buns</option>
-<option>ponytail</option>
-<option>slick back bun</option>
-<option>braids</option>
-</select>
-<input id="hairCustom" placeholder="Add custom...">
-<input type="checkbox" id="hairToggle" checked> include
-</div>
-
-<!-- OUTFIT -->
-<div class="card">
-<h3>OUTFIT</h3>
-<select id="outfit">
-<option>mini dress</option>
-<option>bodycon dress</option>
-<option>streetwear outfit</option>
-<option>oversized hoodie</option>
-<option>designer outfit</option>
-<option>crop top and cargos</option>
-<option>matching set</option>
-</select>
-<input id="outfitCustom" placeholder="Add custom...">
-<input type="checkbox" id="outfitToggle" checked> include
-</div>
-
-<!-- SHOES -->
-<div class="card">
-<h3>FOOTWEAR</h3>
-<select id="shoes">
-<option>heels</option>
-<option>nike sneakers</option>
-<option>designer heels</option>
-<option>chunky sneakers</option>
-<option>boots</option>
-<option>thigh high boots</option>
-</select>
-<input id="shoesCustom" placeholder="Add custom...">
-<input type="checkbox" id="shoesToggle" checked> include
-</div>
-
-<!-- POSE -->
-<div class="card">
-<h3>POSE / ACTION</h3>
-<select id="pose">
-<option>standing confidently</option>
-<option>walking</option>
-<option>sitting</option>
-<option>hand on hip</option>
-<option>looking over shoulder</option>
-<option>posing</option>
-<option>dancing</option>
-<option>leaning</option>
-</select>
-<input id="poseCustom" placeholder="Add custom...">
-<input type="checkbox" id="poseToggle" checked> include
-</div>
-
-<!-- ACCESSORIES -->
-<div class="card">
-<h3>ACCESSORIES</h3>
-<select id="accessories">
-<option>gold hoops</option>
-<option>diamond jewelry</option>
-<option>designer bag</option>
-<option>stacked necklaces</option>
-<option>sunglasses</option>
-<option>bracelets</option>
-<option>rings</option>
-</select>
-<input id="accessoriesCustom" placeholder="Add custom...">
-<input type="checkbox" id="accessoriesToggle" checked> include
-</div>
-
-<!-- SCENE -->
-<div class="card">
-<h3>SCENE</h3>
-<select id="scene">
-<option>luxury room</option>
-<option>city streets</option>
-<option>studio background</option>
-<option>pink aesthetic room</option>
-<option>bedroom vibe</option>
-<option>luxury bathroom</option>
-</select>
-<input id="sceneCustom" placeholder="Add custom...">
-<input type="checkbox" id="sceneToggle" checked> include
-</div>
-
-<!-- LIGHTING -->
-<div class="card">
-<h3>LIGHTING</h3>
-<select id="lighting">
-<option>soft lighting</option>
-<option>studio lighting</option>
-<option>golden hour</option>
-<option>neon lighting</option>
-<option>dramatic shadows</option>
-</select>
-<input id="lightingCustom" placeholder="Add custom...">
-<input type="checkbox" id="lightingToggle" checked> include
-</div>
-
-<!-- VIBE -->
-<div class="card">
-<h3>VIBE</h3>
-<select id="vibe">
-<option>boss energy</option>
-<option>soft aesthetic</option>
-<option>luxury vibe</option>
-<option>confident energy</option>
-<option>viral aesthetic</option>
-</select>
-<input id="vibeCustom" placeholder="Add custom...">
-<input type="checkbox" id="vibeToggle" checked> include
-</div>
-
-</div>
-
-<button onclick="generate()">✨ Generate Prompt</button>
-
-<div id="result" class="result"></div>
-
-</div>
-
-<script>
-
-function getValue(id){
-let base=document.getElementById(id).value;
-let custom=document.getElementById(id+"Custom").value;
-let toggle=document.getElementById(id+"Toggle").checked;
-
-if(!toggle) return "";
-return custom || base;
-}
-
-function generate(){
-
-let prompt = `
-A highly detailed ${getValue("body")} woman with ${getValue("hair")},
-wearing ${getValue("outfit")} with ${getValue("shoes")},
-${getValue("pose")},
-accessorized with ${getValue("accessories")},
-set in ${getValue("scene")},
-${getValue("lighting")},
-${getValue("vibe")},
-ultra realistic, cinematic lighting, 4k.
-`;
-
-document.getElementById("result").innerText = prompt;
 
 }
 
-</script>
+// FORCE REFRESH
+img.src = url + "&t=" + new Date().getTime();
 
-</body>
-</html>
+// 🔥 FALLBACK (if image fails)
+img.onerror = function(){
+img.src = "https://placehold.co/600x800/png?text=Preview";
+};
+
+}
