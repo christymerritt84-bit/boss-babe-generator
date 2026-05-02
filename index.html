@@ -2,18 +2,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>👑 Boss Babe Generator</title>
+<title>👑 Boss Babe Generator PRO</title>
 
 <style>
 body{
-font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+font-family:-apple-system, sans-serif;
 background:linear-gradient(135deg,#ffe4ef,#fff);
-margin:0;
 padding:20px;
 }
 
 .container{
-max-width:1000px;
+max-width:900px;
 margin:auto;
 }
 
@@ -28,20 +27,6 @@ margin-bottom:20px;
 h1{
 text-align:center;
 color:#ff4f9a;
-margin-bottom:10px;
-}
-
-.stats{
-text-align:center;
-color:#777;
-margin-bottom:20px;
-}
-
-.section-title{
-font-size:14px;
-font-weight:bold;
-margin-bottom:10px;
-color:#333;
 }
 
 .tags{
@@ -56,24 +41,11 @@ border-radius:999px;
 background:#f2f2f2;
 cursor:pointer;
 font-size:13px;
-transition:.2s;
-}
-
-.tag:hover{
-background:#ffe4ef;
 }
 
 .tag.active{
 background:#ff4f9a;
 color:#fff;
-}
-
-input{
-width:100%;
-padding:10px;
-border-radius:12px;
-border:1px solid #eee;
-margin-top:10px;
 }
 
 button{
@@ -88,37 +60,20 @@ cursor:pointer;
 margin-top:12px;
 }
 
-.row{
-display:flex;
-gap:10px;
-}
-
-.row button{flex:1;}
-
 .result{
 margin-top:15px;
 padding:15px;
 border-radius:14px;
 background:#fff0f8;
-min-height:120px;
 white-space:pre-line;
 }
 
 .lock{
 background:#fff0f0;
-padding:12px;
-border-radius:12px;
-text-align:center;
-margin-bottom:15px;
-display:none;
-}
-
-.fav{
-background:#fff5fa;
 padding:10px;
 border-radius:10px;
-margin-top:10px;
-font-size:13px;
+text-align:center;
+display:none;
 }
 </style>
 </head>
@@ -129,104 +84,37 @@ font-size:13px;
 
 <div class="card">
 <h1>👑 Boss Babe Generator</h1>
-<div class="stats">Generated: <span id="count">0</span></div>
+<div style="text-align:center;">Generated: <span id="count">0</span></div>
 
 <div id="lockBox" class="lock">
-💎 Unlock PRO for unlimited generations
-<button onclick="checkout()">Upgrade</button>
+💎 Upgrade for unlimited use
+<button onclick="checkout()">Unlock PRO</button>
 </div>
 </div>
 
-<!-- BUILDER -->
 <div class="card">
 
-<div class="section-title">STYLE</div>
 <div class="tags" data-group="style">
-<div class="tag">signature exaggerated chibi</div>
+<div class="tag">chibi</div>
 <div class="tag">anime</div>
-<div class="tag">pixar 3d</div>
-<div class="tag">digital art</div>
-<div class="tag">watercolor</div>
-</div>
-<input placeholder="Custom style..." data-custom="style">
-
-<div class="section-title">ETHNICITY</div>
-<div class="tags" data-group="ethnicity">
-<div class="tag">black woman</div>
-<div class="tag">latina woman</div>
-<div class="tag">white woman</div>
-<div class="tag">asian woman</div>
-</div>
-<input data-custom="ethnicity">
-
-<div class="section-title">BODY</div>
-<div class="tags" data-group="body">
-<div class="tag">curvy</div>
-<div class="tag">slim</div>
-<div class="tag">petite</div>
+<div class="tag">realistic</div>
 </div>
 
-<div class="section-title">HAIR</div>
-<div class="tags" data-group="hair">
-<div class="tag">long waves</div>
-<div class="tag">messy bun</div>
-<div class="tag">ponytail</div>
-</div>
-
-<div class="section-title">MAKEUP</div>
-<div class="tags" data-group="makeup">
-<div class="tag">soft glam</div>
-<div class="tag">full glam</div>
-<div class="tag">natural makeup</div>
-</div>
-
-<div class="section-title">OUTFIT</div>
 <div class="tags" data-group="outfit">
-<div class="tag">glam streetwear</div>
-<div class="tag">hoodie and sweatpants</div>
-<div class="tag">tracksuit</div>
-<div class="tag">leather jacket with ripped jeans</div>
-<div class="tag">chanel outfit</div>
-<div class="tag">louis vuitton outfit</div>
+<div class="tag">hoodie</div>
+<div class="tag">streetwear</div>
+<div class="tag">designer outfit</div>
 </div>
 
-<div class="section-title">SHOES</div>
-<div class="tags" data-group="shoes">
-<div class="tag">vans sneakers</div>
-<div class="tag">nike sneakers</div>
-<div class="tag">heels</div>
-</div>
-
-<div class="section-title">POSE</div>
 <div class="tags" data-group="pose">
 <div class="tag">standing</div>
 <div class="tag">walking</div>
 <div class="tag">hand on hip</div>
 </div>
 
-<div class="section-title">SCENE</div>
-<div class="tags" data-group="scene">
-<div class="tag">luxury penthouse</div>
-<div class="tag">floating in clouds</div>
-<div class="tag">sparkles</div>
-</div>
-
-<div class="section-title">CAMERA</div>
-<div class="tags" data-group="camera">
-<div class="tag">full body</div>
-<div class="tag">close up</div>
-<div class="tag">low angle</div>
-</div>
-
-<button onclick="generate()">✨ Generate Prompt</button>
-
-<div class="row">
-<button onclick="copyPrompt()">Copy</button>
-<button onclick="downloadPrompt()">Download</button>
-</div>
+<button onclick="generate()">✨ Generate</button>
 
 <div id="result" class="result"></div>
-<div id="favorites"></div>
 
 </div>
 
@@ -237,13 +125,6 @@ font-size:13px;
 let total = 0;
 let isPro = localStorage.getItem("bb_pro");
 
-// Stripe return
-const params = new URLSearchParams(window.location.search);
-if(params.get("paid")==="true"){
-localStorage.setItem("bb_pro","true");
-isPro=true;
-}
-
 // toggle
 document.querySelectorAll(".tag").forEach(tag=>{
 tag.onclick=()=>tag.classList.toggle("active");
@@ -251,10 +132,32 @@ tag.onclick=()=>tag.classList.toggle("active");
 
 function get(name){
 let tags=document.querySelectorAll(`[data-group="${name}"] .active`);
-return [...tags].map(t=>t.innerText).join(", ");
+return [...tags].map(t=>t.innerText);
 }
 
-// 🔥 STRONG PROMPT
+// 💎 SMART EXPANSIONS
+function enhancePose(pose){
+if(pose.includes("standing")) return "standing confidently, facing forward, full body visible, centered composition";
+if(pose.includes("walking")) return "walking naturally, mid-motion, dynamic pose, cinematic movement";
+if(pose.includes("hand on hip")) return "hand on hip, confident pose, fashion stance, centered framing";
+return pose.join(", ");
+}
+
+function enhanceOutfit(outfit){
+if(outfit.includes("hoodie")) return "oversized hoodie with soft fabric folds, trendy streetwear aesthetic";
+if(outfit.includes("streetwear")) return "modern glam streetwear outfit, layered clothing, high fashion casual vibe";
+if(outfit.includes("designer")) return "luxury designer outfit, high-end fashion, polished styling";
+return outfit.join(", ");
+}
+
+function enhanceStyle(style){
+if(style.includes("chibi")) return "signature exaggerated chibi style, large eyes, glossy finish, ultra detailed";
+if(style.includes("anime")) return "anime style, vibrant colors, sharp lines, cinematic lighting";
+if(style.includes("realistic")) return "ultra realistic photography, high detail skin texture, studio lighting";
+return style.join(", ");
+}
+
+// 🔥 GENERATOR
 function generate(){
 
 if(!isPro && total>=5){
@@ -262,41 +165,24 @@ document.getElementById("lockBox").style.display="block";
 return;
 }
 
+let style = enhanceStyle(get("style"));
+let outfit = enhanceOutfit(get("outfit"));
+let pose = enhancePose(get("pose"));
+
 let prompt = `
-${get("style")},
+${style},
 
-A highly detailed ${get("body")} ${get("ethnicity")} with ${get("hair")} and ${get("makeup")}.
+POSE: ${pose}.
 
-POSE: ${get("pose")}, facing forward, centered, not looking over shoulder.
+OUTFIT: ${outfit}.
 
-OUTFIT: ${get("outfit")} with ${get("shoes")}.
-
-SCENE: ${get("scene")}.
-
-CAMERA: ${get("camera")}.
-
-ultra realistic, cinematic lighting, 4k, high detail.
+ultra realistic, cinematic lighting, 4k, highly detailed, trending on instagram, viral aesthetic.
 `;
 
 document.getElementById("result").innerText = prompt;
 
 total++;
 document.getElementById("count").innerText = total;
-
-}
-
-// copy
-function copyPrompt(){
-navigator.clipboard.writeText(document.getElementById("result").innerText);
-}
-
-// download
-function downloadPrompt(){
-let blob=new Blob([document.getElementById("result").innerText]);
-let a=document.createElement("a");
-a.href=URL.createObjectURL(blob);
-a.download="prompt.txt";
-a.click();
 }
 
 // stripe
