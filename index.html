@@ -12,7 +12,7 @@ padding:20px;
 }
 
 .container{
-max-width:700px;
+max-width:750px;
 margin:auto;
 background:#fff;
 padding:20px;
@@ -30,10 +30,9 @@ margin-top:25px;
 }
 
 .section h3{
-margin-bottom:10px;
-font-size:14px;
+font-size:13px;
 color:#888;
-letter-spacing:1px;
+margin-bottom:10px;
 }
 
 .tags{
@@ -45,7 +44,7 @@ gap:8px;
 .tag{
 padding:8px 14px;
 border-radius:20px;
-background:#f5f5f5;
+background:#f3f3f3;
 cursor:pointer;
 font-size:13px;
 }
@@ -64,7 +63,7 @@ border:1px solid #eee;
 }
 
 button{
-margin-top:25px;
+margin-top:20px;
 width:100%;
 padding:16px;
 background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
@@ -83,6 +82,17 @@ border-radius:12px;
 min-height:120px;
 white-space:pre-line;
 }
+
+.preview{
+margin-top:20px;
+border-radius:16px;
+overflow:hidden;
+}
+
+.preview img{
+width:100%;
+border-radius:16px;
+}
 </style>
 </head>
 
@@ -91,6 +101,10 @@ white-space:pre-line;
 <div class="container">
 
 <h1>👑 Boss Babe Generator</h1>
+
+<div class="preview">
+<img id="previewImg" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
+</div>
 
 <!-- ETHNICITY -->
 <div class="section">
@@ -101,7 +115,6 @@ white-space:pre-line;
 <div class="tag">White woman</div>
 <div class="tag">Asian woman</div>
 <div class="tag">Mixed race</div>
-<div class="tag">Middle Eastern</div>
 </div>
 <input placeholder="Add custom..." data-custom="ethnicity">
 </div>
@@ -114,7 +127,6 @@ white-space:pre-line;
 <div class="tag">slim</div>
 <div class="tag">petite</div>
 <div class="tag">thick</div>
-<div class="tag">athletic</div>
 </div>
 <input placeholder="Add custom..." data-custom="body">
 </div>
@@ -128,7 +140,6 @@ white-space:pre-line;
 <div class="tag">messy bun</div>
 <div class="tag">space buns</div>
 <div class="tag">ponytail</div>
-<div class="tag">braids</div>
 </div>
 <input placeholder="Add custom..." data-custom="hair">
 </div>
@@ -143,7 +154,6 @@ white-space:pre-line;
 <div class="tag">ripped jeans</div>
 <div class="tag">cargo pants</div>
 <div class="tag">tracksuit</div>
-<div class="tag">oversized hoodie</div>
 <div class="tag">mini dress</div>
 <div class="tag">pinterest outfit</div>
 <div class="tag">tiktok streetwear</div>
@@ -234,11 +244,15 @@ white-space:pre-line;
 
 <script>
 
-// toggle tags
+// tag toggle
 document.querySelectorAll(".tag").forEach(tag=>{
-tag.onclick=()=>tag.classList.toggle("active");
+tag.onclick=()=>{
+tag.classList.toggle("active");
+updateImage();
+};
 });
 
+// get selected values
 function getGroup(name){
 let tags=document.querySelectorAll(`[data-group="${name}"] .active`);
 let values=[...tags].map(t=>t.innerText);
@@ -249,6 +263,7 @@ if(custom) values.push(custom);
 return values.join(", ");
 }
 
+// generate prompt
 function generate(){
 
 let prompt = `
@@ -259,10 +274,41 @@ accessorized with ${getGroup("accessories")},
 set in ${getGroup("scene")},
 ${getGroup("lighting")},
 ${getGroup("vibe")},
-ultra realistic, cinematic lighting, 4k, high detail.
+ultra realistic, cinematic lighting, 4k.
 `;
 
 document.getElementById("result").innerText=prompt;
+
+updateImage();
+}
+
+// 🔥 dynamic preview
+function updateImage(){
+
+let style = getGroup("style") || "";
+let outfit = getGroup("outfit") || "";
+let img = document.getElementById("previewImg");
+
+let url = "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e";
+
+if(style.toLowerCase().includes("chibi")){
+url = "https://placehold.co/600x800/png?text=Chibi";
+}
+else if(style.toLowerCase().includes("anime")){
+url = "https://placehold.co/600x800/png?text=Anime";
+}
+else if(outfit.toLowerCase().includes("hoodie") || outfit.toLowerCase().includes("streetwear")){
+url = "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c";
+}
+else if(outfit.toLowerCase().includes("dress")){
+url = "https://images.unsplash.com/photo-1520975922284-9e0f3a5e54c1";
+}
+
+img.src = url + "?t=" + new Date().getTime();
+
+img.onerror = function(){
+img.src = "https://placehold.co/600x800/png?text=Preview";
+};
 
 }
 
