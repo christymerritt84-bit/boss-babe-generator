@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>👑 Boss Babe Generator</title>
+<title>👑 Boss Babe Generator PRO</title>
 
 <style>
 body{
@@ -25,15 +25,7 @@ text-align:center;
 color:#ff4f9a;
 }
 
-.section{
-margin-top:25px;
-}
-
-.section h3{
-font-size:13px;
-color:#888;
-margin-bottom:10px;
-}
+.section{margin-top:20px;}
 
 .tags{
 display:flex;
@@ -46,7 +38,6 @@ padding:8px 14px;
 border-radius:20px;
 background:#f3f3f3;
 cursor:pointer;
-font-size:13px;
 }
 
 .tag.active{
@@ -54,37 +45,19 @@ background:#ff4f9a;
 color:#fff;
 }
 
-input{
-margin-top:10px;
-padding:10px;
-width:100%;
-border-radius:12px;
-border:1px solid #eee;
-}
-
 button{
-margin-top:15px;
+margin-top:10px;
 width:100%;
 padding:14px;
 background:linear-gradient(90deg,#ff4f9a,#ff7ab8);
 color:#fff;
 border:none;
 border-radius:14px;
-font-weight:bold;
 cursor:pointer;
 }
 
-.row-buttons{
-display:flex;
-gap:10px;
-}
-
-.row-buttons button{
-flex:1;
-}
-
 .result{
-margin-top:20px;
+margin-top:15px;
 padding:15px;
 background:#fff0f8;
 border-radius:12px;
@@ -92,12 +65,12 @@ min-height:100px;
 white-space:pre-line;
 }
 
-.favItem{
-background:#fff5fa;
+.lock{
+background:#fff0f0;
 padding:10px;
 border-radius:10px;
-margin-top:8px;
-font-size:13px;
+text-align:center;
+margin-top:10px;
 }
 </style>
 </head>
@@ -109,216 +82,116 @@ font-size:13px;
 <h1>👑 Boss Babe Generator</h1>
 <div style="text-align:center;">Generated: <span id="count">0</span></div>
 
+<div class="lock" id="lockBox" style="display:none;">
+💎 Upgrade to PRO for unlimited generations
+<button onclick="goToCheckout()">Unlock PRO</button>
+</div>
+
 <!-- STYLE -->
 <div class="section">
 <h3>STYLE</h3>
 <div class="tags" data-group="style">
-<div class="tag">signature exaggerated chibi</div>
+<div class="tag">chibi</div>
+<div class="tag">anime</div>
 <div class="tag">pixar 3d</div>
-<div class="tag">anime style</div>
-<div class="tag">comic book</div>
-<div class="tag">illustration</div>
 <div class="tag">digital art</div>
-<div class="tag">vector art</div>
-<div class="tag">oil painting</div>
-<div class="tag">watercolor painting</div>
+<div class="tag">watercolor</div>
 </div>
-<input placeholder="Add custom..." data-custom="style">
-</div>
-
-<!-- ETHNICITY -->
-<div class="section">
-<h3>ETHNICITY</h3>
-<div class="tags" data-group="ethnicity">
-<div class="tag">black woman</div>
-<div class="tag">latina woman</div>
-<div class="tag">white woman</div>
-<div class="tag">asian woman</div>
-<div class="tag">mixed race woman</div>
-</div>
-<input placeholder="Add custom..." data-custom="ethnicity">
-</div>
-
-<!-- SKIN -->
-<div class="section">
-<h3>SKIN TONE</h3>
-<div class="tags" data-group="skin">
-<div class="tag">deep dark skin</div>
-<div class="tag">rich brown skin</div>
-<div class="tag">golden tan skin</div>
-<div class="tag">fair skin</div>
-</div>
-<input placeholder="Add custom..." data-custom="skin">
-</div>
-
-<!-- BODY -->
-<div class="section">
-<h3>BODY</h3>
-<div class="tags" data-group="body">
-<div class="tag">curvy</div>
-<div class="tag">slim</div>
-<div class="tag">petite</div>
-<div class="tag">thick</div>
-</div>
-<input placeholder="Add custom..." data-custom="body">
-</div>
-
-<!-- HAIR -->
-<div class="section">
-<h3>HAIR</h3>
-<div class="tags" data-group="hair">
-<div class="tag">long straight hair</div>
-<div class="tag">curly hair</div>
-<div class="tag">messy bun</div>
-<div class="tag">space buns</div>
-<div class="tag">ponytail</div>
-</div>
-<input placeholder="Add custom..." data-custom="hair">
-</div>
-
-<!-- MAKEUP -->
-<div class="section">
-<h3>MAKEUP</h3>
-<div class="tags" data-group="makeup">
-<div class="tag">soft glam</div>
-<div class="tag">full glam</div>
-<div class="tag">natural makeup</div>
-<div class="tag">glossy lips</div>
-<div class="tag">dramatic lashes</div>
-</div>
-<input placeholder="Add custom..." data-custom="makeup">
 </div>
 
 <!-- OUTFIT -->
 <div class="section">
 <h3>OUTFIT</h3>
 <div class="tags" data-group="outfit">
-<div class="tag">glam streetwear</div>
+<div class="tag">oversized t-shirt</div>
 <div class="tag">hoodie and sweatpants</div>
-<div class="tag">designer top</div>
-<div class="tag">oversized sweater with leggings</div>
 <div class="tag">tracksuit</div>
-<div class="tag">track shorts and tank top</div>
 <div class="tag">leather jacket with ripped jeans</div>
 <div class="tag">chanel outfit</div>
 <div class="tag">louis vuitton outfit</div>
 </div>
-<input placeholder="Add custom..." data-custom="outfit">
 </div>
 
 <!-- SHOES -->
 <div class="section">
-<h3>FOOTWEAR</h3>
+<h3>SHOES</h3>
 <div class="tags" data-group="shoes">
 <div class="tag">vans sneakers</div>
 <div class="tag">nike sneakers</div>
 <div class="tag">heels</div>
-<div class="tag">boots</div>
 </div>
-<input placeholder="Add custom..." data-custom="shoes">
-</div>
-
-<!-- SCENE -->
-<div class="section">
-<h3>SCENE</h3>
-<div class="tags" data-group="scene">
-<div class="tag">floating in the clouds</div>
-<div class="tag">emerging from splash surrounded by sparkles</div>
-<div class="tag">luxury penthouse</div>
-<div class="tag">pink aesthetic room</div>
-</div>
-<input placeholder="Add custom..." data-custom="scene">
-</div>
-
-<!-- CAMERA -->
-<div class="section">
-<h3>CAMERA ANGLE</h3>
-<div class="tags" data-group="camera">
-<div class="tag">close up shot</div>
-<div class="tag">full body shot</div>
-<div class="tag">low angle</div>
-<div class="tag">high angle</div>
-<div class="tag">over the shoulder</div>
-</div>
-<input placeholder="Add custom..." data-custom="camera">
 </div>
 
 <button onclick="generate()">✨ Generate Prompt</button>
 
-<div class="row-buttons">
 <button onclick="copyPrompt()">📋 Copy</button>
-<button onclick="saveFav()">💾 Save</button>
-</div>
+<button onclick="downloadPrompt()">⬇️ Download</button>
 
 <div id="result" class="result"></div>
-<div id="favs"></div>
 
 </div>
 
 <script>
 
 let total = 0;
+let isPro = localStorage.getItem("bb_pro") === "true";
 
+// check stripe return
+const params = new URLSearchParams(window.location.search);
+if(params.get("paid") === "true"){
+localStorage.setItem("bb_pro","true");
+isPro = true;
+}
+
+// toggle tags
 document.querySelectorAll(".tag").forEach(tag=>{
 tag.onclick=()=>tag.classList.toggle("active");
 });
 
 function getGroup(name){
 let tags=document.querySelectorAll(`[data-group="${name}"] .active`);
-let values=[...tags].map(t=>t.innerText.trim());
-
-let custom=document.querySelector(`[data-custom="${name}"]`);
-if(custom && custom.value.trim()) values.push(custom.value.trim());
-
-return values.join(", ");
+return [...tags].map(t=>t.innerText).join(", ");
 }
 
 function generate(){
 
+if(!isPro && total >= 5){
+document.getElementById("lockBox").style.display="block";
+return;
+}
+
 let prompt = `
 ${getGroup("style")},
-a highly detailed ${getGroup("body")} ${getGroup("ethnicity")} with ${getGroup("skin")} and ${getGroup("hair")},
-${getGroup("makeup")},
 wearing ${getGroup("outfit")} with ${getGroup("shoes")},
-${getGroup("scene")},
-${getGroup("camera")},
-ultra realistic, cinematic lighting, 4k.
+ultra aesthetic, cinematic lighting, 4k.
 `;
 
 document.getElementById("result").innerText = prompt;
 
 total++;
 document.getElementById("count").innerText = total;
+
 }
 
 function copyPrompt(){
 navigator.clipboard.writeText(document.getElementById("result").innerText);
 }
 
-function saveFav(){
-let text=document.getElementById("result").innerText;
-if(!text) return;
-
-let saved=JSON.parse(localStorage.getItem("bb_favs")||"[]");
-saved.unshift(text);
-localStorage.setItem("bb_favs",JSON.stringify(saved));
-renderFavs();
+// DOWNLOAD FEATURE
+function downloadPrompt(){
+let text = document.getElementById("result").innerText;
+let blob = new Blob([text], {type: "text/plain"});
+let a = document.createElement("a");
+a.href = URL.createObjectURL(blob);
+a.download = "prompt.txt";
+a.click();
 }
 
-function renderFavs(){
-let box=document.getElementById("favs");
-box.innerHTML="";
-let saved=JSON.parse(localStorage.getItem("bb_favs")||"[]");
-
-saved.forEach(item=>{
-let div=document.createElement("div");
-div.className="favItem";
-div.innerText=item;
-box.appendChild(div);
-});
+// STRIPE CHECKOUT
+function goToCheckout(){
+let returnUrl = window.location.href + "?paid=true";
+window.location.href = "https://buy.stripe.com/YOUR_LINK_HERE?success_url=" + encodeURIComponent(returnUrl);
 }
-
-renderFavs();
 
 </script>
 
