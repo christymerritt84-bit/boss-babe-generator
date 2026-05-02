@@ -12,6 +12,7 @@ padding:20px;
 }
 
 .container{max-width:1100px;margin:auto;}
+
 .card{
 background:#fff;
 padding:20px;
@@ -22,9 +23,12 @@ margin-bottom:20px;
 
 h1{text-align:center;color:#ff4f9a;}
 
-.section-title{margin-top:15px;font-weight:bold;}
+.tags{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
 
-.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
 .tag{
 padding:8px 14px;
 border-radius:999px;
@@ -32,7 +36,11 @@ background:#f2f2f2;
 cursor:pointer;
 font-size:13px;
 }
-.tag.active{background:#ff4f9a;color:#fff;}
+
+.tag.active{
+background:#ff4f9a;
+color:#fff;
+}
 
 button{
 width:100%;
@@ -46,20 +54,21 @@ margin-top:12px;
 cursor:pointer;
 }
 
-.preset{
-background:#fff0f8;
-padding:10px;
-border-radius:12px;
-margin-top:8px;
-cursor:pointer;
-}
-
 .result{
 margin-top:15px;
 padding:15px;
 background:#fff0f8;
 border-radius:12px;
 white-space:pre-line;
+}
+
+.lock{
+background:#fff0f0;
+padding:15px;
+border-radius:12px;
+text-align:center;
+display:none;
+margin-top:15px;
 }
 </style>
 </head>
@@ -70,31 +79,30 @@ white-space:pre-line;
 
 <div class="card">
 <h1>👑 Boss Babe Generator</h1>
+<p style="text-align:center;">Free: 5 generations • Upgrade for unlimited 💎</p>
 
-<div class="section-title">🔥 QUICK PRESETS</div>
-
-<div class="preset" onclick="applyPreset('baddie')">TikTok Baddie</div>
-<div class="preset" onclick="applyPreset('luxury')">Luxury Influencer</div>
-<div class="preset" onclick="applyPreset('soft')">Soft Girl</div>
-<div class="preset" onclick="applyPreset('anime')">Anime Waifu</div>
-
+<div id="lockBox" class="lock">
+<h3>💎 Unlock PRO</h3>
+<p>Unlimited prompts + premium presets</p>
+<button onclick="checkout()">Upgrade Now</button>
+</div>
 </div>
 
 <div class="card">
 
-<div class="section-title">HAIR</div>
+<h3>HAIR</h3>
 <div class="tags" data-group="hair">
 <div class="tag">long waves</div>
-<div class="tag">sleek straight hair</div>
+<div class="tag">curly hair</div>
 <div class="tag">messy bun</div>
 <div class="tag">ponytail</div>
 <div class="tag">space buns</div>
 <div class="tag">braids</div>
-<div class="tag">curly hair</div>
 <div class="tag">blowout hair</div>
+<div class="tag">sleek straight hair</div>
 </div>
 
-<div class="section-title">MAKEUP</div>
+<h3>MAKEUP</h3>
 <div class="tags" data-group="makeup">
 <div class="tag">soft glam</div>
 <div class="tag">full glam</div>
@@ -102,19 +110,21 @@ white-space:pre-line;
 <div class="tag">glossy lips</div>
 <div class="tag">dramatic lashes</div>
 <div class="tag">smokey eye</div>
+<div class="tag">no makeup look</div>
 </div>
 
-<div class="section-title">OUTFIT</div>
+<h3>OUTFIT</h3>
 <div class="tags" data-group="outfit">
 <div class="tag">glam streetwear</div>
 <div class="tag">hoodie and sweatpants</div>
-<div class="tag">crop top and jeans</div>
 <div class="tag">oversized tee and biker shorts</div>
+<div class="tag">crop top and jeans</div>
 <div class="tag">designer outfit</div>
 <div class="tag">leather jacket and ripped jeans</div>
+<div class="tag">tracksuit</div>
 </div>
 
-<div class="section-title">SHOES</div>
+<h3>SHOES</h3>
 <div class="tags" data-group="shoes">
 <div class="tag">vans sneakers</div>
 <div class="tag">nike sneakers</div>
@@ -123,12 +133,13 @@ white-space:pre-line;
 <div class="tag">heels</div>
 </div>
 
-<div class="section-title">VIBE</div>
+<h3>VIBE</h3>
 <div class="tags" data-group="vibe">
 <div class="tag">luxury aesthetic</div>
 <div class="tag">soft aesthetic</div>
 <div class="tag">dark feminine</div>
 <div class="tag">boss energy</div>
+<div class="tag">instagram baddie</div>
 </div>
 
 <button onclick="generate()">✨ Generate Prompt</button>
@@ -143,58 +154,32 @@ white-space:pre-line;
 
 <script>
 
-// toggle
+let total = 0;
+let isPro = localStorage.getItem("bb_pro");
+
+const params = new URLSearchParams(window.location.search);
+if(params.get("paid")==="true"){
+localStorage.setItem("bb_pro","true");
+isPro=true;
+}
+
 document.querySelectorAll(".tag").forEach(tag=>{
 tag.onclick=()=>tag.classList.toggle("active");
 });
 
 function get(group){
-let tags=document.querySelectorAll(`[data-group="${group}"] .active`);
-return [...tags].map(t=>t.innerText);
+return [...document.querySelectorAll(`[data-group="${group}"] .active`)]
+.map(t=>t.innerText);
 }
 
-// 💎 PRESETS
-function applyPreset(type){
-
-document.querySelectorAll(".tag").forEach(t=>t.classList.remove("active"));
-
-if(type==="baddie"){
-activate("hair","long waves");
-activate("makeup","full glam");
-activate("outfit","glam streetwear");
-activate("shoes","jordans");
-activate("vibe","boss energy");
-}
-
-if(type==="luxury"){
-activate("outfit","designer outfit");
-activate("vibe","luxury aesthetic");
-activate("shoes","heels");
-}
-
-if(type==="soft"){
-activate("makeup","natural makeup");
-activate("vibe","soft aesthetic");
-}
-
-if(type==="anime"){
-activate("hair","space buns");
-activate("makeup","glossy lips");
-}
-
-}
-
-function activate(group,value){
-document.querySelectorAll(`[data-group="${group}"] .tag`)
-.forEach(tag=>{
-if(tag.innerText===value){
-tag.classList.add("active");
-}
-});
-}
-
-// 💎 SMART PROMPT
 function generate(){
+
+if(!isPro && total >= 5){
+document.getElementById("lockBox").style.display="block";
+return;
+}
+
+let prompt="A highly detailed character";
 
 let hair=get("hair");
 let makeup=get("makeup");
@@ -202,21 +187,25 @@ let outfit=get("outfit");
 let shoes=get("shoes");
 let vibe=get("vibe");
 
-let prompt="A highly detailed character";
-
-if(hair.length) prompt+=`, featuring ${hair.join(", ")}`;
-if(makeup.length) prompt+=`, wearing ${makeup.join(", ")}`;
-if(outfit.length) prompt+=`, styled in ${outfit.join(", ")}`;
+if(hair.length) prompt+=`, ${hair.join(", ")}`;
+if(makeup.length) prompt+=`, ${makeup.join(", ")}`;
+if(outfit.length) prompt+=`, wearing ${outfit.join(", ")}`;
 if(shoes.length) prompt+=` with ${shoes.join(", ")}`;
 if(vibe.length) prompt+=`, ${vibe.join(", ")}`;
 
 prompt+=", cinematic lighting, ultra detailed, 4k, trending aesthetic";
 
 document.getElementById("result").innerText=prompt;
+
+total++;
 }
 
 function copyPrompt(){
 navigator.clipboard.writeText(document.getElementById("result").innerText);
+}
+
+function checkout(){
+window.location.href="https://buy.stripe.com/8x23cu1UB7ENgZk8t3gbm00?success_url="+encodeURIComponent(window.location.href+"?paid=true");
 }
 
 </script>
